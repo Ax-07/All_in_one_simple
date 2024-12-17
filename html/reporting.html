@@ -98,33 +98,76 @@
   </style>
 </head>
 <body>
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="logo">Le Gourmet</div>
+  <nav class="side-nav">
+    <a href="dashboard.html" class="active">Dashboard</a>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="logo">RéservApp</div>
-    <nav class="side-nav">
-      <a href="dashboard.html">Dashboard</a>
-      <a href="reservations.html">Réservations</a>
-      <a href="profil.html">Mon Profil</a>
-      <a href="parametres.html">Paramètres</a>
-      <a href="choix-template.html">Personnaliser ma Fiche</a>
-      <a href="config_plats_menus.html">Plats & Menus</a>
-      <a href="caisse.html">Logiciel de Caisse</a>
-      <a href="suivi_ventes.html">Suivi des Ventes</a>
-      <a href="gestion_produits.html">Gestion des Produits</a>
-      <a href="gestion_stocks.html">Gestion des Stocks</a>
-      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
-      <a href="gestion_employes.html">Gestion des Employés</a>
-      <a href="reporting.html" class="active">Reporting et Analyses</a>
-      <a href="gestion_clients.html">Gestion des Clients</a>
-      <a href="gestion_promotions.html">Gestion des Promotions</a>
-      <a href="support_assistance.html">Support et Assistance</a>
-      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
-      <a href="gestion_salaires.html">Gestion des Salaires</a>
-      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
-      <a href="index.html">Déconnexion</a>
-    </nav>
-  </aside>
+    <!-- Gestion Opérationnelle -->
+    <div class="nav-group">
+      <button class="nav-group-btn">Gestion Opérationnelle <span class="arrow">&#9660;</span></button>
+      <div class="nav-group-content">
+        <a href="reservations.html">Réservations</a>
+        <a href="config_plats_menus.html">Plats & Menus</a>
+        <a href="caisse.html">Logiciel de Caisse</a>
+        <a href="suivi_ventes.html">Suivi des Ventes</a>
+      </div>
+    </div>
+
+    <!-- Gestion des Stocks -->
+    <div class="nav-group">
+      <button class="nav-group-btn">Gestion des Stocks <span class="arrow">&#9660;</span></button>
+      <div class="nav-group-content">
+        <a href="gestion_produits.html">Gestion des Produits</a>
+        <a href="gestion_stocks.html">Gestion des Stocks</a>
+        <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+        <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      </div>
+    </div>
+
+    <!-- Ressources Humaines -->
+    <div class="nav-group">
+      <button class="nav-group-btn">Ressources Humaines <span class="arrow">&#9660;</span></button>
+      <div class="nav-group-content">
+        <a href="gestion_employes.html">Gestion des Employés</a>
+        <a href="gestion_salaires.html">Gestion des Salaires</a>
+      </div>
+    </div>
+
+    <!-- Marketing -->
+    <div class="nav-group">
+      <button class="nav-group-btn">Marketing <span class="arrow">&#9660;</span></button>
+      <div class="nav-group-content">
+        <a href="gestion_clients.html">Gestion des Clients</a>
+        <a href="gestion_promotions.html">Gestion des Promotions</a>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <div class="nav-group">
+      <button class="nav-group-btn">Support <span class="arrow">&#9660;</span></button>
+      <div class="nav-group-content">
+        <a href="support_assistance.html">Support et Assistance</a>
+        <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      </div>
+    </div>
+
+    <!-- Reporting -->
+    <div class="nav-group">
+      <button class="nav-group-btn">Reporting <span class="arrow">&#9660;</span></button>
+      <div class="nav-group-content">
+        <a href="reporting.html" class="active">Reporting et Analyses</a>
+      </div>
+    </div>
+
+    <!-- Autres Liens -->
+    <a href="profil.html">Mon Profil</a>
+    <a href="parametres.html">Paramètres</a>
+    <a href="choix-template.html">Personnaliser ma Fiche</a>
+    <a href="../index.html">Déconnexion</a>
+  </nav>
+</aside>
 
   <!-- Conteneur Principal -->
   <main class="dashboard-content">
@@ -273,6 +316,35 @@
         // Simuler des filtres de date si nécessaire
         generateChart(type);
       });
+
+      // Gestion des groupes de navigation
+      const navGroupButtons = document.querySelectorAll('.nav-group-btn');
+
+      navGroupButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const parent = this.parentElement;
+
+          // Fermer tous les autres groupes
+          document.querySelectorAll('.nav-group').forEach(group => {
+            if (group !== parent) {
+              group.classList.remove('active');
+            }
+          });
+
+          // Toggle l'état actif du groupe actuel
+          parent.classList.toggle('active');
+        });
+      });
+
+      // Optionnel : Fermer les groupes lorsqu'on clique en dehors
+      window.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-group')) {
+          document.querySelectorAll('.nav-group').forEach(group => {
+            group.classList.remove('active');
+          });
+        }
+      }); 
+      
     });
   </script>
 
