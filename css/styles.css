@@ -291,7 +291,7 @@
   
   .sidebar .side-nav a:hover,
   .sidebar .side-nav a.active {
-    background-color: #34495e;
+    background-color: var(--color-primary);
   }
   
   /* Groupes de Navigation */
