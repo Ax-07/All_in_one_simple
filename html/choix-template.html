@@ -1,35 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Choisir le Modèle de la Fiche | Dashboard</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
+  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="logo">Le Gourmet</div>
     <nav class="side-nav">
       <a href="dashboard.html">Dashboard</a>
-      <a href="reservations.html">Réservations</a>
+
+      <!-- Gestion Opérationnelle -->
+      <div class="nav-group">
+        <button class="nav-group-btn">Gestion Opérationnelle <span class="arrow">&#9660;</span></button>
+        <div class="nav-group-content">
+          <a href="reservations.html">Réservations</a>
+          <a href="config_plats_menus.html">Plats & Menus</a>
+          <a href="caisse.html">Logiciel de Caisse</a>
+          <a href="suivi_ventes.html">Suivi des Ventes</a>
+        </div>
+      </div>
+
+      <!-- Gestion des Stocks -->
+      <div class="nav-group">
+        <button class="nav-group-btn">Gestion des Stocks <span class="arrow">&#9660;</span></button>
+        <div class="nav-group-content">
+          <a href="gestion_produits.html">Gestion des Produits</a>
+          <a href="gestion_stocks.html">Gestion des Stocks</a>
+          <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+          <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+        </div>
+      </div>
+
+      <!-- Ressources Humaines -->
+      <div class="nav-group">
+        <button class="nav-group-btn">Ressources Humaines <span class="arrow">&#9660;</span></button>
+        <div class="nav-group-content">
+          <a href="gestion_employes.html">Gestion des Employés</a>
+          <a href="gestion_salaires.html">Gestion des Salaires</a>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="nav-group">
+        <button class="nav-group-btn">Marketing <span class="arrow">&#9660;</span></button>
+        <div class="nav-group-content">
+          <a href="gestion_clients.html">Gestion des Clients</a>
+          <a href="gestion_promotions.html">Gestion des Promotions</a>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="nav-group">
+        <button class="nav-group-btn">Support <span class="arrow">&#9660;</span></button>
+        <div class="nav-group-content">
+          <a href="support_assistance.html">Support et Assistance</a>
+          <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+        </div>
+      </div>
+
+      <!-- Reporting -->
+      <div class="nav-group">
+        <button class="nav-group-btn">Reporting <span class="arrow">&#9660;</span></button>
+        <div class="nav-group-content">
+          <a href="reporting.html">Reporting et Analyses</a>
+        </div>
+      </div>
+
+      <!-- Autres Liens -->
       <a href="profil.html">Mon Profil</a>
       <a href="parametres.html">Paramètres</a>
       <a href="choix-template.html" class="active">Personnaliser ma Fiche</a>
-      <a href="config_plats_menus.html">Plats & Menus</a>
-      <a href="caisse.html">Logiciel de Caisse</a>
-      <a href="suivi_ventes.html">Suivi des Ventes</a>
-      <a href="gestion_produits.html">Gestion des Produits</a>
-      <a href="gestion_stocks.html">Gestion des Stocks</a>
-      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
-      <a href="gestion_employes.html">Gestion des Employés</a>
-      <a href="reporting.html">Reporting et Analyses</a>
-      <a href="gestion_clients.html">Gestion des Clients</a>
-      <a href="gestion_promotions.html">Gestion des Promotions</a>
-      <a href="support_assistance.html">Support et Assistance</a>
-      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
-      <a href="gestion_salaires.html">Gestion des Salaires</a>
-      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
-      <a href="index.html">Déconnexion</a>
+      <a href="../index.html">Déconnexion</a>
     </nav>
   </aside>
 
@@ -40,13 +87,13 @@
         <p>Choisissez le modèle de page qui représente le mieux votre établissement.</p>
       </div>
     </header>
-        <!-- Section Propositions -->
-        <section class="suggestions-section" id="suggestionsSection">
-          <h2>Propositions pour votre Restaurant</h2>
-          <div class="suggestions-content" id="suggestionsContent">
-            <!-- Le contenu sera mis à jour via JS -->
-          </div>
-        </section>
+    <!-- Section Propositions -->
+    <section class="suggestions-section" id="suggestionsSection">
+      <h2>Propositions pour votre Restaurant</h2>
+      <div class="suggestions-content" id="suggestionsContent">
+        <!-- Le contenu sera mis à jour via JS -->
+      </div>
+    </section>
 
     <section class="template-choices">
       <!-- Modèle Classique -->
@@ -222,12 +269,12 @@
   </main>
 
   <script>
-        let selectedTemplate = null; // Variable globale pour le template sélectionné
+    let selectedTemplate = null; // Variable globale pour le template sélectionné
 
     function previewTemplate(templateName) {
       document.getElementById('previewModal').style.display = 'flex';
       let src = '';
-      switch(templateName) {
+      switch (templateName) {
         case 'classique':
           src = 'fiche-restaurant/fiche-restaurant-classique.html';
           break;
@@ -292,37 +339,37 @@
       document.getElementById('previewModal').style.display = 'none';
     }
 
-function selectTemplate(templateName, button) {
-  // Simuler une réponse positive du serveur sans fetch
-  const data = { success: true };
+    function selectTemplate(templateName, button) {
+      // Simuler une réponse positive du serveur sans fetch
+      const data = { success: true };
 
-  if (data.success) {
-    // alert("Le modèle a été sélectionné avec succès !");
+      if (data.success) {
+        // alert("Le modèle a été sélectionné avec succès !");
 
-    // Retirer l'état "selected" du template précédemment sélectionné s'il y en a un
-    if (selectedTemplate) {
-      const oldCard = document.querySelector(`.template-card[data-template="${selectedTemplate}"]`);
-      if (oldCard) {
-        oldCard.classList.remove('selected');
-        const oldButton = oldCard.querySelector('.btn-sm.btn-primary');
-        if (oldButton) {
-          oldButton.disabled = false;
-          oldButton.textContent = "Sélectionner";
+        // Retirer l'état "selected" du template précédemment sélectionné s'il y en a un
+        if (selectedTemplate) {
+          const oldCard = document.querySelector(`.template-card[data-template="${selectedTemplate}"]`);
+          if (oldCard) {
+            oldCard.classList.remove('selected');
+            const oldButton = oldCard.querySelector('.btn-sm.btn-primary');
+            if (oldButton) {
+              oldButton.disabled = false;
+              oldButton.textContent = "Sélectionner";
+            }
+          }
         }
+
+        // Appliquer l'état "selected" au nouveau template
+        const card = button.closest('.template-card');
+        card.classList.add('selected');
+        button.disabled = true;
+        button.textContent = "Sélectionné";
+
+        selectedTemplate = templateName;
+      } else {
+        alert("Une erreur est survenue, veuillez réessayer.");
       }
     }
-
-    // Appliquer l'état "selected" au nouveau template
-    const card = button.closest('.template-card');
-    card.classList.add('selected');
-    button.disabled = true;
-    button.textContent = "Sélectionné";
-
-    selectedTemplate = templateName;
-  } else {
-    alert("Une erreur est survenue, veuillez réessayer.");
-  }
-}
 
 
     function updateSuggestions(templateName) {
@@ -331,7 +378,7 @@ function selectTemplate(templateName, button) {
 
       let suggestionsHTML = '';
 
-      switch(templateName) {
+      switch (templateName) {
         case 'classique':
           suggestionsHTML = `
             <p>Pour un restaurant classique, mettez en avant une palette de couleurs sobres (beige, blanc, marron clair) et des photos de plats traditionnels (coq au vin, entrecôte, gratin dauphinois). Présentez vos menus du jour, et insistez sur le savoir-faire culinaire et la tradition.</p>
@@ -431,6 +478,36 @@ function selectTemplate(templateName, button) {
       suggestionsContent.innerHTML = suggestionsHTML;
       suggestionsSection.style.display = 'flex';
     }
+
+    // Gestion des groupes de navigation
+    const navGroupButtons = document.querySelectorAll('.nav-group-btn');
+
+    navGroupButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const parent = this.parentElement;
+
+        // Fermer tous les autres groupes
+        document.querySelectorAll('.nav-group').forEach(group => {
+          if (group !== parent) {
+            group.classList.remove('active');
+          }
+        });
+
+        // Toggle l'état actif du groupe actuel
+        parent.classList.toggle('active');
+      });
+    });
+
+    // Optionnel : Fermer les groupes lorsqu'on clique en dehors
+    window.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-group')) {
+        document.querySelectorAll('.nav-group').forEach(group => {
+          group.classList.remove('active');
+        });
+      }
+    });
+
   </script>
 </body>
+
 </html>
