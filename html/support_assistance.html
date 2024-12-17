@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support et Assistance | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Bouton */
+    .support-options {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .support-options button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .support-options button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Contenu de Support */
+    .support-content {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    /* Formulaire Ticket */
+    .ticket-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .ticket-form input,
+    .ticket-form textarea,
+    .ticket-form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .ticket-form button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .ticket-form button:hover {
+      background-color: #27ae60;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h3 {
+      margin: 0;
+      cursor: pointer;
+      color: #2980b9;
+    }
+
+    .faq-item p {
+      display: none;
+      margin: 0.5rem 0 0 0;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">RéservApp</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html" class="active">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Support et Assistance</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Support et Assistance -->
+      <section class="support-assistance">
+        <h2>Options de Support</h2>
+        
+        <div class="support-options">
+          <button id="faq-btn">FAQ</button>
+          <button id="live-chat-btn">Chat en Direct</button>
+          <button id="submit-ticket-btn">Soumettre un Ticket</button>
+        </div>
+
+        <div class="support-content" id="support-content">
+          <!-- Contenu dynamique en fonction de l'option sélectionnée -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal pour Soumettre un Ticket -->
+  <div id="ticket-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Soumettre un Ticket</h2>
+      <form class="ticket-form">
+        <label for="ticket-subject">Sujet</label>
+        <input type="text" id="ticket-subject" required placeholder="Ex: Problème avec la caisse">
+
+        <label for="ticket-category">Catégorie</label>
+        <select id="ticket-category" required>
+          <option value="">Sélectionner une catégorie</option>
+          <option value="Technique">Technique</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Autre">Autre</option>
+        </select>
+
+        <label for="ticket-description">Description</label>
+        <textarea id="ticket-description" rows="4" required placeholder="Décrivez votre problème..."></textarea>
+
+        <button type="submit">Soumettre le Ticket</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript pour le Support et Assistance -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqBtn = document.getElementById('faq-btn');
+      const liveChatBtn = document.getElementById('live-chat-btn');
+      const submitTicketBtn = document.getElementById('submit-ticket-btn');
+      const supportContent = document.getElementById('support-content');
+      const ticketModal = document.getElementById('ticket-modal');
+      const closeModalSpan = document.querySelector('.close');
+      const ticketForm = document.querySelector('.ticket-form');
+
+      // Fonction pour afficher la FAQ
+      faqBtn.addEventListener('click', function() {
+        supportContent.innerHTML = `
+          <div class="faq-item">
+            <h3>Comment ajouter un produit?</h3>
+            <p>Allez dans la section "Gestion des Produits" et cliquez sur "Ajouter un Nouveau Produit". Remplissez le formulaire et enregistrez.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Comment gérer les stocks?</h3>
+            <p>Visitez la page "Gestion des Stocks" pour suivre et mettre à jour vos niveaux de stock.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Comment soumettre un ticket de support?</h3>
+            <p>Allez dans la section "Support et Assistance" et cliquez sur "Soumettre un Ticket". Remplissez le formulaire et envoyez.</p>
+          </div>
+        `;
+        
+        // Ajouter les fonctionnalités d'accordéon pour les FAQ
+        const faqItems = document.querySelectorAll('.faq-item h3');
+        faqItems.forEach(item => {
+          item.addEventListener('click', function() {
+            const paragraph = this.nextElementSibling;
+            if (paragraph.style.display === 'block') {
+              paragraph.style.display = 'none';
+            } else {
+              paragraph.style.display = 'block';
+            }
+          });
+        });
+      });
+
+      // Fonction pour afficher le chat en direct (simulé)
+      liveChatBtn.addEventListener('click', function() {
+        supportContent.innerHTML = `
+          <h3>Chat en Direct</h3>
+          <p>Le chat en direct est actuellement indisponible. Veuillez soumettre un ticket ou réessayer plus tard.</p>
+        `;
+      });
+
+      // Fonction pour ouvrir le modal de ticket
+      submitTicketBtn.addEventListener('click', function() {
+        ticketModal.style.display = 'block';
+      });
+
+      // Fermer le modal
+      closeModalSpan.addEventListener('click', function() {
+        ticketModal.style.display = 'none';
+      });
+
+      // Fermer le modal en cliquant en dehors
+      window.addEventListener('click', function(event) {
+        if (event.target == ticketModal) {
+          ticketModal.style.display = 'none';
+        }
+      });
+
+      // Fonction pour soumettre un ticket
+      ticketForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const sujet = document.getElementById('ticket-subject').value.trim();
+        const categorie = document.getElementById('ticket-category').value;
+        const description = document.getElementById('ticket-description').value.trim();
+
+        if (!sujet || !categorie || !description) {
+          alert('Veuillez remplir tous les champs.');
+          return;
+        }
+
+        // Simuler l'envoi du ticket
+        alert('Votre ticket a été soumis avec succès.');
+
+        // Réinitialiser le formulaire et fermer le modal
+        ticketForm.reset();
+        ticketModal.style.display = 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Gestion des Produits | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Chart.js (Optionnel) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    /* Formulaire */
+    .product-form {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+    }
+
+    .product-form h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .product-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .product-form form label {
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    .product-form form input,
+    .product-form form select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .product-form form button {
+      padding: 0.7rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      background-color: #2ecc71;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .product-form form button:hover {
+      background-color: #27ae60;
+    }
+
+    /* Calculateur de Coûts */
+    .recipe-calculator {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+    }
+
+    .recipe-calculator h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .recipe-calculator form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .recipe-calculator form label {
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    .recipe-calculator form select,
+    .recipe-calculator form input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .recipe-calculator form button {
+      padding: 0.7rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      background-color: #3498db;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .recipe-calculator form button:hover {
+      background-color: #2980b9;
+    }
+
+    .recipe-result {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #27ae60;
+    }
+
+    /* Bouton Modifier/Supprimer */
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-right: 0.5rem;
+    }
+
+    .edit-btn {
+      background-color: #2980b9;
+      color: #fff;
+    }
+
+    .edit-btn:hover {
+      background-color: #1c5980;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Tabs */
+    .tabs {
+      margin-top: 2rem;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-buttons button {
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #bdc3c7;
+      color: #2c3e50;
+      transition: background-color 0.3s;
+    }
+
+    .tab-buttons button.active {
+      background-color: #2ecc71;
+      color: #fff;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Responsivité */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+
+      .stats-cards {
+        flex-direction: column;
+      }
+
+      .stat-card {
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+
+      .chart-container {
+        height: 300px;
+      }
+
+      .tab-buttons {
+        flex-direction: column;
+      }
+
+      .tab-buttons button {
+        width: 100%;
+      }
+    }
+
+    /* Message Aucun Résultat */
+    #no-results {
+      text-align: center;
+      color: #e74c3c;
+      margin-top: 2rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">Le Gourmet</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html" class="active">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Gestion des Produits</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Tableau des Produits avec Onglets -->
+      <section class="products-table">
+        <h2>Liste des Produits</h2>
+
+        <div class="tabs">
+          <!-- Boutons d'Onglets -->
+          <div class="tab-buttons">
+            <button class="tab-button active" data-tab="all">Tous</button>
+            <button class="tab-button" data-tab="legumes">Légumes</button>
+            <button class="tab-button" data-tab="viandes">Viandes</button>
+            <button class="tab-button" data-tab="boissons">Boissons</button>
+            <button class="tab-button" data-tab="condiments">Condiments</button>
+            <button class="tab-button" data-tab="ingredients-divers">Ingrédients Divers</button>
+            <!-- Ajoutez d'autres catégories/familles ici -->
+          </div>
+
+          <!-- Contenus des Onglets -->
+          <div class="tab-content active" id="all">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Catégorie</th>
+                  <th>Prix (€)</th>
+                  <th>Utilisé dans</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body-all">
+                <!-- Les produits seront insérés ici via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-content" id="legumes">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prix (€)</th>
+                  <th>Utilisé dans</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body-legumes">
+                <!-- Les produits seront insérés ici via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-content" id="viandes">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prix (€)</th>
+                  <th>Utilisé dans</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body-viandes">
+                <!-- Les produits seront insérés ici via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-content" id="boissons">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prix (€)</th>
+                  <th>Utilisé dans</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body-boissons">
+                <!-- Les produits seront insérés ici via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-content" id="condiments">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prix (€)</th>
+                  <th>Utilisé dans</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body-condiments">
+                <!-- Les produits seront insérés ici via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-content" id="ingredients-divers">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prix (€)</th>
+                  <th>Utilisé dans</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body-ingredients-divers">
+                <!-- Les produits seront insérés ici via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Ajoutez d'autres contenus d'onglets ici -->
+        </div>
+      </section>
+
+      <!-- Formulaire d'Ajout de Produit -->
+      <section class="product-form">
+        <h2>Ajouter un Nouveau Produit</h2>
+        <form id="add-product-form">
+          <label for="product-name">Nom du Produit</label>
+          <input type="text" id="product-name" name="product-name" required placeholder="Ex: Tomate">
+
+          <label for="product-category">Catégorie</label>
+          <select id="product-category" name="product-category" required>
+            <option value="">Sélectionner une catégorie</option>
+            <option value="Légumes">Légumes</option>
+            <option value="Viandes">Viandes</option>
+            <option value="Boissons">Boissons</option>
+            <option value="Condiments">Condiments</option>
+            <option value="Ingrédients Divers">Ingrédients Divers</option>
+            <!-- Ajoutez d'autres catégories ici -->
+          </select>
+
+          <label for="product-price">Prix (€)</label>
+          <input type="number" id="product-price" name="product-price" required min="0" step="0.01" placeholder="Ex: 2.50">
+
+          <button type="submit">Ajouter</button>
+        </form>
+      </section>
+
+      <!-- Calculateur de Coûts de Recettes -->
+      <section class="recipe-calculator">
+        <h2>Calculateur de Coût de Recette</h2>
+        <form id="recipe-form">
+          <label for="recipe-name">Nom de la Recette</label>
+          <input type="text" id="recipe-name" name="recipe-name" required placeholder="Ex: Salade César">
+
+          <label for="recipe-ingredient">Sélectionner un Ingrédient</label>
+          <select id="recipe-ingredient" name="recipe-ingredient" required>
+            <option value="">Sélectionner un ingrédient</option>
+            <!-- Les ingrédients seront insérés ici via JavaScript -->
+          </select>
+
+          <label for="ingredient-quantity">Quantité (en unités)</label>
+          <input type="number" id="ingredient-quantity" name="ingredient-quantity" required min="1" step="1" placeholder="Ex: 2">
+
+          <button type="button" id="add-ingredient-btn">Ajouter l'Ingrédient</button>
+        </form>
+
+        <div id="selected-ingredients">
+          <h3>Ingrédients Sélectionnés</h3>
+          <ul id="ingredients-list">
+            <!-- Les ingrédients sélectionnés seront affichés ici -->
+          </ul>
+        </div>
+
+        <button type="button" id="calculate-cost-btn">Calculer le Coût Total</button>
+        <p class="recipe-result" id="recipe-result"></p>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- JavaScript pour la Gestion des Produits et des Recettes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Récupération des éléments du DOM
+      const productsTableBodyAll = document.getElementById('products-table-body-all');
+      const productsTableBodyLegumes = document.getElementById('products-table-body-legumes');
+      const productsTableBodyViandes = document.getElementById('products-table-body-viandes');
+      const productsTableBodyBoissons = document.getElementById('products-table-body-boissons');
+      const productsTableBodyCondiments = document.getElementById('products-table-body-condiments');
+      const productsTableBodyIngredientsDivers = document.getElementById('products-table-body-ingredients-divers');
+      const addProductForm = document.getElementById('add-product-form');
+      const recipeForm = document.getElementById('recipe-form');
+      const recipeIngredientSelect = document.getElementById('recipe-ingredient');
+      const ingredientsList = document.getElementById('ingredients-list');
+      const calculateCostBtn = document.getElementById('calculate-cost-btn');
+      const recipeResult = document.getElementById('recipe-result');
+      const addIngredientBtn = document.getElementById('add-ingredient-btn');
+
+      // Tableau des produits (initialement avec des exemples)
+      let products = [
+        { id: 1, nom: 'Tomate', categorie: 'Légumes', prix: 0.50 },
+        { id: 2, nom: 'Basilic', categorie: 'Condiments', prix: 0.30 },
+        { id: 3, nom: 'Mozzarella', categorie: 'Ingrédients Divers', prix: 1.20 },
+        { id: 4, nom: 'Coca-Cola', categorie: 'Boissons', prix: 2.00 },
+        { id: 5, nom: 'Eau Minérale', categorie: 'Boissons', prix: 1.00 },
+        { id: 6, nom: 'Poulet', categorie: 'Viandes', prix: 5.00 },
+        { id: 7, nom: 'Farine', categorie: 'Ingrédients Divers', prix: 1.50 },
+        // Ajoutez plus de produits ici
+      ];
+
+      // Tableau des recettes (initialement vide)
+      let recipes = [];
+
+      // Liste des ingrédients sélectionnés pour la recette
+      let selectedIngredients = [];
+
+      // Fonction pour afficher les produits dans les tableaux par catégorie
+      function populateProductsTables() {
+        // Vider tous les tableaux
+        productsTableBodyAll.innerHTML = '';
+        productsTableBodyLegumes.innerHTML = '';
+        productsTableBodyViandes.innerHTML = '';
+        productsTableBodyBoissons.innerHTML = '';
+        productsTableBodyCondiments.innerHTML = '';
+        productsTableBodyIngredientsDivers.innerHTML = '';
+
+        products.forEach(product => {
+          // Trouver les recettes utilisant ce produit
+          const usedInRecipes = recipes.filter(recipe => 
+            recipe.ingredients.some(ing => ing.productId === product.id)
+          ).map(recipe => recipe.name);
+
+          // Générer le contenu de la colonne "Utilisé dans"
+          const usedIn = usedInRecipes.length > 0 ? usedInRecipes.join(', ') : 'Aucun';
+
+          // Tableau "Tous"
+          const rowAll = document.createElement('tr');
+          rowAll.innerHTML = `
+            <td>${product.nom}</td>
+            <td>${product.categorie}</td>
+            <td>${product.prix.toFixed(2)} €</td>
+            <td>${usedIn}</td>
+            <td>
+              <button class="action-btn edit-btn" onclick="editProduct(${product.id})">Modifier</button>
+              <button class="action-btn delete-btn" onclick="deleteProduct(${product.id})">Supprimer</button>
+            </td>
+          `;
+          productsTableBodyAll.appendChild(rowAll);
+
+          // Tableau par catégorie
+          let targetTableBody;
+          switch (product.categorie) {
+            case 'Légumes':
+              targetTableBody = productsTableBodyLegumes;
+              break;
+            case 'Viandes':
+              targetTableBody = productsTableBodyViandes;
+              break;
+            case 'Boissons':
+              targetTableBody = productsTableBodyBoissons;
+              break;
+            case 'Condiments':
+              targetTableBody = productsTableBodyCondiments;
+              break;
+            case 'Ingrédients Divers':
+              targetTableBody = productsTableBodyIngredientsDivers;
+              break;
+            default:
+              targetTableBody = productsTableBodyAll; // Fallback
+          }
+
+          if (targetTableBody !== productsTableBodyAll) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${product.nom}</td>
+              <td>${product.prix.toFixed(2)} €</td>
+              <td>${usedIn}</td>
+              <td>
+                <button class="action-btn edit-btn" onclick="editProduct(${product.id})">Modifier</button>
+                <button class="action-btn delete-btn" onclick="deleteProduct(${product.id})">Supprimer</button>
+              </td>
+            `;
+            targetTableBody.appendChild(row);
+          }
+        });
+
+        populateRecipeIngredientOptions();
+      }
+
+      // Fonction pour remplir les options d'ingrédients dans le formulaire de recette
+      function populateRecipeIngredientOptions() {
+        recipeIngredientSelect.innerHTML = '<option value="">Sélectionner un ingrédient</option>';
+        products.filter(p => p.categorie !== 'Boissons').forEach(product => {
+          const option = document.createElement('option');
+          option.value = product.id;
+          option.textContent = `${product.nom} (${product.prix.toFixed(2)} €/unité)`;
+          recipeIngredientSelect.appendChild(option);
+        });
+      }
+
+      // Fonction pour ajouter un nouveau produit
+      addProductForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nom = document.getElementById('product-name').value.trim();
+        const categorie = document.getElementById('product-category').value;
+        const prix = parseFloat(document.getElementById('product-price').value);
+
+        if (nom === '' || categorie === '' || isNaN(prix)) {
+          alert('Veuillez remplir tous les champs correctement.');
+          return;
+        }
+
+        const newProduct = {
+          id: products.length ? products[products.length - 1].id + 1 : 1,
+          nom,
+          categorie,
+          prix
+        };
+
+        products.push(newProduct);
+        populateProductsTables();
+        addProductForm.reset();
+      });
+
+      // Fonction pour modifier un produit
+      window.editProduct = function(id) {
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+
+        const newNom = prompt('Modifier le nom du produit:', product.nom);
+        if (newNom === null) return; // Annuler l'action
+        const newCategorie = prompt('Modifier la catégorie du produit:', product.categorie);
+        if (newCategorie === null || newCategorie.trim() === '') {
+          alert('Catégorie invalide.');
+          return;
+        }
+        const newPrix = parseFloat(prompt('Modifier le prix (€):', product.prix));
+        if (isNaN(newPrix) || newPrix < 0) {
+          alert('Prix invalide.');
+          return;
+        }
+
+        product.nom = newNom.trim() !== '' ? newNom.trim() : product.nom;
+        product.categorie = newCategorie.trim();
+        product.prix = newPrix;
+
+        populateProductsTables();
+      }
+
+      // Fonction pour supprimer un produit
+      window.deleteProduct = function(id) {
+        if (!confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) return;
+        products = products.filter(p => p.id !== id);
+        // Supprimer le produit des recettes
+        recipes.forEach(recipe => {
+          recipe.ingredients = recipe.ingredients.filter(ing => ing.productId !== id);
+        });
+        populateProductsTables();
+      }
+
+      // Fonction pour ajouter un ingrédient à la recette
+      addIngredientBtn.addEventListener('click', function() {
+        const ingredientId = parseInt(recipeIngredientSelect.value);
+        const quantity = parseInt(document.getElementById('ingredient-quantity').value);
+
+        if (isNaN(ingredientId) || isNaN(quantity) || quantity < 1) {
+          alert('Veuillez sélectionner un ingrédient et entrer une quantité valide.');
+          return;
+        }
+
+        const ingredient = products.find(p => p.id === ingredientId);
+        if (!ingredient) {
+          alert('Ingrédient non trouvé.');
+          return;
+        }
+
+        selectedIngredients.push({
+          productId: ingredient.id,
+          nom: ingredient.nom,
+          prix: ingredient.prix,
+          quantite: quantity
+        });
+
+        displaySelectedIngredients();
+        recipeForm.reset();
+      });
+
+      // Fonction pour afficher les ingrédients sélectionnés
+      function displaySelectedIngredients() {
+        ingredientsList.innerHTML = '';
+        selectedIngredients.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.textContent = `${item.nom} - ${item.quantite} unité(s) - ${(item.prix * item.quantite).toFixed(2)} €`;
+          ingredientsList.appendChild(li);
+        });
+      }
+
+      // Fonction pour calculer le coût total de la recette et enregistrer la recette
+      calculateCostBtn.addEventListener('click', function() {
+        if (selectedIngredients.length === 0) {
+          alert('Aucun ingrédient sélectionné.');
+          return;
+        }
+
+        const totalCost = selectedIngredients.reduce((acc, item) => acc + (item.prix * item.quantite), 0);
+        const recipeName = document.getElementById('recipe-name').value.trim();
+
+        if (recipeName === '') {
+          alert('Veuillez entrer le nom de la recette.');
+          return;
+        }
+
+        // Vérifier si la recette existe déjà
+        const existingRecipe = recipes.find(r => r.name.toLowerCase() === recipeName.toLowerCase());
+        if (existingRecipe) {
+          if (!confirm('Cette recette existe déjà. Voulez-vous la mettre à jour ?')) {
+            return;
+          }
+          existingRecipe.ingredients = selectedIngredients;
+          existingRecipe.cost = totalCost;
+        } else {
+          const newRecipe = {
+            id: recipes.length ? recipes[recipes.length - 1].id + 1 : 1,
+            name: recipeName,
+            ingredients: selectedIngredients,
+            cost: totalCost
+          };
+          recipes.push(newRecipe);
+        }
+
+        recipeResult.textContent = `Le coût total de la recette "${recipeName}" est de ${totalCost.toFixed(2)} €.`;
+        selectedIngredients = [];
+        displaySelectedIngredients();
+        populateProductsTables();
+        recipeForm.reset();
+      });
+
+      // Fonction pour gérer les onglets
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-tab');
+
+          // Retirer la classe active de tous les boutons
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          // Ajouter la classe active au bouton cliqué
+          button.classList.add('active');
+
+          // Cacher tous les contenus
+          tabContents.forEach(content => content.classList.remove('active'));
+          // Afficher le contenu cible
+          document.getElementById(target).classList.add('active');
+        });
+      });
+
+      // Initialiser la table des produits
+      populateProductsTables();
+    });
+  </script>
+
+</body>
+</html>

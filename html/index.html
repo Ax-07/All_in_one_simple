@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accueil | Réserver un Restaurant</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- Optionnel : Police Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">RéservApp</div>
+    <nav class="main-nav">
+      <a href="#">Accueil</a>
+      <a href="connexion.html">Mon Compte</a>
+      <a href="faq.html">Aide</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Trouvez et réservez un restaurant</h1>
+        <form class="search-bar">
+          <input type="text" placeholder="Rechercher par ville, type de cuisine..." aria-label="Recherche"/>
+          <button type="submit">Rechercher</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <main class="results">
+    <h2>Suggestions de Restaurants</h2>
+    <div class="filters">
+      <!-- Exemple de boutons de filtrage (juste visuels) -->
+      <button class="btn-filter active">Tous</button>
+      <button class="btn-filter">Gastronomique</button>
+      <button class="btn-filter">Brasserie</button>
+      <button class="btn-filter">Vegan</button>
+      <button class="btn-filter">Bio</button>
+      <button class="btn-filter">Street Food</button>
+      <button class="btn-filter">Snack</button>
+      <button class="btn-filter">Asiatique</button>
+      <button class="btn-filter">Tapas & Cocktails</button>
+    </div>
+    
+    <div class="restaurant-grid">
+
+      <!-- Modèle Classique -->
+      <article class="restaurant-card" data-cuisine="Gastronomique" data-city="Paris">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Restaurant Le Gourmet" loading="lazy">
+        <h3>Le Gourmet</h3>
+        <p>Cuisine Française - Paris</p>
+        <a href="fiche-restaurant/fiche-restaurant-classique.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Moderne -->
+      <article class="restaurant-card" data-cuisine="Gastronomique" data-city="Bordeaux">
+        <img src="https://images.unsplash.com/photo-1597106525363-7916ebf5b083?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHJlc3RhdXJhbnQlMjBtb2Rlcm5lfGVufDB8fDB8fHwy" alt="Restaurant Nova" loading="lazy">
+        <h3>Nova</h3>
+        <p>Cuisine Contemporaine - Bordeaux</p>
+        <a href="fiche-restaurant/fiche-restaurant-moderne.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Chic -->
+      <article class="restaurant-card" data-cuisine="Gastronomique" data-city="Paris">
+        <img src="https://media.istockphoto.com/id/1353016905/fr/photo/belle-d%C3%A9coration-de-table-pour-un-d%C3%AEner-romantique-en-plein-air.webp?a=1&b=1&s=612x612&w=0&k=20&c=lZG3NeLxzR_ePqrqLd-_GWI9aTH9sKaSGhzynoZ0m0s=" alt="Restaurant Le Grand Palais" loading="lazy">
+        <h3>Le Grand Palais</h3>
+        <p>Cuisine Gastronomique - Paris</p>
+        <a href="fiche-restaurant/fiche-restaurant-chic.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Snack -->
+      <article class="restaurant-card" data-cuisine="Snack" data-city="Lyon">
+        <img src="https://images.unsplash.com/photo-1502998070258-dc1338445ac2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudCUyMHNuYWNrfGVufDB8fDB8fHwy" alt="Restaurant Snacky" loading="lazy">
+        <h3>Snacky</h3>
+        <p>Street Food Américaine - Lyon</p>
+        <a href="fiche-restaurant/fiche-restaurant-snack.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Brasserie -->
+      <article class="restaurant-card" data-cuisine="Brasserie" data-city="Marseille">
+        <img src="https://images.unsplash.com/photo-1724500123028-fb58c362b826?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudCUyMGJyYXNzZXJpZXxlbnwwfHwwfHx8Mg%3D%3D" alt="La Brasserie du Coin" loading="lazy">
+        <h3>La Brasserie du Coin</h3>
+        <p>Cuisine Traditionnelle - Marseille</p>
+        <a href="fiche-restaurant/fiche-restaurant-brasserie.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Bio -->
+      <article class="restaurant-card" data-cuisine="Bio" data-city="Nantes">
+        <img src="https://images.unsplash.com/photo-1604908554097-4bee4f690a8a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHJlc3RhdXJhbnQlMjBiaW98ZW58MHx8MHx8fDI%3D" alt="Restaurant Green Leaf" loading="lazy">
+        <h3>Green Leaf</h3>
+        <p>Cuisine Bio & Locale - Nantes</p>
+        <a href="fiche-restaurant/fiche-restaurant-bio.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Fusion -->
+      <article class="restaurant-card" data-cuisine="Brasserie" data-city="Lille">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDh8fHJlc3RhdXJhbnQlMjBmdXNpb258ZW58MHx8MHx8fDI%3D" alt="Restaurant Global Mix" loading="lazy">
+        <h3>Global Mix</h3>
+        <p>Cuisine Fusion Internationale - Lille</p>
+        <a href="fiche-restaurant/fiche-restaurant-fusion.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Scandinave -->
+      <article class="restaurant-card" data-cuisine="Montagnarde" data-city="Strasbourg">
+        <img src="https://images.unsplash.com/photo-1508213824875-83a3d36e72a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHJlc3RhdXJhbnQlMjBzY2FuZGluYXZlfGVufDB8fDB8fHwy" alt="Nørd Café" loading="lazy">
+        <h3>Nørd Café</h3>
+        <p>Cuisine Nordique - Strasbourg</p>
+        <a href="fiche-restaurant/fiche-restaurant-scandinave.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Montagne -->
+      <article class="restaurant-card" data-cuisine="Montagnarde" data-city="Chamonix">
+        <img src="https://images.unsplash.com/photo-1661955406524-f4484120d526?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMENoYW1vbml4fGVufDB8fDB8fHwy" alt="Le Chalet Savoyard" loading="lazy">
+        <h3>Le Chalet Savoyard</h3>
+        <p>Cuisine Montagnarde - Chamonix</p>
+        <a href="fiche-restaurant/fiche-restaurant-montagne.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Plage -->
+      <article class="restaurant-card" data-cuisine="Snack" data-city="Biarritz">
+        <img src="https://images.unsplash.com/photo-1692688133148-3b82101f10cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMEJpYXJyaXR6fGVufDB8fDB8fHwy" alt="La Cabane Bleue" loading="lazy">
+        <h3>La Cabane Bleue</h3>
+        <p>Cuisine de Plage - Biarritz</p>
+        <a href="fiche-restaurant/fiche-restaurant-plage.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Industriel -->
+      <article class="restaurant-card" data-cuisine="Street Food" data-city="Paris">
+        <img src="https://images.unsplash.com/photo-1513640127641-49ba81f8305c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fFN0cmVldCUyMEZvb2R8ZW58MHx8MHx8fDI%3D" alt="Urban Loft" loading="lazy">
+        <h3>Urban Loft</h3>
+        <p>Street Food & Cocktails - Paris</p>
+        <a href="fiche-restaurant/fiche-restaurant-industriel.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Vegan -->
+      <article class="restaurant-card" data-cuisine="Vegan" data-city="Nantes">
+        <img src="https://images.unsplash.com/photo-1598449526978-cd11daa040c9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMHZlZ2FufGVufDB8fDB8fHwy" alt="Green Bowl" loading="lazy">
+        <h3>Green Bowl</h3>
+        <p>Cuisine Vegan & Healthy - Nantes</p>
+        <a href="fiche-restaurant/fiche-restaurant-vegan.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Zen -->
+      <article class="restaurant-card" data-cuisine="Asiatique" data-city="Lyon">
+        <img src="https://images.unsplash.com/photo-1600470944938-b301e41001c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVzdGF1cmFudCUyMEFzaWF0aXF1ZXxlbnwwfHwwfHx8Mg%3D%3D" alt="Sakura Zen" loading="lazy">
+        <h3>Sakura Zen</h3>
+        <p>Cuisine Asiatique Raffinée - Lyon</p>
+        <a href="fiche-restaurant/fiche-restaurant-zen.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Futuriste -->
+      <article class="restaurant-card" data-cuisine="Gastronomique" data-city="Marseille">
+        <img src="https://images.unsplash.com/photo-1532270441355-095a26af8a99?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Q3Vpc2luZSUyME1vbCVDMyVBOWN1bGFpcmV8ZW58MHx8MHx8fDI%3D" alt="Cyber Taste" loading="lazy">
+        <h3>Cyber Taste</h3>
+        <p>Cuisine Moléculaire - Marseille</p>
+        <a href="fiche-restaurant/fiche-restaurant-futuriste.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Médiéval -->
+      <article class="restaurant-card" data-cuisine="Brasserie" data-city="Carcassonne">
+        <img src="https://images.unsplash.com/photo-1469547919255-9638e94237e4?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Q3Vpc2luZSUyME0lQzMlQTlkaSVDMyVBOXZhbGV8ZW58MHx8MHx8fDI%3D" alt="La Taverne du Roi" loading="lazy">
+        <h3>La Taverne du Roi</h3>
+        <p>Cuisine Médiévale - Carcassonne</p>
+        <a href="fiche-restaurant/fiche-restaurant-medieval.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Littéraire -->
+      <article class="restaurant-card" data-cuisine="Bio" data-city="Bordeaux">
+        <img src="https://images.unsplash.com/photo-1552879426-64db141e378e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA1fHxDYWYlQzMlQTklMjBMaXR0JUMzJUE5cmFpcmV8ZW58MHx8MHx8fDI%3D" alt="Le Salon de Lecture" loading="lazy">
+        <h3>Le Salon de Lecture</h3>
+        <p>Café Littéraire - Bordeaux</p>
+        <a href="fiche-restaurant/fiche-restaurant-litteraire.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Rooftop -->
+      <article class="restaurant-card" data-cuisine="Tapas & Cocktails" data-city="Nice">
+        <img src="https://images.unsplash.com/photo-1619941862585-cd4fa9a4c2cb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VGFwYXN8ZW58MHx8MHx8fDI%3D" alt="Sky Lounge" loading="lazy">
+        <h3>Sky Lounge</h3>
+        <p>Tapas & Cocktails Rooftop - Nice</p>
+        <a href="fiche-restaurant/fiche-restaurant-rooftop.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Art Déco -->
+      <article class="restaurant-card" data-cuisine="Tapas & Cocktails" data-city="Paris">
+        <img src="https://images.unsplash.com/photo-1581574918867-888d02839120?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fENvY2t0YWlscyUyMFIlQzMlQTl0cm98ZW58MHx8MHx8fDI%3D" alt="La Belle Époque" loading="lazy">
+        <h3>La Belle Époque</h3>
+        <p>Art Déco & Cocktails Rétro - Paris</p>
+        <a href="fiche-restaurant/fiche-restaurant-artdeco.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Bohemian -->
+      <article class="restaurant-card" data-cuisine="Brasserie" data-city="Avignon">
+        <img src="https://images.unsplash.com/photo-1517315314851-5d0c36a36e02?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fEN1aXNpbmUlMjBCb2glQzMlQThtZXxlbnwwfHwwfHx8Mg%3D%3D" alt="Boho Garden" loading="lazy">
+        <h3>Boho Garden</h3>
+        <p>Cuisine Bohème - Avignon</p>
+        <a href="fiche-restaurant/fiche-restaurant-bohemian.html">Voir la fiche</a>
+      </article>
+
+      <!-- Modèle Cave à Vin -->
+      <article class="restaurant-card" data-cuisine="Tapas & Cocktails" data-city="Reims">
+        <img src="https://images.unsplash.com/photo-1728033647942-ce3c2185ba70?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QmFyJTIwJUMzJUEwJTIwVmlufGVufDB8fDB8fHwy" alt="La Cave de Bacchus" loading="lazy">
+        <h3>La Cave de Bacchus</h3>
+        <p>Bar à Vin & Fromages - Reims</p>
+        <a href="fiche-restaurant/fiche-restaurant-caveavin.html">Voir la fiche</a>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 - RéservApp</p>
+  </footer>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.btn-filter');
+    const restaurantCards = document.querySelectorAll('.restaurant-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Supprimer la classe 'active' de tous les boutons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Ajouter la classe 'active' au bouton cliqué
+        button.classList.add('active');
+
+        const filter = button.textContent.trim();
+
+        restaurantCards.forEach(card => {
+          const cuisine = card.getAttribute('data-cuisine');
+
+          if (filter === 'Tous') {
+            card.style.display = 'block';
+          } else {
+            if (cuisine === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Sélectionner les éléments nécessaires
+    const searchForm = document.querySelector('.search-bar');
+    const searchInput = searchForm.querySelector('input');
+    const restaurantCards = document.querySelectorAll('.restaurant-card');
+    const filterButtons = document.querySelectorAll('.btn-filter');
+
+    // Fonction de filtrage basée sur la recherche
+    function filterRestaurants(query) {
+      const lowerCaseQuery = query.toLowerCase();
+
+      restaurantCards.forEach(card => {
+        const cuisine = card.getAttribute('data-cuisine').toLowerCase();
+        const city = card.getAttribute('data-city').toLowerCase();
+
+        // Vérifier si la requête correspond à la cuisine ou à la ville
+        if (cuisine.includes(lowerCaseQuery) || city.includes(lowerCaseQuery)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Événement de soumission du formulaire de recherche
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Empêcher le rechargement de la page
+
+      const query = searchInput.value.trim();
+
+      if (query === "") {
+        // Si la recherche est vide, afficher toutes les cartes
+        restaurantCards.forEach(card => {
+          card.style.display = 'block';
+        });
+
+        // Réinitialiser les boutons de filtre
+        filterButtons.forEach(button => button.classList.remove('active'));
+        document.querySelector('.btn-filter.active').classList.remove('active');
+        document.querySelector('.btn-filter.active') || document.querySelector('.btn-filter').classList.add('active');
+
+        return;
+      }
+
+      // Appliquer le filtrage
+      filterRestaurants(query);
+    });
+
+    // Optionnel : Mettre à jour le filtre actif lorsqu'une recherche est effectuée
+    // Par exemple, désactiver les filtres lorsque la recherche est utilisée
+    searchInput.addEventListener('input', function() {
+      if (searchInput.value.trim() !== "") {
+        filterButtons.forEach(button => button.classList.remove('active'));
+      }
+    });
+  });
+</script>
+
+</html>

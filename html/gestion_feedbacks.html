@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion des Feedbacks Clients | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    /* Bouton */
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-right: 0.5rem;
+    }
+
+    .view-btn {
+      background-color: #8e44ad;
+      color: #fff;
+    }
+
+    .view-btn:hover {
+      background-color: #71368a;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
+      padding-top: 100px; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.4); 
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 60%;
+      border-radius: 8px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* Formulaire Ticket */
+    .ticket-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .ticket-form input,
+    .ticket-form textarea,
+    .ticket-form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .ticket-form button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .ticket-form button:hover {
+      background-color: #27ae60;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+
+      .modal-content {
+        width: 90%;
+      }
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h3 {
+      margin: 0;
+      cursor: pointer;
+      color: #2980b9;
+    }
+
+    .faq-item p {
+      display: none;
+      margin: 0.5rem 0 0 0;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">RéservApp</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html" class="active">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Gestion des Feedbacks Clients</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Gestion des Feedbacks Clients -->
+      <section class="feedback-management">
+        <h2>Liste des Feedbacks</h2>
+        
+        <button id="add-feedback-btn">Ajouter un Nouveau Feedback</button>
+
+        <!-- Tableau des Feedbacks -->
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Note</th>
+              <th>Commentaire</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="feedbacks-table-body">
+            <!-- Données simulées -->
+            <tr>
+              <td>Lucie Bernard</td>
+              <td>lucie.bernard@example.com</td>
+              <td>06 98 76 54 32</td>
+              <td>5/5</td>
+              <td>Excellent service et ambiance agréable.</td>
+              <td>2024-04-15</td>
+              <td>
+                <button class="action-btn view-btn">Voir</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Paul Martin</td>
+              <td>paul.martin@example.com</td>
+              <td>06 23 45 67 89</td>
+              <td>4/5</td>
+              <td>Bon repas, mais le service peut s'améliorer.</td>
+              <td>2024-04-16</td>
+              <td>
+                <button class="action-btn view-btn">Voir</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal pour Ajouter un Nouveau Feedback -->
+  <div id="feedback-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Ajouter un Nouveau Feedback</h2>
+      <form class="feedback-form">
+        <label for="feedback-client">Client</label>
+        <input type="text" id="feedback-client" required placeholder="Ex: Claire Dupont">
+
+        <label for="feedback-email">Email</label>
+        <input type="email" id="feedback-email" required placeholder="Ex: claire.dupont@example.com">
+
+        <label for="feedback-phone">Téléphone</label>
+        <input type="tel" id="feedback-phone" required placeholder="Ex: 06 12 34 56 78">
+
+        <label for="feedback-note">Note</label>
+        <select id="feedback-note" required>
+          <option value="">Sélectionner une note</option>
+          <option value="1">1/5</option>
+          <option value="2">2/5</option>
+          <option value="3">3/5</option>
+          <option value="4">4/5</option>
+          <option value="5">5/5</option>
+        </select>
+
+        <label for="feedback-comment">Commentaire</label>
+        <textarea id="feedback-comment" rows="4" required placeholder="Décrivez votre expérience..."></textarea>
+
+        <label for="feedback-date">Date</label>
+        <input type="date" id="feedback-date" required>
+
+        <button type="submit">Ajouter le Feedback</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal pour Voir le Commentaire -->
+  <div id="view-comment-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Détail du Commentaire</h2>
+      <p id="comment-detail"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript pour la Gestion des Feedbacks Clients -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const addFeedbackBtn = document.getElementById('add-feedback-btn');
+      const feedbackModal = document.getElementById('feedback-modal');
+      const closeModalSpans = document.querySelectorAll('.close');
+      const feedbacksTableBody = document.getElementById('feedbacks-table-body');
+      const feedbackForm = document.querySelector('.feedback-form');
+      const viewCommentModal = document.getElementById('view-comment-modal');
+      const commentDetail = document.getElementById('comment-detail');
+
+      // Ouvrir le modal pour ajouter un feedback
+      addFeedbackBtn.addEventListener('click', function() {
+        feedbackModal.style.display = 'block';
+      });
+
+      // Fermer tous les modals
+      closeModalSpans.forEach(span => {
+        span.addEventListener('click', function() {
+          feedbackModal.style.display = 'none';
+          viewCommentModal.style.display = 'none';
+        });
+      });
+
+      // Fermer les modals en cliquant en dehors
+      window.addEventListener('click', function(event) {
+        if (event.target == feedbackModal) {
+          feedbackModal.style.display = 'none';
+        }
+        if (event.target == viewCommentModal) {
+          viewCommentModal.style.display = 'none';
+        }
+      });
+
+      // Fonction pour ajouter un nouveau feedback
+      feedbackForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const client = document.getElementById('feedback-client').value.trim();
+        const email = document.getElementById('feedback-email').value.trim();
+        const phone = document.getElementById('feedback-phone').value.trim();
+        const note = document.getElementById('feedback-note').value;
+        const commentaire = document.getElementById('feedback-comment').value.trim();
+        const date = document.getElementById('feedback-date').value;
+
+        if (!client || !email || !phone || !note || !commentaire || !date) {
+          alert('Veuillez remplir tous les champs.');
+          return;
+        }
+
+        // Ajouter le nouveau feedback au tableau
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${client}</td>
+          <td>${email}</td>
+          <td>${phone}</td>
+          <td>${note}/5</td>
+          <td>${commentaire.substring(0, 50)}...</td>
+          <td>${date}</td>
+          <td>
+            <button class="action-btn view-btn">Voir</button>
+            <button class="action-btn delete-btn">Supprimer</button>
+          </td>
+        `;
+        feedbacksTableBody.appendChild(newRow);
+
+        // Réinitialiser le formulaire et fermer le modal
+        feedbackForm.reset();
+        feedbackModal.style.display = 'none';
+      });
+
+      // Fonction pour voir ou supprimer un feedback
+      feedbacksTableBody.addEventListener('click', function(e) {
+        if (e.target.classList.contains('view-btn')) {
+          const row = e.target.parentElement.parentElement;
+          const commentaire = row.children[4].textContent.replace('...', ''); // Récupérer le commentaire complet
+          
+          // Afficher le commentaire dans le modal
+          commentDetail.textContent = row.children[4].textContent.replace('...', '');
+          viewCommentModal.style.display = 'block';
+        }
+
+        if (e.target.classList.contains('delete-btn')) {
+          if (confirm('Êtes-vous sûr de vouloir supprimer ce feedback ?')) {
+            const row = e.target.parentElement.parentElement;
+            feedbacksTableBody.removeChild(row);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

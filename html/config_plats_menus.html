@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - Configuration des Plats et Menus</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <style>
+    /* Styles Généraux */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f8;
+    }
+
+    /* En-tête du Dashboard */
+    .dashboard-header {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dashboard-header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .dashboard-header nav a {
+      color: #ecf0f1;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .dashboard-header nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Conteneur Principal */
+    .dashboard-container {
+      padding: 2rem;
+      padding-bottom: 5rem; /* Pour éviter que le contenu ne soit couvert par le footer */
+    }
+
+    /* Titre de la Page */
+    .dashboard-container h1 {
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      margin-bottom: 1rem;
+      color: #34495e;
+    }
+
+    /* Bouton Ajouter */
+    .add-btn {
+      background-color: #2ecc71;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .add-btn:hover {
+      background-color: #27ae60;
+    }
+
+    /* Tableau */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #34495e;
+      color: #ecf0f1;
+      font-weight: 500;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Boutons d'Action */
+    .action-btn {
+      padding: 0.3rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      color: #fff;
+      margin-right: 0.5rem;
+    }
+
+    .action-btn.edit {
+      background-color: #3498db;
+    }
+
+    .action-btn.edit:hover {
+      background-color: #2980b9;
+    }
+
+    .action-btn.delete {
+      background-color: #e74c3c;
+    }
+
+    .action-btn.delete:hover {
+      background-color: #c0392b;
+    }
+
+    /* Modals */
+    .modal {
+      display: none; /* Caché par défaut */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5); /* Fond semi-transparent */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal form label {
+      margin-bottom: 0.5rem;
+      color: #34495e;
+    }
+
+    .modal form input, .modal form select, .modal form textarea {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .modal form button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      background-color: #2ecc71;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .modal form button:hover {
+      background-color: #27ae60;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    /* Responsivité */
+    @media (max-width: 768px) {
+      th, td {
+        padding: 0.75rem;
+      }
+
+      .dashboard-header, .dashboard-footer {
+        padding: 1rem;
+      }
+
+      .action-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      th, td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .dashboard-header, .dashboard-footer {
+        padding: 0.5rem;
+      }
+    }
+
+    /* Message Aucun Résultat */
+    #no-results-plats, #no-results-menus {
+      text-align: center;
+      color: #e74c3c;
+      margin-top: 2rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">Le Gourmet</div>
+        <nav class="side-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="reservations.html">Réservations</a>
+          <a href="profil.html">Mon Profil</a>
+          <a href="parametres.html">Paramètres</a>
+          <a href="choix-template.html">Personnaliser ma Fiche</a>
+          <a href="config_plats_menus.html" class="active">Plats & Menus</a>
+          <a href="caisse.html">Logiciel de Caisse</a>
+          <a href="suivi_ventes.html">Suivi des Ventes</a>
+          <a href="gestion_produits.html">Gestion des Produits</a>
+          <a href="gestion_stocks.html">Gestion des Stocks</a>
+          <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+          <a href="gestion_employes.html">Gestion des Employés</a>
+          <a href="reporting.html">Reporting et Analyses</a>
+          <a href="gestion_clients.html">Gestion des Clients</a>
+          <a href="gestion_promotions.html">Gestion des Promotions</a>
+          <a href="support_assistance.html">Support et Assistance</a>
+          <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+          <a href="gestion_salaires.html">Gestion des Salaires</a>
+          <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+          <a href="index.html">Déconnexion</a>
+        </nav>
+      </aside>
+
+
+  <main class="dashboard-content">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Configuration des Plats et Menus</h1>
+        <p>Gérez les plats et menus de votre restaurant</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Section Gestion des Plats -->
+    <div class="section" id="gestion-plats">
+      <h2>Gestion des Plats</h2>
+      <button class="add-btn" onclick="openModal('add-plat-modal')">Ajouter un Plat</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Plat</th>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Prix (€)</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="plats-body">
+          <!-- Les plats seront insérés ici via JavaScript -->
+        </tbody>
+      </table>
+      <p id="no-results-plats">Aucun plat disponible.</p>
+    </div>
+
+    <!-- Section Gestion des Menus -->
+    <div class="section" id="gestion-menus">
+      <h2>Gestion des Menus</h2>
+      <button class="add-btn" onclick="openModal('add-menu-modal')">Ajouter un Menu</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Menu</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Prix (€)</th>
+            <th>Plats</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="menus-body">
+          <!-- Les menus seront insérés ici via JavaScript -->
+        </tbody>
+      </table>
+      <p id="no-results-menus">Aucun menu disponible.</p>
+    </div>
+</main>
+
+  <!-- Modals -->
+
+  <!-- Modal Ajouter un Plat -->
+  <div id="add-plat-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('add-plat-modal')">&times;</button>
+      <h2>Ajouter un Plat</h2>
+      <form id="add-plat-form">
+        <label for="plat-nom">Nom du Plat</label>
+        <input type="text" id="plat-nom" name="plat-nom" required>
+
+        <label for="plat-categorie">Catégorie</label>
+        <select id="plat-categorie" name="plat-categorie" required>
+          <option value="">Sélectionnez une catégorie</option>
+          <option value="Entrée">Entrée</option>
+          <option value="Plat Principal">Plat Principal</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Boisson">Boisson</option>
+        </select>
+
+        <label for="plat-prix">Prix (€)</label>
+        <input type="number" id="plat-prix" name="plat-prix" min="0" step="0.01" required>
+
+        <label for="plat-description">Description</label>
+        <textarea id="plat-description" name="plat-description" rows="3" required></textarea>
+
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Editer un Plat -->
+  <div id="edit-plat-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('edit-plat-modal')">&times;</button>
+      <h2>Éditer le Plat</h2>
+      <form id="edit-plat-form">
+        <input type="hidden" id="edit-plat-id" name="edit-plat-id">
+
+        <label for="edit-plat-nom">Nom du Plat</label>
+        <input type="text" id="edit-plat-nom" name="edit-plat-nom" required>
+
+        <label for="edit-plat-categorie">Catégorie</label>
+        <select id="edit-plat-categorie" name="edit-plat-categorie" required>
+          <option value="">Sélectionnez une catégorie</option>
+          <option value="Entrée">Entrée</option>
+          <option value="Plat Principal">Plat Principal</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Boisson">Boisson</option>
+        </select>
+
+        <label for="edit-plat-prix">Prix (€)</label>
+        <input type="number" id="edit-plat-prix" name="edit-plat-prix" min="0" step="0.01" required>
+
+        <label for="edit-plat-description">Description</label>
+        <textarea id="edit-plat-description" name="edit-plat-description" rows="3" required></textarea>
+
+        <button type="submit">Sauvegarder</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Ajouter un Menu -->
+  <div id="add-menu-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('add-menu-modal')">&times;</button>
+      <h2>Ajouter un Menu</h2>
+      <form id="add-menu-form">
+        <label for="menu-nom">Nom du Menu</label>
+        <input type="text" id="menu-nom" name="menu-nom" required>
+
+        <label for="menu-description">Description</label>
+        <textarea id="menu-description" name="menu-description" rows="3" required></textarea>
+
+        <label for="menu-prix">Prix (€)</label>
+        <input type="number" id="menu-prix" name="menu-prix" min="0" step="0.01" required>
+
+        <label for="menu-plats">Plats</label>
+        <select id="menu-plats" name="menu-plats" multiple required>
+          <!-- Les options seront remplies via JavaScript -->
+        </select>
+
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Editer un Menu -->
+  <div id="edit-menu-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('edit-menu-modal')">&times;</button>
+      <h2>Éditer le Menu</h2>
+      <form id="edit-menu-form">
+        <input type="hidden" id="edit-menu-id" name="edit-menu-id">
+
+        <label for="edit-menu-nom">Nom du Menu</label>
+        <input type="text" id="edit-menu-nom" name="edit-menu-nom" required>
+
+        <label for="edit-menu-description">Description</label>
+        <textarea id="edit-menu-description" name="edit-menu-description" rows="3" required></textarea>
+
+        <label for="edit-menu-prix">Prix (€)</label>
+        <input type="number" id="edit-menu-prix" name="edit-menu-prix" min="0" step="0.01" required>
+
+        <label for="edit-menu-plats">Plats</label>
+        <select id="edit-menu-plats" name="edit-menu-plats" multiple required>
+          <!-- Les options seront remplies via JavaScript -->
+        </select>
+
+        <button type="submit">Sauvegarder</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- JavaScript pour la Gestion des Plats et Menus -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const platsBody = document.getElementById('plats-body');
+      const menusBody = document.getElementById('menus-body');
+      const noResultsPlats = document.getElementById('no-results-plats');
+      const noResultsMenus = document.getElementById('no-results-menus');
+
+      // Exemple de données de plats et menus (à remplacer par des données réelles)
+      let plats = [
+        { id: 'P001', nom: 'Salade César', categorie: 'Entrée', prix: 8.50, description: 'Salade romaine avec parmesan et croûtons.' },
+        { id: 'P002', nom: 'Steak Frites', categorie: 'Plat Principal', prix: 18.00, description: 'Steak grillé accompagné de frites croustillantes.' },
+        { id: 'P003', nom: 'Tiramisu', categorie: 'Dessert', prix: 6.50, description: 'Dessert italien à base de mascarpone et de café.' },
+        { id: 'P004', nom: 'Coca-Cola', categorie: 'Boisson', prix: 3.00, description: 'Boisson gazeuse rafraîchissante.' },
+        // Ajoutez plus de plats ici
+      ];
+
+      let menus = [
+        {
+          id: 'M001',
+          nom: 'Menu Dégustation',
+          description: 'Un menu complet avec entrée, plat et dessert.',
+          prix: 25.00,
+          plats: ['P001', 'P002', 'P003']
+        },
+        {
+          id: 'M002',
+          nom: 'Menu Végétarien',
+          description: 'Un menu pour les végétariens.',
+          prix: 20.00,
+          plats: ['P001', 'P003', 'P004']
+        },
+        // Ajoutez plus de menus ici
+      ];
+
+      // Fonction pour générer un ID unique (simplifiée)
+      function generateID(prefix) {
+        return prefix + Math.floor(Math.random() * 1000);
+      }
+
+      // Fonction pour afficher les plats dans le tableau
+      function displayPlats(platsList) {
+        platsBody.innerHTML = ''; // Réinitialiser le contenu
+        if (platsList.length === 0) {
+          platsBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Aucun plat disponible.</td></tr>';
+          noResultsPlats.style.display = 'block';
+          return;
+        } else {
+          noResultsPlats.style.display = 'none';
+        }
+
+        platsList.forEach(plat => {
+          const tr = document.createElement('tr');
+
+          tr.innerHTML = `
+            <td>${plat.id}</td>
+            <td>${plat.nom}</td>
+            <td>${plat.categorie}</td>
+            <td>${plat.prix.toFixed(2)}</td>
+            <td>${plat.description}</td>
+            <td>
+              <button class="action-btn edit" onclick="openEditPlatModal('${plat.id}')">Éditer</button>
+              <button class="action-btn delete" onclick="deletePlat('${plat.id}')">Supprimer</button>
+            </td>
+          `;
+
+          platsBody.appendChild(tr);
+        });
+      }
+
+      // Fonction pour afficher les menus dans le tableau
+      function displayMenus(menusList) {
+        menusBody.innerHTML = ''; // Réinitialiser le contenu
+        if (menusList.length === 0) {
+          menusBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Aucun menu disponible.</td></tr>';
+          noResultsMenus.style.display = 'block';
+          return;
+        } else {
+          noResultsMenus.style.display = 'none';
+        }
+
+        menusList.forEach(menu => {
+          // Récupérer les noms des plats
+          const nomsPlats = menu.plats.map(platID => {
+            const plat = plats.find(p => p.id === platID);
+            return plat ? plat.nom : platID;
+          }).join(', ');
+
+          const tr = document.createElement('tr');
+
+          tr.innerHTML = `
+            <td>${menu.id}</td>
+            <td>${menu.nom}</td>
+            <td>${menu.description}</td>
+            <td>${menu.prix.toFixed(2)}</td>
+            <td>${nomsPlats}</td>
+            <td>
+              <button class="action-btn edit" onclick="openEditMenuModal('${menu.id}')">Éditer</button>
+              <button class="action-btn delete" onclick="deleteMenu('${menu.id}')">Supprimer</button>
+            </td>
+          `;
+
+          menusBody.appendChild(tr);
+        });
+      }
+
+      // Initialiser l'affichage
+      displayPlats(plats);
+      displayMenus(menus);
+
+      // Fonction pour ouvrir un modal
+      window.openModal = function(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+        if (modalId === 'add-menu-modal' || modalId === 'edit-menu-modal') {
+          populateMenuPlatsOptions();
+        }
+      }
+
+      // Fonction pour fermer un modal
+      window.closeModal = function(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+      }
+
+      // Fonction pour ajouter un plat
+      const addPlatForm = document.getElementById('add-plat-form');
+      addPlatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nom = document.getElementById('plat-nom').value.trim();
+        const categorie = document.getElementById('plat-categorie').value;
+        const prix = parseFloat(document.getElementById('plat-prix').value);
+        const description = document.getElementById('plat-description').value.trim();
+
+        if (nom && categorie && !isNaN(prix) && description) {
+          const newPlat = {
+            id: generateID('P'),
+            nom,
+            categorie,
+            prix,
+            description
+          };
+          plats.push(newPlat);
+          displayPlats(plats);
+          closeModal('add-plat-modal');
+          addPlatForm.reset();
+          refreshMenuPlatsOptions(); // Mettre à jour les options des menus
+        }
+      });
+
+      // Fonction pour ouvrir le modal d'édition d'un plat
+      window.openEditPlatModal = function(platId) {
+        const plat = plats.find(p => p.id === platId);
+        if (!plat) return;
+
+        document.getElementById('edit-plat-id').value = plat.id;
+        document.getElementById('edit-plat-nom').value = plat.nom;
+        document.getElementById('edit-plat-categorie').value = plat.categorie;
+        document.getElementById('edit-plat-prix').value = plat.prix;
+        document.getElementById('edit-plat-description').value = plat.description;
+
+        openModal('edit-plat-modal');
+      }
+
+      // Fonction pour éditer un plat
+      const editPlatForm = document.getElementById('edit-plat-form');
+      editPlatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const id = document.getElementById('edit-plat-id').value;
+        const nom = document.getElementById('edit-plat-nom').value.trim();
+        const categorie = document.getElementById('edit-plat-categorie').value;
+        const prix = parseFloat(document.getElementById('edit-plat-prix').value);
+        const description = document.getElementById('edit-plat-description').value.trim();
+
+        const platIndex = plats.findIndex(p => p.id === id);
+        if (platIndex !== -1 && nom && categorie && !isNaN(prix) && description) {
+          plats[platIndex] = { id, nom, categorie, prix, description };
+          displayPlats(plats);
+          displayMenus(menus); // Mise à jour des menus au cas où les plats ont été modifiés
+          closeModal('edit-plat-modal');
+          editPlatForm.reset();
+          refreshMenuPlatsOptions(); // Mettre à jour les options des menus
+        }
+      });
+
+      // Fonction pour supprimer un plat
+      window.deletePlat = function(platId) {
+        if (confirm('Voulez-vous vraiment supprimer le plat ' + platId + ' ?')) {
+          // Supprimer le plat
+          const platIndex = plats.findIndex(p => p.id === platId);
+          if (platIndex !== -1) {
+            plats.splice(platIndex, 1);
+            displayPlats(plats);
+            displayMenus(menus); // Mise à jour des menus au cas où le plat était dans un menu
+            refreshMenuPlatsOptions(); // Mettre à jour les options des menus
+          }
+        }
+      }
+
+      // Fonction pour ajouter un menu
+      const addMenuForm = document.getElementById('add-menu-form');
+      addMenuForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nom = document.getElementById('menu-nom').value.trim();
+        const description = document.getElementById('menu-description').value.trim();
+        const prix = parseFloat(document.getElementById('menu-prix').value);
+        const selectedPlats = Array.from(document.getElementById('menu-plats').selectedOptions).map(option => option.value);
+
+        if (nom && description && !isNaN(prix) && selectedPlats.length > 0) {
+          const newMenu = {
+            id: generateID('M'),
+            nom,
+            description,
+            prix,
+            plats: selectedPlats
+          };
+          menus.push(newMenu);
+          displayMenus(menus);
+          closeModal('add-menu-modal');
+          addMenuForm.reset();
+        }
+      });
+
+      // Fonction pour ouvrir le modal d'édition d'un menu
+      window.openEditMenuModal = function(menuId) {
+        const menu = menus.find(m => m.id === menuId);
+        if (!menu) return;
+
+        document.getElementById('edit-menu-id').value = menu.id;
+        document.getElementById('edit-menu-nom').value = menu.nom;
+        document.getElementById('edit-menu-description').value = menu.description;
+        document.getElementById('edit-menu-prix').value = menu.prix;
+
+        // Sélectionner les plats dans le menu
+        const editMenuPlats = document.getElementById('edit-menu-plats');
+        Array.from(editMenuPlats.options).forEach(option => {
+          option.selected = menu.plats.includes(option.value);
+        });
+
+        openModal('edit-menu-modal');
+      }
+
+      // Fonction pour éditer un menu
+      const editMenuForm = document.getElementById('edit-menu-form');
+      editMenuForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const id = document.getElementById('edit-menu-id').value;
+        const nom = document.getElementById('edit-menu-nom').value.trim();
+        const description = document.getElementById('edit-menu-description').value.trim();
+        const prix = parseFloat(document.getElementById('edit-menu-prix').value);
+        const selectedPlats = Array.from(document.getElementById('edit-menu-plats').selectedOptions).map(option => option.value);
+
+        const menuIndex = menus.findIndex(m => m.id === id);
+        if (menuIndex !== -1 && nom && description && !isNaN(prix) && selectedPlats.length > 0) {
+          menus[menuIndex] = { id, nom, description, prix, plats: selectedPlats };
+          displayMenus(menus);
+          closeModal('edit-menu-modal');
+          editMenuForm.reset();
+        }
+      });
+
+      // Fonction pour supprimer un menu
+      window.deleteMenu = function(menuId) {
+        if (confirm('Voulez-vous vraiment supprimer le menu ' + menuId + ' ?')) {
+          // Supprimer le menu
+          const menuIndex = menus.findIndex(m => m.id === menuId);
+          if (menuIndex !== -1) {
+            menus.splice(menuIndex, 1);
+            displayMenus(menus);
+          }
+        }
+      }
+
+      // Fonction pour remplir les options des plats dans les formulaires de menu
+      function populateMenuPlatsOptions() {
+        const addMenuPlats = document.getElementById('menu-plats');
+        const editMenuPlats = document.getElementById('edit-menu-plats');
+        
+        // Vider les options existantes
+        addMenuPlats.innerHTML = '';
+        editMenuPlats.innerHTML = '';
+
+        plats.forEach(plat => {
+          const option1 = document.createElement('option');
+          option1.value = plat.id;
+          option1.textContent = plat.nom;
+
+          const option2 = document.createElement('option');
+          option2.value = plat.id;
+          option2.textContent = plat.nom;
+
+          addMenuPlats.appendChild(option1);
+          editMenuPlats.appendChild(option2);
+        });
+      }
+
+      // Initialiser les options des menus
+      populateMenuPlatsOptions();
+
+      // Fonction pour rafraîchir les options des menus après l'ajout ou la suppression de plats
+      function refreshMenuPlatsOptions() {
+        populateMenuPlatsOptions();
+      }
+
+      // Après avoir ajouté, édité ou supprimé un plat, rafraîchir les options des menus
+      const originalDeletePlat = window.deletePlat;
+      window.deletePlat = function(platId) {
+        originalDeletePlat(platId);
+        refreshMenuPlatsOptions();
+      }
+
+      const originalEditPlatModal = window.openEditPlatModal;
+      window.openEditPlatModal = function(platId) {
+        originalEditPlatModal(platId);
+        refreshMenuPlatsOptions();
+      }
+
+      const originalAddPlatFormSubmit = addPlatForm.addEventListener;
+      addPlatForm.addEventListener('submit', function(e) {
+        // Après ajout
+        refreshMenuPlatsOptions();
+      });
+
+    });
+  </script>
+
+</body>
+</html>

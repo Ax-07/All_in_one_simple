@@ -1,0 +1,132 @@
+body.vegan {
+    font-family: 'Poppins', sans-serif;
+    background: #f9fff9;
+    color: #333;
+    margin: 0;
+  }
+  
+  .header {
+    background: #a5d6a7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  
+  .main-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  .hero-vegan {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-content {
+    background: #dcedc8;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+    color: #2e7d32;
+  }
+  
+  .cuisine-type, .address, .hours {
+    margin: 0.5rem 0;
+    font-weight: 500;
+  }
+  
+  .reserve-btn {
+    margin-top: 1.5rem;
+    background: #2e7d32;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .hero-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  section h2 {
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 1rem;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .gallery .photo-grid {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .gallery img {
+    flex: 1;
+    object-fit: cover;
+    height: 200px;
+    border-radius: 4px;
+  }
+  
+  .map-container {
+    margin-top: 1rem;
+  }
+  
+  .reservation form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  
+  .reservation form label {
+    margin-top: 1rem;
+  }
+  
+  .reservation form input {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .reservation button {
+    margin-top: 2rem;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .footer {
+    background: #a5d6a7;
+    text-align: center;
+    padding: 1rem;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  

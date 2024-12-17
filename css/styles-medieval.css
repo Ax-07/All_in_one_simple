@@ -1,0 +1,134 @@
+body.medieval {
+    font-family: 'Open Sans', sans-serif;
+    background: #faf8f0;
+    color: #333;
+    margin: 0;
+  }
+  
+  .header {
+    background: #6d4c41;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+  }
+  
+  .main-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  .hero-medieval {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .banner {
+    background: #d7ccc8;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .banner h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: #4e342e;
+  }
+  
+  .cuisine-type, .address, .hours {
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #5d4037;
+  }
+  
+  .reserve-btn {
+    margin-top: 1.5rem;
+    background: #4e342e;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  .hero-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #4e342e;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu li {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .gallery .photo-grid {
+    display: flex;
+    gap: 1rem;
+  }
+  .gallery img {
+    flex: 1;
+    object-fit: cover;
+    height: 200px;
+    border-radius: 4px;
+  }
+  
+  .map-container {
+    margin-top: 1rem;
+  }
+  
+  .reservation form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .reservation form label {
+    margin-top: 1rem;
+  }
+  
+  .reservation form input {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+  }
+  
+  .reservation button {
+    margin-top: 2rem;
+    background: #4e342e;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .footer {
+    background: #6d4c41;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  

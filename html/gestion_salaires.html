@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion des Salaires | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    /* Bouton */
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-right: 0.5rem;
+    }
+
+    .edit-btn {
+      background-color: #2980b9;
+      color: #fff;
+    }
+
+    .edit-btn:hover {
+      background-color: #1c5980;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
+      padding-top: 100px; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.4); 
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 50%;
+      border-radius: 8px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* Formulaire */
+    .salary-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .salary-form input,
+    .salary-form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .salary-form button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .salary-form button:hover {
+      background-color: #27ae60;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">RéservApp</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html" class="active">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Gestion des Salaires</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Gestion des Salaires -->
+      <section class="salary-management">
+        <h2>Liste des Salaires</h2>
+        
+        <button id="add-salary-btn">Ajouter un Nouveau Salaire</button>
+
+        <!-- Tableau des Salaires -->
+        <table>
+          <thead>
+            <tr>
+              <th>Employé</th>
+              <th>Poste</th>
+              <th>Mois</th>
+              <th>Salaire Brut (€)</th>
+              <th>Salaire Net (€)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="salaries-table-body">
+            <!-- Données simulées -->
+            <tr>
+              <td>Jean Dupont</td>
+              <td>Cuisinier</td>
+              <td>Avril 2024</td>
+              <td>2,500</td>
+              <td>1,900</td>
+              <td>
+                <button class="action-btn edit-btn">Modifier</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Marie Curie</td>
+              <td>Serveuse</td>
+              <td>Avril 2024</td>
+              <td>2,000</td>
+              <td>1,600</td>
+              <td>
+                <button class="action-btn edit-btn">Modifier</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal pour Ajouter un Nouveau Salaire -->
+  <div id="salary-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Ajouter un Nouveau Salaire</h2>
+      <form class="salary-form">
+        <label for="salary-employee">Employé</label>
+        <select id="salary-employee" required>
+          <option value="">Sélectionner un employé</option>
+          <option value="Jean Dupont">Jean Dupont</option>
+          <option value="Marie Curie">Marie Curie</option>
+          <option value="Paul Martin">Paul Martin</option>
+          <!-- Ajoutez d'autres employés ici -->
+        </select>
+
+        <label for="salary-month">Mois</label>
+        <input type="month" id="salary-month" required>
+
+        <label for="salary-brut">Salaire Brut (€)</label>
+        <input type="number" id="salary-brut" required min="0" placeholder="Ex: 2500">
+
+        <label for="salary-net">Salaire Net (€)</label>
+        <input type="number" id="salary-net" required min="0" placeholder="Ex: 1900">
+
+        <button type="submit">Ajouter le Salaire</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript pour la Gestion des Salaires -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const addSalaryBtn = document.getElementById('add-salary-btn');
+      const salaryModal = document.getElementById('salary-modal');
+      const closeModalSpan = document.querySelector('.close');
+      const salariesTableBody = document.getElementById('salaries-table-body');
+      const salaryForm = document.querySelector('.salary-form');
+
+      // Ouvrir le modal
+      addSalaryBtn.addEventListener('click', function() {
+        salaryModal.style.display = 'block';
+      });
+
+      // Fermer le modal
+      closeModalSpan.addEventListener('click', function() {
+        salaryModal.style.display = 'none';
+      });
+
+      // Fermer le modal en cliquant en dehors
+      window.addEventListener('click', function(event) {
+        if (event.target == salaryModal) {
+          salaryModal.style.display = 'none';
+        }
+      });
+
+      // Fonction pour ajouter un nouveau salaire
+      salaryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const employe = document.getElementById('salary-employee').value;
+        const mois = document.getElementById('salary-month').value;
+        const brut = parseFloat(document.getElementById('salary-brut').value);
+        const net = parseFloat(document.getElementById('salary-net').value);
+
+        if (!employe || !mois || isNaN(brut) || isNaN(net) || brut < 0 || net < 0) {
+          alert('Veuillez remplir tous les champs correctement.');
+          return;
+        }
+
+        // Ajouter le nouveau salaire au tableau
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${employe}</td>
+          <td>${getPoste(employe)}</td>
+          <td>${formatMonth(mois)}</td>
+          <td>${brut.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td>${net.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td>
+            <button class="action-btn edit-btn">Modifier</button>
+            <button class="action-btn delete-btn">Supprimer</button>
+          </td>
+        `;
+        salariesTableBody.appendChild(newRow);
+
+        // Réinitialiser le formulaire et fermer le modal
+        salaryForm.reset();
+        salaryModal.style.display = 'none';
+      });
+
+      // Fonction pour obtenir le poste de l'employé (simulé)
+      function getPoste(employe) {
+        const postes = {
+          'Jean Dupont': 'Cuisinier',
+          'Marie Curie': 'Serveuse',
+          'Paul Martin': 'Barman'
+          // Ajoutez d'autres employés et postes ici
+        };
+        return postes[employe] || 'Employé';
+      }
+
+      // Fonction pour formater le mois
+      function formatMonth(month) {
+        const options = { year: 'numeric', month: 'long' };
+        const date = new Date(month + '-01');
+        return date.toLocaleDateString('fr-FR', options);
+      }
+
+      // Fonction pour modifier ou supprimer un salaire
+      salariesTableBody.addEventListener('click', function(e) {
+        if (e.target.classList.contains('edit-btn')) {
+          const row = e.target.parentElement.parentElement;
+          const employe = prompt('Modifier l\'employé:', row.children[0].textContent);
+          if (!employe) return;
+          const mois = prompt('Modifier le mois (format YYYY-MM):', new Date(row.children[2].textContent).toISOString().slice(0,7));
+          if (!mois) return;
+          const brut = parseFloat(prompt('Modifier le salaire brut (€):', row.children[3].textContent.replace(/[^0-9,.]/g, '').replace(',', '.')));
+          if (isNaN(brut) || brut < 0) {
+            alert('Salaire brut invalide.');
+            return;
+          }
+          const net = parseFloat(prompt('Modifier le salaire net (€):', row.children[4].textContent.replace(/[^0-9,.]/g, '').replace(',', '.')));
+          if (isNaN(net) || net < 0) {
+            alert('Salaire net invalide.');
+            return;
+          }
+
+          // Mettre à jour les données de la ligne
+          row.children[0].textContent = employe;
+          row.children[1].textContent = getPoste(employe);
+          row.children[2].textContent = formatMonth(mois);
+          row.children[3].textContent = brut.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          row.children[4].textContent = net.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        if (e.target.classList.contains('delete-btn')) {
+          if (confirm('Êtes-vous sûr de vouloir supprimer ce salaire ?')) {
+            const row = e.target.parentElement.parentElement;
+            salariesTableBody.removeChild(row);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

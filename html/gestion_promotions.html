@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion des Promotions | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    /* Bouton */
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-right: 0.5rem;
+    }
+
+    .edit-btn {
+      background-color: #2980b9;
+      color: #fff;
+    }
+
+    .edit-btn:hover {
+      background-color: #1c5980;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
+      padding-top: 100px; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.4); 
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 50%;
+      border-radius: 8px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* Formulaire */
+    .promotion-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .promotion-form input,
+    .promotion-form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .promotion-form button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .promotion-form button:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">RéservApp</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html" class="active">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Gestion des Promotions</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Gestion des Promotions -->
+      <section class="promotions-management">
+        <h2>Liste des Promotions</h2>
+        
+        <button id="create-promotion-btn">Créer une Nouvelle Promotion</button>
+
+        <!-- Tableau des Promotions -->
+        <table>
+          <thead>
+            <tr>
+              <th>Nom de la Promotion</th>
+              <th>Type</th>
+              <th>Date de Début</th>
+              <th>Date de Fin</th>
+              <th>Conditions</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="promotions-table-body">
+            <!-- Données simulées -->
+            <tr>
+              <td>Menu Déjeuner</td>
+              <td>Réduction</td>
+              <td>2024-05-01</td>
+              <td>2024-05-31</td>
+              <td>10% de réduction sur le menu déjeuner</td>
+              <td>
+                <button class="action-btn edit-btn">Modifier</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Happy Hour</td>
+              <td>Offre Spéciale</td>
+              <td>2024-06-01</td>
+              <td>2024-06-30</td>
+              <td>Bière à moitié prix entre 17h et 19h</td>
+              <td>
+                <button class="action-btn edit-btn">Modifier</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal pour Créer une Nouvelle Promotion -->
+  <div id="promotion-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Créer une Nouvelle Promotion</h2>
+      <form class="promotion-form">
+        <label for="promotion-name">Nom de la Promotion</label>
+        <input type="text" id="promotion-name" required placeholder="Ex: Menu Déjeuner">
+
+        <label for="promotion-type">Type</label>
+        <select id="promotion-type" required>
+          <option value="">Sélectionner un type</option>
+          <option value="Réduction">Réduction</option>
+          <option value="Offre Spéciale">Offre Spéciale</option>
+          <option value="Pack">Pack</option>
+        </select>
+
+        <label for="promotion-start-date">Date de Début</label>
+        <input type="date" id="promotion-start-date" required>
+
+        <label for="promotion-end-date">Date de Fin</label>
+        <input type="date" id="promotion-end-date" required>
+
+        <label for="promotion-conditions">Conditions</label>
+        <input type="text" id="promotion-conditions" required placeholder="Ex: 10% de réduction sur le menu déjeuner">
+
+        <button type="submit">Créer la Promotion</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript pour la Gestion des Promotions -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const createPromotionBtn = document.getElementById('create-promotion-btn');
+      const promotionModal = document.getElementById('promotion-modal');
+      const closeModalSpan = document.querySelector('.close');
+      const promotionsTableBody = document.getElementById('promotions-table-body');
+      const promotionForm = document.querySelector('.promotion-form');
+
+      // Ouvrir le modal
+      createPromotionBtn.addEventListener('click', function() {
+        promotionModal.style.display = 'block';
+      });
+
+      // Fermer le modal
+      closeModalSpan.addEventListener('click', function() {
+        promotionModal.style.display = 'none';
+      });
+
+      // Fermer le modal en cliquant en dehors
+      window.addEventListener('click', function(event) {
+        if (event.target == promotionModal) {
+          promotionModal.style.display = 'none';
+        }
+      });
+
+      // Fonction pour ajouter une nouvelle promotion
+      promotionForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nom = document.getElementById('promotion-name').value.trim();
+        const type = document.getElementById('promotion-type').value;
+        const startDate = document.getElementById('promotion-start-date').value;
+        const endDate = document.getElementById('promotion-end-date').value;
+        const conditions = document.getElementById('promotion-conditions').value.trim();
+
+        if (!nom || !type || !startDate || !endDate || !conditions) {
+          alert('Veuillez remplir tous les champs.');
+          return;
+        }
+
+        // Générer un ID de promotion unique
+        const promotionId = 'PROMO' + String(promotionsTableBody.children.length + 1).padStart(3, '0');
+
+        // Ajouter la nouvelle promotion au tableau
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${nom}</td>
+          <td>${type}</td>
+          <td>${startDate}</td>
+          <td>${endDate}</td>
+          <td>${conditions}</td>
+          <td>
+            <button class="action-btn edit-btn">Modifier</button>
+            <button class="action-btn delete-btn">Supprimer</button>
+          </td>
+        `;
+        promotionsTableBody.appendChild(newRow);
+
+        // Réinitialiser le formulaire et fermer le modal
+        promotionForm.reset();
+        promotionModal.style.display = 'none';
+      });
+
+      // Fonction pour modifier ou supprimer une promotion
+      promotionsTableBody.addEventListener('click', function(e) {
+        if (e.target.classList.contains('edit-btn')) {
+          const row = e.target.parentElement.parentElement;
+          const nom = prompt('Modifier le nom de la promotion:', row.children[0].textContent);
+          if (!nom) return;
+          const type = prompt('Modifier le type de la promotion:', row.children[1].textContent);
+          if (!type) return;
+          const startDate = prompt('Modifier la date de début:', row.children[2].textContent);
+          if (!startDate) return;
+          const endDate = prompt('Modifier la date de fin:', row.children[3].textContent);
+          if (!endDate) return;
+          const conditions = prompt('Modifier les conditions:', row.children[4].textContent);
+          if (!conditions) return;
+
+          // Mettre à jour les données de la ligne
+          row.children[0].textContent = nom;
+          row.children[1].textContent = type;
+          row.children[2].textContent = startDate;
+          row.children[3].textContent = endDate;
+          row.children[4].textContent = conditions;
+        }
+
+        if (e.target.classList.contains('delete-btn')) {
+          if (confirm('Êtes-vous sûr de vouloir supprimer cette promotion ?')) {
+            const row = e.target.parentElement.parentElement;
+            promotionsTableBody.removeChild(row);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

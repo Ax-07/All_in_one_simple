@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snacky - Street Food</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/styles-snack.css">
+  <link rel="stylesheet" href="../../css/styles-avis.css">
+
+</head>
+<body class="fiche-restaurant snack">
+  <header class="header">
+    <div class="logo">Snacky</div>
+    <nav class="main-nav">
+      <a href="../index.html">Accueil</a>
+      <a href="../connexion.html">Mon Compte</a>
+      <a href="../faq.html">Aide</a>
+    </nav>
+  </header>
+
+  <section class="hero-snack">
+    <div class="hero-text">
+      <h1>Snacky</h1>
+      <p class="cuisine-type">Street Food Américaine</p>
+      <p class="address">45 Boulevard du Fast, Lyon</p>
+      <p class="hours">Lun-Sam : 11h - 22h</p>
+      <a href="#reservation-form" class="reserve-btn">Commander / Réserver</a>
+    </div>
+    <img src="images/snack-hero.jpg" alt="Burger Appétissant" class="hero-img">
+  </section>
+
+  <main>
+    <section class="description-snack">
+      <h2>Qui sommes-nous ?</h2>
+      <p>Snacky c’est le spot incontournable pour déguster de délicieux burgers, hot-dogs, et frites maison. Une ambiance décontractée, des produits frais et un service rapide, parfait pour une pause gourmande entre amis.</p>
+    </section>
+
+    <section class="menu-snack">
+      <h2>Menu</h2>
+      <ul>
+        <li><strong>Burgers :</strong> Classic, Cheese, Bacon, Veggie</li>
+        <li><strong>Hot-Dogs :</strong> New York, Chicago Style, Spicy</li>
+        <li><strong>Extras :</strong> Frites maison, Onion rings, Nuggets</li>
+        <li><strong>Boissons :</strong> Sodas, Milkshakes, Smoothies</li>
+      </ul>
+    </section>
+
+    <section class="gallery-snack">
+      <h2>Galerie</h2>
+      <div class="photo-grid">
+        <img src="images/snack1.jpg" alt="Burger">
+        <img src="images/snack2.jpg" alt="Hot-dog">
+        <img src="images/snack3.jpg" alt="Frites maison">
+      </div>
+    </section>
+
+    <section class="map-snack">
+      <h2>Nous trouver</h2>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?..." 
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section class="reservation-snack" id="reservation-form">
+      <h2>Réserver / Commander</h2>
+      <form>
+        <label>Date :</label><input type="date" required>
+        <label>Heure :</label><input type="time" required>
+        <label>Nombre de personnes :</label><input type="number" min="1" required>
+        <button type="submit">Valider</button>
+      </form>
+    </section>
+
+    <section class="restaurant-reviews">
+      <h2>Avis des Clients</h2>
+  
+      <!-- Note globale du restaurant -->
+      <div class="overall-rating">
+        <div class="rating-stars">
+          <!-- 4.5/5 par exemple -->
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star half">★</span>
+        </div>
+        <p class="rating-score">4.5/5 sur 120 avis</p>
+      </div>
+  
+      <!-- Liste des avis -->
+      <div class="reviews-list">
+        <article class="review">
+          <div class="review-header">
+            <h3>Jean Dupont</h3>
+            <div class="review-rating">
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star">★</span>
+            </div>
+            <span class="review-date">15/09/2024</span>
+          </div>
+          <p class="review-text">Super expérience, plats délicieux et service impeccable. Je recommande !</p>
+        </article>
+  
+        <article class="review">
+          <div class="review-header">
+            <h3>Marie Dubois</h3>
+            <div class="review-rating">
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+            <span class="review-date">10/09/2024</span>
+          </div>
+          <p class="review-text">Le cadre est très joli, mais j’ai trouvé l’attente un peu longue. Le plat était bon mais pas exceptionnel.</p>
+        </article>
+  
+        <!-- Autres avis ... -->
+      </div>
+  
+      <!-- Formulaire pour laisser un avis -->
+      <div class="review-form">
+        <h3>Laisser un Avis</h3>
+        <form action="#" method="POST">
+          <label for="name">Votre Nom:</label>
+          <input type="text" id="name" name="name" required>
+  
+          <label for="rating">Votre Note :</label>
+          <div class="rating-input">
+            <!-- 5 étoiles cliquables -->
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+          </div>
+  
+          <label for="comment">Votre Commentaire :</label>
+          <textarea id="comment" name="comment" rows="4" required></textarea>
+  
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 - Snacky</p>
+  </footer>
+</body>
+</html>

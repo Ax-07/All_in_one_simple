@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Mon Profil | RéservApp</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">Le Gourmet</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html" class="active">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <main class="dashboard-content">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Mon Profil</h1>
+        <p>Gérez les informations de votre restaurant</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <section class="profile-section">
+      <form class="profile-form">
+        <label for="restaurant-name">Nom du Restaurant :</label>
+        <input type="text" id="restaurant-name" name="restaurant-name" value="Le Gourmet" required>
+
+        <label for="owner-name">Nom du Propriétaire :</label>
+        <input type="text" id="owner-name" name="owner-name" value="Chef Martin" required>
+
+        <label for="email">Email de contact :</label>
+        <input type="email" id="email" name="email" value="contact@legourmet.fr" required>
+
+        <label for="address">Adresse :</label>
+        <input type="text" id="address" name="address" value="123 Rue de la Paix, Paris" required>
+
+        <label for="description">Description :</label>
+        <textarea id="description" name="description"
+          rows="5">Le Gourmet est un restaurant français proposant une cuisine raffinée, avec des produits frais et locaux.</textarea>
+
+        <label for="cover-image">Image de couverture :</label>
+        <input type="file" id="cover-image" name="cover-image" accept="image/*">
+
+        <button type="submit">Enregistrer les modifications</button>
+      </form>
+    </section>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Mix - Cuisine Fusion</title>
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/styles-fusion.css">
+  <link rel="stylesheet" href="../../css/styles-avis.css">
+
+</head>
+<body class="fiche-restaurant fusion">
+  <header class="header">
+    <div class="logo">Global Mix</div>
+    <nav class="main-nav">
+      <a href="../index.html">Accueil</a>
+      <a href="../connexion.html">Mon Compte</a>
+      <a href="../faq.html">Aide</a>
+    </nav>
+  </header>
+
+  <section class="hero-fusion">
+    <div class="hero-text">
+      <h1>Global Mix</h1>
+      <p class="cuisine-type">Cuisine Fusion Internationale</p>
+      <p class="address">90 Rue Cosmopolite, Lille</p>
+      <p class="hours">Mar-Dim : 12h - 23h</p>
+      <a href="#reservation-form" class="reserve-btn">Réserver</a>
+    </div>
+    <img src="images/fusion-hero.jpg" alt="Plat fusion" class="hero-img">
+  </section>
+
+  <main>
+    <section class="description-fusion">
+      <h2>À propos</h2>
+      <p>Global Mix réunit des saveurs du monde entier : Asie, Amériques, Méditerranée. Notre menu évolue au fil des inspirations de notre chef et des découvertes culinaires internationales.</p>
+    </section>
+
+    <section class="menu-fusion">
+      <h2>Menu Fusion</h2>
+      <ul>
+        <li><strong>Entrées :</strong> Gyozas, Bruschettas épicées, Mini-tacos</li>
+        <li><strong>Plats :</strong> Curry thai, Couscous revisité, Bowl de quinoa aux épices</li>
+        <li><strong>Desserts :</strong> Cheesecake matcha, Churros chocolat, Panna cotta mangue</li>
+      </ul>
+    </section>
+
+    <section class="gallery-fusion">
+      <h2>Galerie</h2>
+      <div class="photo-grid">
+        <img src="images/fusion1.jpg" alt="Assortiment mondial">
+        <img src="images/fusion2.jpg" alt="Plat coloré">
+        <img src="images/fusion3.jpg" alt="Cocktails exotiques">
+      </div>
+    </section>
+
+    <section class="map-fusion">
+      <h2>Localisation</h2>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section class="reservation-fusion" id="reservation-form">
+      <h2>Réserver</h2>
+      <form>
+        <label>Date :</label><input type="date" required>
+        <label>Heure :</label><input type="time" required>
+        <label>Personnes :</label><input type="number" min="1" required>
+        <button type="submit">Valider</button>
+      </form>
+    </section>
+
+    <section class="restaurant-reviews">
+        <h2>Avis des Clients</h2>
+    
+        <!-- Note globale du restaurant -->
+        <div class="overall-rating">
+          <div class="rating-stars">
+            <!-- 4.5/5 par exemple -->
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star half">★</span>
+          </div>
+          <p class="rating-score">4.5/5 sur 120 avis</p>
+        </div>
+    
+        <!-- Liste des avis -->
+        <div class="reviews-list">
+          <article class="review">
+            <div class="review-header">
+              <h3>Jean Dupont</h3>
+              <div class="review-rating">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star">★</span>
+              </div>
+              <span class="review-date">15/09/2024</span>
+            </div>
+            <p class="review-text">Super expérience, plats délicieux et service impeccable. Je recommande !</p>
+          </article>
+    
+          <article class="review">
+            <div class="review-header">
+              <h3>Marie Dubois</h3>
+              <div class="review-rating">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+              <span class="review-date">10/09/2024</span>
+            </div>
+            <p class="review-text">Le cadre est très joli, mais j’ai trouvé l’attente un peu longue. Le plat était bon mais pas exceptionnel.</p>
+          </article>
+    
+          <!-- Autres avis ... -->
+        </div>
+    
+        <!-- Formulaire pour laisser un avis -->
+        <div class="review-form">
+          <h3>Laisser un Avis</h3>
+          <form action="#" method="POST">
+            <label for="name">Votre Nom:</label>
+            <input type="text" id="name" name="name" required>
+    
+            <label for="rating">Votre Note :</label>
+            <div class="rating-input">
+              <!-- 5 étoiles cliquables -->
+              <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+              <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+              <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+              <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+              <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
+    
+            <label for="comment">Votre Commentaire :</label>
+            <textarea id="comment" name="comment" rows="4" required></textarea>
+    
+            <button type="submit">Envoyer</button>
+          </form>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 - Global Mix</p>
+  </footer>
+</body>
+</html>

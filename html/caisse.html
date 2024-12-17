@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logiciel de Caisse - RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Section de Caisse */
+    .cash-register {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Catalogue des Produits */
+    .product-catalog {
+      flex: 2;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .product-catalog h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    /* Onglets de Catégorie */
+    .category-tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 1rem;
+    }
+
+    .category-tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      color: #2c3e50;
+      border: none;
+      background: none;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .category-tab.active,
+    .category-tab:hover {
+      background-color: #ecf0f1;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .product-item {
+      background-color: #ecf0f1;
+      padding: 1rem;
+      border-radius: 8px;
+      width: calc(50% - 1rem);
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-item:hover {
+      background-color: #d0d7de;
+    }
+
+    .product-item h3 {
+      margin: 0 0 0.5rem 0;
+      color: #2c3e50;
+    }
+
+    .product-item p {
+      margin: 0;
+      color: #7f8c8d;
+    }
+
+    /* Section des Meilleures Ventes */
+    .best-sellers {
+      flex: 1;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .best-sellers h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .best-seller-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .best-seller-item {
+      background-color: #f1c40f;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: #2c3e50;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .best-seller-item:hover {
+      background-color: #d4ac0d;
+    }
+
+    /* Panier */
+    .cart {
+      flex: 1;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .remove-btn {
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Résumé de la Commande */
+    .order-summary {
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+
+    .order-summary p {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.3rem 0;
+      color: #2c3e50;
+    }
+
+    .total {
+      font-weight: 700;
+      color: #27ae60;
+    }
+
+    /* Bouton de Paiement */
+    .pay-btn {
+      background-color: #27ae60;
+      color: #fff;
+      border: none;
+      padding: 0.7rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .pay-btn:hover {
+      background-color: #1e8449;
+    }
+
+    /* Modales */
+    .modal {
+      display: none; /* Caché par défaut */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5); /* Fond semi-transparent */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal form label {
+      margin-bottom: 0.5rem;
+      color: #34495e;
+    }
+
+    .modal form input, .modal form select, .modal form textarea {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .modal form button {
+      padding: 0.7rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      background-color: #2ecc71;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .modal form button:hover {
+      background-color: #27ae60;
+    }
+
+    /* Bouton Ajouter Réservation */
+    .add-reservation-btn {
+      background-color: #2ecc71;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      transition: background-color 0.3s;
+      display: block;
+      margin-left: auto;
+    }
+
+    .add-reservation-btn:hover {
+      background-color: #27ae60;
+    }
+
+    /* Responsivité */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+
+      .product-item {
+        width: calc(100% - 1rem);
+      }
+
+      .cash-register {
+        flex-direction: column;
+      }
+
+      .product-catalog, .best-sellers, .cart {
+        width: 100%;
+      }
+
+      .weekly-agenda {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .product-item {
+        width: 100%;
+      }
+
+      .best-seller-item {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    /* Message Aucun Résultat */
+    #no-results {
+      text-align: center;
+      color: #e74c3c;
+      margin-top: 2rem;
+      display: none;
+    }
+
+    /* Section des Meilleures Ventes */
+    .best-sellers {
+      flex: 1;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .best-sellers h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .best-seller-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .best-seller-item {
+      background-color: #f1c40f;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: #2c3e50;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .best-seller-item:hover {
+      background-color: #d4ac0d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">Le Gourmet</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html" class="active">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Logiciel de Caisse</h1>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Section de Caisse -->
+    <div class="cash-register">
+      <!-- Catalogue des Produits -->
+      <div class="product-catalog">
+        <h2>Catalogue des Produits</h2>
+        <!-- Onglets de Catégorie -->
+        <div class="category-tabs" id="category-tabs">
+          <button class="category-tab active" data-category="all">Tous</button>
+          <button class="category-tab" data-category="Boissons">Boissons</button>
+          <button class="category-tab" data-category="Plats">Plats</button>
+          <button class="category-tab" data-category="Desserts">Desserts</button>
+          <!-- Ajoutez d'autres catégories si nécessaire -->
+        </div>
+        <div class="product-list" id="product-list">
+          <!-- Les produits seront insérés ici via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Section des Meilleures Ventes -->
+      <div class="best-sellers">
+        <h2>Meilleures Ventes</h2>
+        <div class="best-seller-list" id="best-seller-list">
+          <!-- Les meilleures ventes seront insérées ici via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Panier -->
+      <div class="cart">
+        <h2>Panier</h2>
+        <div class="cart-items" id="cart-items">
+          <!-- Les articles du panier seront insérés ici via JavaScript -->
+        </div>
+        <div class="order-summary">
+          <p><span>Sous-total :</span> <span id="subtotal">0,00 €</span></p>
+          <p><span>Taxe (10%) :</span> <span id="tax">0,00 €</span></p>
+          <p><span>Remise :</span> <span id="discount">0,00 €</span></p>
+          <p class="total"><span>Total :</span> <span id="total">0,00 €</span></p>
+        </div>
+        <button class="pay-btn" onclick="processPayment()">Payer</button>
+      </div>
+    </div>
+
+    <!-- Message Aucun Résultat -->
+    <p id="no-results">Aucun article dans le panier.</p>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal Ajouter une Réservation (Optionnel pour la caisse) -->
+  <!-- Vous pouvez ajouter d'autres modales si nécessaire -->
+
+  <!-- JavaScript pour le Logiciel de Caisse -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const productList = document.getElementById('product-list');
+      const cartItems = document.getElementById('cart-items');
+      const subtotalEl = document.getElementById('subtotal');
+      const taxEl = document.getElementById('tax');
+      const discountEl = document.getElementById('discount');
+      const totalEl = document.getElementById('total');
+      const noResultsMessage = document.getElementById('no-results');
+      const categoryTabs = document.getElementById('category-tabs');
+      const bestSellerList = document.getElementById('best-seller-list');
+
+      // Exemple de données de produits avec catégories et indicateur de meilleure vente
+      const products = [
+        { id: 'P001', nom: 'Salade César', prix: 8.50, categorie: 'Plats', isBestSeller: true },
+        { id: 'P002', nom: 'Steak Frites', prix: 18.00, categorie: 'Plats', isBestSeller: true },
+        { id: 'P003', nom: 'Tiramisu', prix: 6.50, categorie: 'Desserts', isBestSeller: false },
+        { id: 'P004', nom: 'Coca-Cola', prix: 3.00, categorie: 'Boissons', isBestSeller: true },
+        { id: 'P005', nom: 'Menu Dégustation', prix: 25.00, categorie: 'Plats', isBestSeller: false },
+        { id: 'P006', nom: 'Menu Végétarien', prix: 20.00, categorie: 'Plats', isBestSeller: false },
+        { id: 'P007', nom: 'Café Espresso', prix: 2.50, categorie: 'Boissons', isBestSeller: true },
+        { id: 'P008', nom: 'Smoothie Fraise', prix: 4.50, categorie: 'Boissons', isBestSeller: false },
+        { id: 'P009', nom: 'Cheesecake', prix: 5.00, categorie: 'Desserts', isBestSeller: true },
+        { id: 'P010', nom: 'Glace Vanille', prix: 3.50, categorie: 'Desserts', isBestSeller: false },
+        // Ajoutez plus de produits ici
+      ];
+
+      // Panier (liste des articles ajoutés)
+      let cart = [];
+
+      // Fonction pour afficher les produits dans le catalogue
+      function displayProducts(filterCategory = 'all') {
+        productList.innerHTML = ''; // Réinitialiser le catalogue
+
+        let filteredProducts = products;
+        if (filterCategory !== 'all') {
+          filteredProducts = products.filter(product => product.categorie === filterCategory);
+        }
+
+        filteredProducts.forEach(product => {
+          const productDiv = document.createElement('div');
+          productDiv.classList.add('product-item');
+          productDiv.innerHTML = `
+            <h3>${product.nom}</h3>
+            <p>${product.prix.toFixed(2)} €</p>
+          `;
+          productDiv.onclick = () => addToCart(product.id);
+          productList.appendChild(productDiv);
+        });
+      }
+
+      // Fonction pour afficher les meilleures ventes
+      function displayBestSellers() {
+        bestSellerList.innerHTML = ''; // Réinitialiser la liste
+
+        const bestSellers = products.filter(product => product.isBestSeller);
+        bestSellers.forEach(product => {
+          const bestSellerDiv = document.createElement('div');
+          bestSellerDiv.classList.add('best-seller-item');
+          bestSellerDiv.textContent = product.nom;
+          bestSellerDiv.onclick = () => addToCart(product.id);
+          bestSellerList.appendChild(bestSellerDiv);
+        });
+      }
+
+      // Fonction pour ajouter un produit au panier
+      function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+
+        const cartItem = cart.find(item => item.id === productId);
+        if (cartItem) {
+          cartItem.quantite += 1;
+        } else {
+          cart.push({ ...product, quantite: 1 });
+        }
+
+        displayCart();
+      }
+
+      // Fonction pour afficher le panier
+      function displayCart() {
+        cartItems.innerHTML = ''; // Réinitialiser le panier
+
+        if (cart.length === 0) {
+          noResultsMessage.style.display = 'block';
+          subtotalEl.textContent = '0,00 €';
+          taxEl.textContent = '0,00 €';
+          discountEl.textContent = '0,00 €';
+          totalEl.textContent = '0,00 €';
+          return;
+        } else {
+          noResultsMessage.style.display = 'none';
+        }
+
+        cart.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.classList.add('cart-item');
+          itemDiv.innerHTML = `
+            <div class="cart-item-details">
+              <strong>${item.nom}</strong> x ${item.quantite}
+              <br>
+              <small>${(item.prix * item.quantite).toFixed(2)} €</small>
+            </div>
+            <div class="cart-item-actions">
+              <button class="remove-btn" onclick="removeFromCart('${item.id}')">-</button>
+              <button class="remove-btn" onclick="removeItemFromCart('${item.id}')">Supprimer</button>
+            </div>
+          `;
+          cartItems.appendChild(itemDiv);
+        });
+
+        calculateTotals();
+      }
+
+      // Fonction pour enlever une unité d'un article du panier
+      window.removeFromCart = function(productId) {
+        const item = cart.find(p => p.id === productId);
+        if (item) {
+          item.quantite -= 1;
+          if (item.quantite === 0) {
+            cart = cart.filter(p => p.id !== productId);
+          }
+          displayCart();
+        }
+      }
+
+      // Fonction pour supprimer complètement un article du panier
+      window.removeItemFromCart = function(productId) {
+        cart = cart.filter(p => p.id !== productId);
+        displayCart();
+      }
+
+      // Fonction pour calculer les totaux
+      function calculateTotals() {
+        const subtotal = cart.reduce((acc, item) => acc + (item.prix * item.quantite), 0);
+        const tax = subtotal * 0.10; // Exemple : 10% de taxe
+        const discount = 0; // Vous pouvez implémenter une logique de remise ici
+        const total = subtotal + tax - discount;
+
+        subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
+        taxEl.textContent = `${tax.toFixed(2)} €`;
+        discountEl.textContent = `${discount.toFixed(2)} €`;
+        totalEl.textContent = `${total.toFixed(2)} €`;
+      }
+
+      // Fonction pour traiter le paiement
+      window.processPayment = function() {
+        if (cart.length === 0) {
+          alert('Le panier est vide.');
+          return;
+        }
+
+        // Logique de traitement du paiement (intégration avec un système de paiement)
+        // Pour cet exemple, nous allons simplement afficher une alerte
+
+        alert('Paiement effectué avec succès !');
+
+        // Réinitialiser le panier après le paiement
+        cart = [];
+        displayCart();
+      }
+
+      // Fonction pour ouvrir un modal
+      window.openModal = function(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+      }
+
+      // Fonction pour fermer un modal
+      window.closeModal = function(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+      }
+
+      // Gestion du formulaire d'ajout de réservation
+      // Vous pouvez réutiliser ou modifier ce formulaire selon vos besoins
+
+      // Fonction pour générer un ID unique (simplifiée)
+      function generateID(prefix) {
+        return prefix + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+      }
+
+      // Gestion des onglets de catégorie
+      categoryTabs.addEventListener('click', function(e) {
+        if (e.target.classList.contains('category-tab')) {
+          // Retirer la classe active de tous les onglets
+          document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+          // Ajouter la classe active à l'onglet cliqué
+          e.target.classList.add('active');
+          // Filtrer les produits
+          const selectedCategory = e.target.getAttribute('data-category');
+          displayProducts(selectedCategory);
+        }
+      });
+
+      // Afficher les meilleures ventes
+      displayBestSellers();
+
+      // Initialiser le catalogue et le panier
+      displayProducts();
+      displayCart();
+    });
+  </script>
+
+</body>
+</html>

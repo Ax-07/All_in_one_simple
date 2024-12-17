@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reporting et Analyses | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Bouton */
+    .report-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .report-controls label {
+      margin-right: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .report-controls select,
+    .report-controls input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .report-controls button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .report-controls button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Chart Container */
+    .chart-container {
+      position: relative;
+      height: 400px;
+      width: 100%;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">RéservApp</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html" class="active">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Reporting et Analyses</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Reporting et Analyses -->
+      <section class="advanced-reporting">
+        <h2>Rapports et Analyses</h2>
+        
+        <div class="report-controls">
+          <label for="report-type">Type de Rapport :</label>
+          <select id="report-type">
+            <option value="">Sélectionner un type</option>
+            <option value="sales">Ventes</option>
+            <option value="financial">Financier</option>
+            <option value="stock">Stocks</option>
+          </select>
+          
+          <label for="report-start-date">Date de Début :</label>
+          <input type="date" id="report-start-date">
+
+          <label for="report-end-date">Date de Fin :</label>
+          <input type="date" id="report-end-date">
+          
+          <button id="generate-report-btn">Générer le Rapport</button>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="report-chart"></canvas>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- JavaScript pour le Reporting et Analyses -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const generateReportBtn = document.getElementById('generate-report-btn');
+      const reportType = document.getElementById('report-type');
+      const startDate = document.getElementById('report-start-date');
+      const endDate = document.getElementById('report-end-date');
+      const ctx = document.getElementById('report-chart').getContext('2d');
+      let chart; // Variable pour stocker le graphique
+
+      // Fonction pour générer les données simulées
+      function getSimulatedData(type) {
+        if (type === 'sales') {
+          return {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            data: [1500, 2000, 1800, 2200, 2400, 2100],
+            label: 'Ventes (€)',
+            type: 'line'
+          };
+        } else if (type === 'financial') {
+          return {
+            labels: ['Revenus', 'Dépenses', 'Profit'],
+            data: [50000, 30000, 20000],
+            label: 'Financier (€)',
+            type: 'pie'
+          };
+        } else if (type === 'stock') {
+          return {
+            labels: ['Tomate', 'Farine', 'Beurre', 'Sucre'],
+            data: [20, 15, 30, 25],
+            label: 'Quantité en Stock',
+            type: 'bar'
+          };
+        } else {
+          return null;
+        }
+      }
+
+      // Fonction pour générer le graphique
+      function generateChart(type) {
+        const simulatedData = getSimulatedData(type);
+        if (!simulatedData) {
+          alert('Veuillez sélectionner un type de rapport valide.');
+          return;
+        }
+
+        // Si un graphique existe déjà, le détruire
+        if (chart) {
+          chart.destroy();
+        }
+
+        chart = new Chart(ctx, {
+          type: simulatedData.type,
+          data: {
+            labels: simulatedData.labels,
+            datasets: [{
+              label: simulatedData.label,
+              data: simulatedData.data,
+              backgroundColor: [
+                'rgba(52, 152, 219, 0.6)',
+                'rgba(231, 76, 60, 0.6)',
+                'rgba(46, 204, 113, 0.6)',
+                'rgba(155, 89, 182, 0.6)',
+                'rgba(241, 196, 15, 0.6)',
+                'rgba(26, 188, 156, 0.6)'
+              ],
+              borderColor: [
+                'rgba(52, 152, 219, 1)',
+                'rgba(231, 76, 60, 1)',
+                'rgba(46, 204, 113, 1)',
+                'rgba(155, 89, 182, 1)',
+                'rgba(241, 196, 15, 1)',
+                'rgba(26, 188, 156, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+
+      // Événement pour générer le rapport
+      generateReportBtn.addEventListener('click', function() {
+        const type = reportType.value;
+        const start = startDate.value;
+        const end = endDate.value;
+
+        // Simuler des filtres de date si nécessaire
+        generateChart(type);
+      });
+    });
+  </script>
+
+</body>
+</html>

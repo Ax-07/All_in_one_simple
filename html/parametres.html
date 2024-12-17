@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Paramètres | RéservApp</title>
+  <link rel="stylesheet" href="../css/styles-parametres.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- Optionnel : Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">Le Gourmet</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html" class="active">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <main class="dashboard-content">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Paramètres</h1>
+        <p>Configurez votre restaurant selon vos préférences</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Onglets -->
+    <nav class="tabs-nav">
+      <button class="tab-link active" data-tab="tab-reservation">Réservation & Politiques</button>
+      <button class="tab-link" data-tab="tab-menu">Menu & Carte</button>
+      <button class="tab-link" data-tab="tab-notifications">Notifications & Marketing</button>
+      <button class="tab-link" data-tab="tab-paiement">Paiement & Plan de Salle</button>
+      <button class="tab-link" data-tab="tab-accessibilite">Accessibilité & Autres</button>
+    </nav>
+
+    <section class="settings-section">
+      <form class="settings-form">
+        <!-- Tab Réservation & Politiques -->
+        <div class="tab-content" id="tab-reservation" style="display:block;">
+          <!-- Section Horaires -->
+          <div class="settings-block">
+            <h2>Horaires d’Ouverture</h2>
+            <p class="section-desc">Définissez vos horaires pour le midi et le soir, ou cochez "Fermé" si vous n’êtes
+              pas ouvert ce jour.</p>
+
+            <table class="hours-table">
+              <thead>
+                <tr>
+                  <th>Jour</th>
+                  <th>Fermé Midi</th>
+                  <th>Fermé Soir</th>
+                  <th colspan="2">Midi</th>
+                  <th colspan="2">Soir</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Ouverture</th>
+                  <th>Fermeture</th>
+                  <th>Ouverture</th>
+                  <th>Fermeture</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lundi</td>
+                  <td><input type="checkbox" name="monday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="monday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="monday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="monday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="monday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="monday-evening-close" value="23:00"></td>
+                </tr>
+                <tr>
+                  <td>Mardi</td>
+                  <td><input type="checkbox" name="tuesday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="tuesday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="tuesday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="tuesday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="tuesday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="tuesday-evening-close" value="23:00"></td>
+                </tr>
+                <tr>
+                  <td>Mercredi</td>
+                  <td><input type="checkbox" name="wednesday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="wednesday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="wednesday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="wednesday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="wednesday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="wednesday-evening-close" value="23:00"></td>
+                </tr>
+                <tr>
+                  <td>Jeudi</td>
+                  <td><input type="checkbox" name="thursday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="thursday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="thursday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="thursday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="thursday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="thursday-evening-close" value="23:00"></td>
+                </tr>
+                <tr>
+                  <td>Vendredi</td>
+                  <td><input type="checkbox" name="friday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="friday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="friday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="friday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="friday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="friday-evening-close" value="23:00"></td>
+                </tr>
+                <tr>
+                  <td>Samedi</td>
+                  <td><input type="checkbox" name="saturday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="saturday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="saturday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="saturday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="saturday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="saturday-evening-close" value="23:00"></td>
+                </tr>
+                <tr>
+                  <td>Dimanche</td>
+                  <td><input type="checkbox" name="sunday-closed-midday" class="closed-check"></td>
+                  <td><input type="checkbox" name="sunday-closed-evening" class="closed-check"></td>
+                  <td><input type="time" name="sunday-midday-open" value="12:00"></td>
+                  <td><input type="time" name="sunday-midday-close" value="14:00"></td>
+                  <td><input type="time" name="sunday-evening-open" value="19:00"></td>
+                  <td><input type="time" name="sunday-evening-close" value="23:00"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section Politiques -->
+          <div class="settings-block">
+            <h2>Politiques</h2>
+
+            <!-- Politique d’annulation -->
+            <div class="policy-group">
+              <h3>Politique d’annulation</h3>
+              <p class="section-desc">Définissez les conditions d’annulation : délai, frais en cas d’annulation tardive.
+              </p>
+              <label for="cancellation-policy">Détails :</label>
+              <textarea id="cancellation-policy" name="cancellation-policy" rows="3">
+          Annulation possible jusqu'à 2h avant la réservation. Frais de 10€ pour toute annulation tardive.
+              </textarea>
+            </div>
+
+            <!-- Frais de service -->
+            <div class="policy-group">
+              <h3>Frais de Service</h3>
+              <p class="section-desc">Indiquez un pourcentage de frais de service et la façon dont ils sont appliqués.
+              </p>
+
+              <p class="section-subtitle">Application des frais de service :</p>
+              <div class="service-fees-options">
+                <label class="radio-label">
+                  <input type="radio" name="service-fees-policy" value="inclus" checked>
+                  Inclus dans le prix affiché
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="service-fees-policy" value="supplement">
+                  Ajoutés en supplément sur la facture finale
+                </label>
+              </div>
+
+              <div id="service-fees-container" style="display:none; margin-top:1rem;">
+                <label for="service-fees">Frais de service (en %) :</label>
+                <input type="number" id="service-fees" name="service-fees" value="10" min="0" max="100">
+              </div>
+            </div>
+
+
+            <!-- Taille maximale du groupe -->
+            <div class="policy-group">
+              <h3>Limites de Réservation</h3>
+              <p class="section-desc">Spécifiez les contraintes liées au nombre de personnes par réservation.</p>
+              <label for="max-party-size">Nombre maximal de personnes par réservation :</label>
+              <input type="number" id="max-party-size" name="max-party-size" value="6">
+            </div>
+
+            <!-- Code vestimentaire -->
+            <div class="policy-group">
+              <h3>Code Vestimentaire</h3>
+              <p class="section-desc">Indiquez un niveau de formalisme pour les tenues de vos clients.</p>
+              <label for="dress-code">Sélectionnez un code vestimentaire :</label>
+              <select id="dress-code" name="dress-code">
+                <option value="aucun">Aucun</option>
+                <option value="chic-décontracté">Chic décontracté</option>
+                <option value="formel">Formel</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Paramètres de Réservation Avancée -->
+          <div class="settings-block">
+            <h2>Paramètres de Réservation Avancée</h2>
+            <p class="section-desc">Affinez les conditions de réservation de votre restaurant.</p>
+
+            <div class="policy-group">
+              <h3>Dépôt / Acompte</h3>
+              <p class="section-desc">Choisissez si le client doit verser un acompte lors de la réservation.</p>
+              <label class="check-label">
+                <input type="checkbox" name="deposit-required">
+                Accompte obligatoire
+              </label>
+              <label for="deposit-amount">Montant de l’acompte (en €) :</label>
+              <input type="number" id="deposit-amount" name="deposit-amount" value="0" min="0">
+            </div>
+
+            <div class="policy-group">
+              <h3>Délai Minimum / Maximum de Réservation</h3>
+              <p class="section-desc">Spécifiez combien de temps à l’avance un client peut réserver.</p>
+              <label for="min-booking-advance">Délai minimum (en heures) :</label>
+              <input type="number" id="min-booking-advance" name="min-booking-advance" value="0" min="0">
+              <label for="max-booking-advance">Délai maximum (en jours) :</label>
+              <input type="number" id="max-booking-advance" name="max-booking-advance" value="30" min="1">
+            </div>
+
+            <div class="policy-group">
+              <h3>Politique de No-Show</h3>
+              <p class="section-desc">Définissez les mesures en cas de non-présentation du client.</p>
+              <label for="no-show-fees">Frais en cas de no-show (en €) :</label>
+              <input type="number" id="no-show-fees" name="no-show-fees" value="0" min="0">
+              <label class="check-label">
+                <input type="checkbox" name="block-after-no-show">
+                Bloquer les clients après un no-show (jusqu’à intervention manuelle)
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Menu & Carte -->
+        <div class="tab-content" id="tab-menu" style="display:none;">
+          <!-- Section Menu & Carte -->
+          <div class="settings-block">
+            <h2>Menu & Carte</h2>
+            <p class="section-desc">Gérez l’affichage de votre menu, de votre carte des vins, et importez plusieurs
+              documents PDF (menus, cartes, boissons, vins) pour vos clients.</p>
+
+            <div class="menu-options">
+              <h3>Options d’Affichage</h3>
+              <p class="section-desc">Contrôlez la visibilité du menu et de la carte des vins sur votre page.</p>
+              <label class="check-label">
+                <input type="checkbox" name="show-menu-online" checked>
+                Afficher le menu en ligne
+              </label>
+              <label class="check-label">
+                <input type="checkbox" name="show-wine-list">
+                Afficher la carte des vins
+              </label>
+            </div>
+
+            <div class="menu-documents-section">
+              <h3>Documents PDF</h3>
+              <p class="section-desc">Ajoutez autant de documents PDF que nécessaire. Choisissez le type de document,
+                puis importez un fichier PDF ou fournissez une URL.</p>
+
+              <!-- Conteneur des documents -->
+              <div id="documents-container">
+                <!-- Ligne de document par défaut -->
+                <div class="document-row">
+                  <div class="document-type">
+                    <label>Type de document :</label>
+                    <select name="document-type[]">
+                      <option value="menu">Menu</option>
+                      <option value="carte">Carte</option>
+                      <option value="boissons">Carte des Boissons</option>
+                      <option value="vins">Carte des Vins</option>
+                    </select>
+                  </div>
+                  <div class="document-inputs">
+                    <label>Fichier PDF :</label>
+                    <input type="file" name="document-file[]" accept="application/pdf">
+
+                    <span class="or-text">OU</span>
+
+                    <label>URL du PDF :</label>
+                    <input type="url" name="document-url[]" placeholder="https://example.com/document.pdf">
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn-secondary" id="add-document-btn">+ Ajouter un document</button>
+            </div>
+          </div>
+
+          <!-- Paramètres Spécifiques aux Plats (Allergènes & Régimes) -->
+          <div class="settings-block">
+            <h2>Allergènes & Régimes Spéciaux</h2>
+            <p class="section-desc">Affichez des informations sur les allergènes, options végétariennes, véganes, sans
+              gluten, etc.</p>
+            <label class="check-label">
+              <input type="checkbox" name="show-allergens">
+              Afficher les allergènes sur le menu
+            </label>
+            <label class="check-label">
+              <input type="checkbox" name="show-vegetarian">
+              Indiquer les plats végétariens / véganes
+            </label>
+            <label class="check-label">
+              <input type="checkbox" name="show-gluten-free">
+              Indiquer les plats sans gluten
+            </label>
+          </div>
+        </div>
+
+
+        <!-- Tab Notifications & Marketing -->
+        <div class="tab-content" id="tab-notifications" style="display:none;">
+
+          <!-- Section Notifications -->
+          <div class="settings-block">
+            <h2>Notifications Automatiques</h2>
+            <p class="section-desc">Définissez le mode et le délai d’envoi des rappels afin que vos clients ne manquent
+              pas leur réservation.</p>
+
+            <div class="notifications-group">
+              <h3>Méthodes de Notification</h3>
+              <p class="section-desc">Choisissez comment prévenir vos clients avant leur réservation.</p>
+              <label class="check-label">
+                <input type="checkbox" name="sms-reminders" checked>
+                Envoyer des rappels par SMS
+              </label>
+              <label class="check-label">
+                <input type="checkbox" name="email-reminders" checked>
+                Envoyer des rappels par Email
+              </label>
+            </div>
+
+            <div class="delay-group">
+              <h3>Délai d’Envoi</h3>
+              <p class="section-desc">Spécifiez combien d’heures avant la réservation le rappel doit être envoyé.</p>
+              <label for="reminder-hours">Heures avant la réservation :</label>
+              <input type="number" id="reminder-hours" name="reminder-hours" value="24" min="1" max="168">
+            </div>
+          </div>
+
+          <!-- Paramètres de Communication / Marketing -->
+          <div class="settings-block">
+            <h2>Paramètres de Communication & Marketing</h2>
+            <p class="section-desc">Gérez les promotions, newsletters, et textes des emails pour améliorer la relation
+              client.</p>
+
+            <div class="policy-group">
+              <h3>Promotions & Offres Spéciales</h3>
+              <p class="section-desc">Mettez en avant des offres spéciales ou des événements (happy hour, menus
+                festifs). </p>
+              <label class="check-label">
+                <input type="checkbox" name="enable-promotions">
+                Activer les promotions
+              </label>
+              <label for="promotion-text">Texte de la promotion :</label>
+              <textarea id="promotion-text" name="promotion-text" rows="2"></textarea>
+            </div>
+
+            <div class="policy-group">
+              <h3>Newsletters & Communications</h3>
+              <p class="section-desc">Envoyez régulièrement des newsletters ou des promotions par email aux clients
+                inscrits.</p>
+              <label class="check-label">
+                <input type="checkbox" name="send-newsletters">
+                Envoyer des newsletters
+              </label>
+            </div>
+
+            <div class="policy-group">
+              <h3>Personnalisation des Emails</h3>
+              <p class="section-desc">Modifiez le texte des emails de confirmation, de rappel, ou d’annulation pour une
+                touche plus personnelle.</p>
+              <label for="confirmation-email-text">Texte Email Confirmation :</label>
+              <textarea id="confirmation-email-text" name="confirmation-email-text" rows="3"></textarea>
+
+              <label for="reminder-email-text">Texte Email Rappel :</label>
+              <textarea id="reminder-email-text" name="reminder-email-text" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Paiement & Plan de Salle -->
+        <div class="tab-content" id="tab-paiement" style="display:none;">
+          <!-- Paramètres de Paiement en Ligne -->
+          <div class="settings-block">
+            <h2>Paramètres de Paiement en Ligne</h2>
+            <p class="section-desc">Activez le paiement en ligne et configurez la passerelle de paiement.</p>
+
+            <div class="policy-group">
+              <h3>Activer le Paiement en Ligne</h3>
+              <p class="section-desc">Permettez à vos clients de payer en ligne lors de la réservation.</p>
+              <label class="check-label">
+                <input type="checkbox" name="online-payment-enabled">
+                Activer le paiement en ligne
+              </label>
+            </div>
+
+            <div class="policy-group">
+              <h3>Passerelle de Paiement</h3>
+              <p class="section-desc">Sélectionnez un prestataire de paiement et renseignez vos identifiants.</p>
+              <label for="payment-provider">Prestataire :</label>
+              <select id="payment-provider" name="payment-provider">
+                <option value="stripe">Stripe</option>
+                <option value="paypal">PayPal</option>
+              </select>
+
+              <label for="payment-api-key">Clé API :</label>
+              <input type="text" id="payment-api-key" name="payment-api-key" placeholder="Votre clé API du prestataire">
+
+              <label class="check-label">
+                <input type="checkbox" name="full-prepayment">
+                Exiger le paiement total à la réservation
+              </label>
+            </div>
+          </div>
+
+          <!-- Gestion du Plan de Salle -->
+          <div class="settings-block">
+            <h2>Gestion du Plan de Salle</h2>
+            <p class="section-desc">Configurez un plan de salle pour aider les clients à choisir leur table.</p>
+
+            <div class="policy-group">
+              <h3>Affichage du Plan de Salle</h3>
+              <p class="section-desc">Permettez aux clients de voir la disposition de la salle et éventuellement de
+                choisir leur table.</p>
+              <label class="check-label">
+                <input type="checkbox" name="show-floor-plan">
+                Afficher le plan de salle en ligne
+              </label>
+              <label for="floor-plan-url">URL du Plan de Salle (image ou page) :</label>
+              <input type="url" id="floor-plan-url" name="floor-plan-url" placeholder="https://example.com/plan.jpg">
+            </div>
+
+            <div class="policy-group">
+              <h3>Tables & Capacités</h3>
+              <p class="section-desc">Définissez le nombre de tables, leurs capacités, et leurs noms ou numéros.</p>
+              <label for="tables-info">Détails (ex: Table 1: 4 pers, Table 2: 2 pers) :</label>
+              <textarea id="tables-info" name="tables-info" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Accessibilité & Autres -->
+        <div class="tab-content" id="tab-accessibilite" style="display:none;">
+          <!-- Section Accessibilité & Autres Options -->
+          <div class="settings-block">
+            <h2>Accessibilité & Autres Options</h2>
+            <p class="section-desc">Définissez les conditions d’accueil, l’accessibilité, le fuseau horaire et le mode
+              de réservation de votre établissement.</p>
+
+            <div class="access-group">
+              <h3>Conditions d’Accueil</h3>
+              <p class="section-desc">Spécifiez si votre restaurant accueille les enfants, les animaux, et propose un
+                accès aux personnes à mobilité réduite.</p>
+              <label class="check-label">
+                <input type="checkbox" name="child-friendly" checked>
+                Enfants autorisés
+              </label>
+              <label class="check-label">
+                <input type="checkbox" name="pets-allowed">
+                Animaux autorisés
+              </label>
+              <label class="check-label">
+                <input type="checkbox" name="wheelchair-accessible" checked>
+                Accessible aux PMR
+              </label>
+            </div>
+
+            <div class="general-settings-group">
+              <h3>Paramètres Généraux</h3>
+              <p class="section-desc">Définissez le fuseau horaire et le mode de réservation utilisé par votre
+                établissement.</p>
+
+              <label for="time-zone">Fuseau horaire :</label>
+              <select id="time-zone" name="time-zone">
+                <option value="europe-paris" selected>Europe/Paris</option>
+                <option value="europe-berlin">Europe/Berlin</option>
+                <option value="europe-london">Europe/London</option>
+              </select>
+
+              <label for="reservation-mode">Mode de Réservation :</label>
+              <select id="reservation-mode" name="reservation-mode">
+                <option value="en-ligne" selected>En ligne (immédiat)</option>
+                <option value="demande">Sur demande (confirmation manuelle)</option>
+                <option value="telephone">Par téléphone uniquement</option>
+              </select>
+            </div>
+          </div>
+
+
+          <!-- Affichage des Avis & Notes -->
+          <div class="settings-block">
+            <h2>Avis & Notes des Clients</h2>
+            <p class="section-desc">Permettez à vos clients de noter votre restaurant et de laisser des avis.</p>
+            <label class="check-label">
+              <input type="checkbox" name="enable-reviews">
+              Activer les avis et les notes
+            </label>
+            <label class="check-label">
+              <input type="checkbox" name="moderate-reviews">
+              Modération des avis avant publication
+            </label>
+          </div>
+
+          <!-- RGPD / Politique de Confidentialité -->
+          <div class="settings-block">
+            <h2>RGPD & Politique de Confidentialité</h2>
+            <p class="section-desc">Assurez-vous du respect de la réglementation sur les données personnelles.</p>
+            <label class="check-label">
+              <input type="checkbox" name="show-privacy-policy">
+              Afficher le lien vers la politique de confidentialité
+            </label>
+            <label for="privacy-policy-url">URL de la politique de confidentialité :</label>
+            <input type="url" id="privacy-policy-url" name="privacy-policy-url"
+              placeholder="https://example.com/privacy">
+
+            <label class="check-label">
+              <input type="checkbox" name="require-consent">
+              Exiger le consentement du client pour les communications marketing
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Enregistrer</button>
+      </form>
+    </section>
+  </main>
+</body>
+
+<script>
+  // Fermeture midi/soir
+  document.querySelectorAll('.closed-check').forEach(check => {
+    check.addEventListener('change', function () {
+      const row = this.closest('tr');
+      const name = this.getAttribute('name');
+      let timeSelectors = [];
+
+      if (name.endsWith('-closed-midday')) {
+        timeSelectors = ['input[name$="midday-open"]', 'input[name$="midday-close"]'];
+      } else if (name.endsWith('-closed-evening')) {
+        timeSelectors = ['input[name$="evening-open"]', 'input[name$="evening-close"]'];
+      }
+
+      const timeInputs = row.querySelectorAll(timeSelectors.join(', '));
+      if (this.checked) {
+        timeInputs.forEach(input => { input.disabled = true; });
+      } else {
+        timeInputs.forEach(input => { input.disabled = false; });
+      }
+    });
+  });
+
+  // Frais de service
+  document.querySelectorAll('input[name="service-fees-policy"]').forEach(radio => {
+    radio.addEventListener('change', function () {
+      const serviceFeesContainer = document.getElementById('service-fees-container');
+      if (this.value === 'supplement') {
+        serviceFeesContainer.style.display = 'block';
+      } else {
+        serviceFeesContainer.style.display = 'none';
+      }
+    });
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const checkedRadio = document.querySelector('input[name="service-fees-policy"]:checked');
+    const serviceFeesContainer = document.getElementById('service-fees-container');
+    if (checkedRadio && checkedRadio.value === 'supplement') {
+      serviceFeesContainer.style.display = 'block';
+    } else {
+      serviceFeesContainer.style.display = 'none';
+    }
+  });
+
+  // Documents PDF additionnels
+  const addDocBtn = document.getElementById('add-document-btn');
+  const documentsContainer = document.getElementById('documents-container');
+
+  addDocBtn.addEventListener('click', () => {
+    const newRow = document.createElement('div');
+    newRow.classList.add('document-row');
+    newRow.innerHTML = `
+      <div class="document-type">
+        <label>Type de document :</label>
+        <select name="document-type[]">
+          <option value="menu">Menu</option>
+          <option value="carte">Carte</option>
+          <option value="boissons">Carte des Boissons</option>
+          <option value="vins">Carte des Vins</option>
+        </select>
+      </div>
+      <div class="document-inputs">
+        <label>Fichier PDF :</label>
+        <input type="file" name="document-file[]" accept="application/pdf">
+        
+        <span class="or-text">OU</span>
+        
+        <label>URL du PDF :</label>
+        <input type="url" name="document-url[]" placeholder="https://example.com/document.pdf">
+      </div>
+    `;
+    documentsContainer.appendChild(newRow);
+  });
+
+  // Tab links
+  const tabLinks = document.querySelectorAll('.tab-link');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      tabLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+
+      const target = this.getAttribute('data-tab');
+      tabContents.forEach(content => {
+        if (content.id === target) {
+          content.style.display = 'block';
+        } else {
+          content.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</html>

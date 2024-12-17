@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Dashboard | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Cartes de Statistiques */
+    .stats-cards {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .stat-card h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #34495e;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #27ae60;
+      margin: 0.5rem 0;
+    }
+
+    .stat-subtext {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+
+    /* Graphiques */
+    .chart-container {
+      position: relative;
+      height: 400px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* Tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    /* Section des Meilleures Ventes */
+    .best-sellers-section {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .best-sellers-section h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .best-seller-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .best-seller-item {
+      background-color: #f1c40f;
+      padding: 0.7rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: #2c3e50;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .best-seller-item:hover {
+      background-color: #d4ac0d;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Responsivité */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+
+      .stats-cards {
+        flex-direction: column;
+      }
+
+      .stat-card {
+        min-width: 100%;
+      }
+
+      .best-seller-item {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+
+      .chart-container {
+        height: 300px;
+      }
+    }
+
+    /* Message Aucun Résultat */
+    #no-results {
+      text-align: center;
+      color: #e74c3c;
+      margin-top: 2rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">Le Gourmet</div>
+    <nav class="side-nav">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Tableau de Bord</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Cartes de Statistiques -->
+      <section class="stats-cards">
+        <article class="stat-card">
+          <h2>Ventes Totales</h2>
+          <p class="stat-value">12 500 €</p>
+          <p class="stat-subtext">+15% par rapport au mois dernier</p>
+        </article>
+        <article class="stat-card">
+          <h2>Profits Nets</h2>
+          <p class="stat-value">5 000 €</p>
+          <p class="stat-subtext">+10% par rapport au mois dernier</p>
+        </article>
+        <article class="stat-card">
+          <h2>Dépenses Mensuelles</h2>
+          <p class="stat-value">7 500 €</p>
+          <p class="stat-subtext">+5% par rapport au mois dernier</p>
+        </article>
+        <article class="stat-card">
+          <h2>Réservations du Jour</h2>
+          <p class="stat-value">12</p>
+          <p class="stat-subtext">+2 par rapport à hier</p>
+        </article>
+      </section>
+
+      <!-- Suivi des Ventes -->
+      <section class="sales-tracking">
+        <h2>Suivi des Ventes</h2>
+        <div class="chart-container">
+          <canvas id="salesChart"></canvas>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Période</th>
+              <th>Ventes (€)</th>
+              <th>Produits Vendus</th>
+            </tr>
+          </thead>
+          <tbody id="sales-table-body">
+            <!-- Les données seront insérées ici via JavaScript -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Comptabilité -->
+      <section class="accounting">
+        <h2>Comptabilité</h2>
+        <div class="chart-container">
+          <canvas id="accountingChart"></canvas>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Catégorie</th>
+              <th>Montant (€)</th>
+            </tr>
+          </thead>
+          <tbody id="accounting-table-body">
+            <!-- Les données seront insérées ici via JavaScript -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Meilleures Ventes -->
+      <section class="best-sellers-section">
+        <h2>Meilleures Ventes</h2>
+        <div class="best-seller-list" id="best-seller-list">
+          <!-- Les meilleures ventes seront insérées ici via JavaScript -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- JavaScript pour le Dashboard -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const salesTableBody = document.getElementById('sales-table-body');
+      const accountingTableBody = document.getElementById('accounting-table-body');
+      const bestSellerList = document.getElementById('best-seller-list');
+      const salesChartCtx = document.getElementById('salesChart').getContext('2d');
+      const accountingChartCtx = document.getElementById('accountingChart').getContext('2d');
+
+      // Exemple de données de ventes par période (à remplacer par des données réelles)
+      const salesData = [
+        { periode: 'Janvier', ventes: 1500, produitsVendus: 300 },
+        { periode: 'Février', ventes: 1700, produitsVendus: 350 },
+        { periode: 'Mars', ventes: 1600, produitsVendus: 320 },
+        { periode: 'Avril', ventes: 1800, produitsVendus: 360 },
+        { periode: 'Mai', ventes: 2000, produitsVendus: 400 },
+        { periode: 'Juin', ventes: 1900, produitsVendus: 380 },
+        { periode: 'Juillet', ventes: 2100, produitsVendus: 420 },
+        { periode: 'Août', ventes: 2200, produitsVendus: 440 },
+        { periode: 'Septembre', ventes: 2300, produitsVendus: 460 },
+        { periode: 'Octobre', ventes: 2500, produitsVendus: 500 },
+        { periode: 'Novembre', ventes: 2400, produitsVendus: 480 },
+        { periode: 'Décembre', ventes: 2600, produitsVendus: 520 },
+      ];
+
+      // Exemple de données comptables (à remplacer par des données réelles)
+      const accountingData = {
+        revenus: 30000,
+        depenses: 15000,
+        salaires: 8000,
+        loyer: 4000,
+        fournitures: 2000,
+        marketing: 1000
+      };
+
+      // Exemple de données de meilleures ventes (à remplacer par des données réelles)
+      const bestSellers = [
+        { nom: 'Steak Frites', quantite: 500 },
+        { nom: 'Coca-Cola', quantite: 450 },
+        { nom: 'Salade César', quantite: 400 },
+        { nom: 'Café Espresso', quantite: 350 },
+        { nom: 'Cheesecake', quantite: 300 },
+      ];
+
+      // Fonction pour afficher les données de ventes dans le tableau
+      function populateSalesTable() {
+        salesData.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item.periode}</td>
+            <td>${item.ventes.toLocaleString()} €</td>
+            <td>${item.produitsVendus}</td>
+          `;
+          salesTableBody.appendChild(row);
+        });
+      }
+
+      // Fonction pour afficher les données comptables dans le tableau
+      function populateAccountingTable() {
+        for (const [categorie, montant] of Object.entries(accountingData)) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${capitalizeFirstLetter(categorie)}</td>
+            <td>${montant.toLocaleString()} €</td>
+          `;
+          accountingTableBody.appendChild(row);
+        }
+      }
+
+      // Fonction pour afficher les meilleures ventes
+      function displayBestSellers() {
+        bestSellers.forEach(item => {
+          const bestSellerDiv = document.createElement('div');
+          bestSellerDiv.classList.add('best-seller-item');
+          bestSellerDiv.textContent = `${item.nom} (${item.quantite})`;
+          bestSellerList.appendChild(bestSellerDiv);
+        });
+      }
+
+      // Fonction pour capitaliser la première lettre
+      function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
+      // Fonction pour créer le graphique des ventes
+      function createSalesChart() {
+        const labels = salesData.map(item => item.periode);
+        const ventes = salesData.map(item => item.ventes);
+        const produitsVendus = salesData.map(item => item.produitsVendus);
+
+        const salesChart = new Chart(salesChartCtx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Ventes (€)',
+                data: ventes,
+                borderColor: '#3498db',
+                backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                fill: true,
+                tension: 0.4
+              },
+              {
+                label: 'Produits Vendus',
+                data: produitsVendus,
+                borderColor: '#e74c3c',
+                backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                fill: true,
+                tension: 0.4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Ventes Mensuelles'
+              }
+            }
+          },
+        });
+      }
+
+      // Fonction pour créer le graphique comptable
+      function createAccountingChart() {
+        const labels = Object.keys(accountingData).map(key => capitalizeFirstLetter(key));
+        const data = Object.values(accountingData);
+
+        const accountingChart = new Chart(accountingChartCtx, {
+          type: 'pie',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Comptabilité',
+              data: data,
+              backgroundColor: [
+                '#2ecc71',
+                '#e74c3c',
+                '#3498db',
+                '#f1c40f',
+                '#9b59b6',
+                '#34495e'
+              ],
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right',
+              },
+              title: {
+                display: true,
+                text: 'Répartition Comptable'
+              }
+            }
+          },
+        });
+      }
+
+      // Initialiser toutes les fonctions
+      function initializeDashboard() {
+        populateSalesTable();
+        populateAccountingTable();
+        displayBestSellers();
+        createSalesChart();
+        createAccountingChart();
+      }
+
+      initializeDashboard();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+body.fusion {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    color: #333;
+    background: #fefefe;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #ff6b6b, #f9ca24);
+    padding: 1rem 2rem;
+    color: #fff;
+  }
+  
+  .logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    margin-left: 1rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  .main-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .hero-fusion {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    background: #c7ecee;
+    gap: 2rem;
+  }
+  
+  .hero-text {
+    flex: 1;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
+    color: #e84118;
+    margin-bottom: 1rem;
+  }
+  
+  .cuisine-type {
+    font-weight: 600;
+    color: #1e272e;
+    margin-bottom: 1rem;
+  }
+  
+  .address, .hours {
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .reserve-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    background: #e84118;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+  }
+  
+  .reserve-btn:hover {
+    background: #c23616;
+  }
+  
+  .hero-img {
+    width: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  section h2 {
+    font-weight: 700;
+    color: #e84118;
+    margin-bottom: 1rem;
+  }
+  
+  .description-fusion p {
+    line-height: 1.5;
+  }
+  
+  .menu-fusion ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu-fusion li {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .gallery-fusion .photo-grid {
+    display: flex;
+    gap: 1rem;
+  }
+  .gallery-fusion img {
+    flex: 1;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .map-fusion .map-container {
+    margin-top: 1rem;
+  }
+  
+  .reservation-fusion form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .reservation-fusion form label {
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+  
+  .reservation-fusion form input {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .reservation-fusion button {
+    margin-top: 1.5rem;
+    background: #e84118;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 30px;
+    border: none;
+  }
+  
+  .reservation-fusion button:hover {
+    background: #c23616;
+  }
+  
+  .footer {
+    background: linear-gradient(to right, #ff6b6b, #f9ca24);
+    text-align: center;
+    padding: 1rem;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  

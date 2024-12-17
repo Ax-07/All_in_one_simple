@@ -1,0 +1,132 @@
+body.litteraire {
+    font-family: 'Lato', sans-serif;
+    background: #f7f2ec;
+    color: #333;
+    margin: 0;
+  }
+  
+  .header {
+    background: #8d6e63;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+  }
+  
+  .main-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  .hero-litteraire {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-content {
+    background: #d7ccc8;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-content h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cuisine-type, .address, .hours {
+    margin: 0.5rem 0;
+    font-weight: 700;
+  }
+  
+  .reserve-btn {
+    margin-top: 1.5rem;
+    background: #5d4037;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  .hero-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  section h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #5d4037;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu li {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  .gallery .photo-grid {
+    display: flex;
+    gap: 1rem;
+  }
+  .gallery img {
+    flex: 1;
+    object-fit: cover;
+    height: 200px;
+    border-radius: 4px;
+  }
+  
+  .map-container {
+    margin-top: 1rem;
+  }
+  
+  .reservation form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .reservation form label {
+    margin-top: 1rem;
+  }
+  
+  .reservation form input {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+  }
+  
+  .reservation button {
+    margin-top: 2rem;
+    background: #5d4037;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .footer {
+    background: #8d6e63;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  

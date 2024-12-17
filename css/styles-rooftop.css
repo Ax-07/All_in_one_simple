@@ -1,0 +1,128 @@
+body.rooftop {
+    font-family: 'Raleway', sans-serif;
+    background: #f0f0f0;
+    color: #333;
+    margin: 0;
+  }
+  
+  .header {
+    background: #1c1c2e;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  
+  .main-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  .hero-rooftop {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-content {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(to bottom, #2c3e50, #34495e);
+    color: #fff;
+  }
+  
+  .hero-content h1 {
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
+  
+  .reserve-btn {
+    margin-top: 1.5rem;
+    background: #e74c3c;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  .hero-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  section h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #34495e;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu li {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .gallery .photo-grid {
+    display: flex;
+    gap: 1rem;
+  }
+  .gallery img {
+    flex: 1;
+    object-fit: cover;
+    height: 200px;
+    border-radius: 4px;
+  }
+  
+  .map-container {
+    margin-top: 1rem;
+  }
+  
+  .reservation form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .reservation form label {
+    margin-top: 1rem;
+  }
+  
+  .reservation form input {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+  }
+  
+  .reservation button {
+    margin-top: 2rem;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .footer {
+    background: #1c1c2e;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  

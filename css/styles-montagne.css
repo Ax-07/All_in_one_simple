@@ -1,0 +1,149 @@
+body.montagne {
+    font-family: 'Open Sans', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    margin: 0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4e342e;
+    color: #fff;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+  }
+  
+  .main-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  
+  .main-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .hero-montagne {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .banner {
+    background: #d7ccc8;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .banner h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    color: #4e342e;
+    margin-bottom: 1rem;
+  }
+  
+  .cuisine-type, .address, .hours {
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #5d4037;
+  }
+  
+  .reserve-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: #4e342e;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  .reserve-btn:hover {
+    background: #3e2723;
+  }
+  
+  .hero-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  section h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #4e342e;
+  }
+  
+  .menu-montagne ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu-montagne li {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .gallery-montagne .photo-grid {
+    display: flex;
+    gap: 1rem;
+  }
+  .gallery-montagne img {
+    flex: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    height: 200px;
+  }
+  
+  .map-montagne .map-container {
+    margin-top: 1rem;
+  }
+  
+  .reservation-montagne form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .reservation-montagne form label {
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+  .reservation-montagne form input {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .reservation-montagne button {
+    margin-top: 2rem;
+    background: #4e342e;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  .reservation-montagne button:hover {
+    background: #3e2723;
+  }
+  
+  .footer {
+    background: #4e342e;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  

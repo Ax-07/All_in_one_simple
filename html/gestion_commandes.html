@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion des Commandes Fournisseurs | RéservApp</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <!-- Styles CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Sections Principales */
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    /* Bouton */
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+      margin-right: 0.5rem;
+    }
+
+    .edit-btn {
+      background-color: #2980b9;
+      color: #fff;
+    }
+
+    .edit-btn:hover {
+      background-color: #1c5980;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Pied de Page */
+    .dashboard-footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: calc(100% - 250px);
+      bottom: 0;
+      left: 250px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .dashboard-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 1rem;
+      }
+
+      .dashboard-footer {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    /* Modal */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
+      padding-top: 100px; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.4); 
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 50%;
+      border-radius: 8px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* Formulaire */
+    .order-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .order-form input,
+    .order-form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .order-form button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .order-form button:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">RéservApp</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html" class="active">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <!-- Conteneur Principal -->
+  <main class="dashboard-content">
+    <!-- En-tête du Dashboard -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Gestion des Commandes Fournisseurs</h1>
+        <p>Bienvenue, Chef Martin</p>
+      </div>
+      <div class="header-right">
+        <img src="chef-avatar.jpg" alt="Avatar du restaurateur" class="avatar" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Sections Principales -->
+    <div class="main-section">
+      <!-- Gestion des Commandes Fournisseurs -->
+      <section class="supplier-orders">
+        <h2>Liste des Commandes</h2>
+        
+        <button id="create-order-btn">Créer une Nouvelle Commande</button>
+
+        <!-- Tableau des Commandes -->
+        <table>
+          <thead>
+            <tr>
+              <th>ID Commande</th>
+              <th>Fournisseur</th>
+              <th>Produits</th>
+              <th>Date de Commande</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table-body">
+            <!-- Données simulées -->
+            <tr>
+              <td>CMD001</td>
+              <td>Fournisseur A</td>
+              <td>Tomate (10), Farine (5)</td>
+              <td>2024-04-10</td>
+              <td>En cours</td>
+              <td>
+                <button class="action-btn edit-btn">Modifier</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+            <tr>
+              <td>CMD002</td>
+              <td>Fournisseur B</td>
+              <td>Beurre (20)</td>
+              <td>2024-04-12</td>
+              <td>Livrée</td>
+              <td>
+                <button class="action-btn edit-btn">Modifier</button>
+                <button class="action-btn delete-btn">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pied de Page -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 - RéservApp. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal pour Créer une Nouvelle Commande -->
+  <div id="order-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Créer une Nouvelle Commande</h2>
+      <form class="order-form">
+        <label for="fournisseur">Fournisseur</label>
+        <select id="fournisseur" required>
+          <option value="">Sélectionner un fournisseur</option>
+          <option value="Fournisseur A">Fournisseur A</option>
+          <option value="Fournisseur B">Fournisseur B</option>
+          <option value="Fournisseur C">Fournisseur C</option>
+        </select>
+
+        <label for="produits">Produits</label>
+        <select id="produits" multiple required>
+          <option value="Tomate">Tomate</option>
+          <option value="Farine">Farine</option>
+          <option value="Beurre">Beurre</option>
+          <option value="Sucre">Sucre</option>
+        </select>
+
+        <label for="quantites">Quantités (séparées par des virgules)</label>
+        <input type="text" id="quantites" placeholder="Ex: 10,5,20" required>
+
+        <label for="date-commande">Date de Commande</label>
+        <input type="date" id="date-commande" required>
+
+        <label for="statut">Statut</label>
+        <select id="statut" required>
+          <option value="">Sélectionner un statut</option>
+          <option value="En cours">En cours</option>
+          <option value="Livrée">Livrée</option>
+          <option value="Annulée">Annulée</option>
+        </select>
+
+        <button type="submit">Créer la Commande</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript pour la Gestion des Commandes Fournisseurs -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const createOrderBtn = document.getElementById('create-order-btn');
+      const orderModal = document.getElementById('order-modal');
+      const closeModalSpan = document.querySelector('.close');
+      const ordersTableBody = document.getElementById('orders-table-body');
+      const orderForm = document.querySelector('.order-form');
+
+      // Ouvrir le modal
+      createOrderBtn.addEventListener('click', function() {
+        orderModal.style.display = 'block';
+      });
+
+      // Fermer le modal
+      closeModalSpan.addEventListener('click', function() {
+        orderModal.style.display = 'none';
+      });
+
+      // Fermer le modal en cliquant en dehors
+      window.addEventListener('click', function(event) {
+        if (event.target == orderModal) {
+          orderModal.style.display = 'none';
+        }
+      });
+
+      // Fonction pour ajouter une nouvelle commande
+      orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fournisseur = document.getElementById('fournisseur').value;
+        const produits = Array.from(document.getElementById('produits').selectedOptions).map(opt => opt.value);
+        const quantitesInput = document.getElementById('quantites').value;
+        const quantites = quantitesInput.split(',').map(q => q.trim());
+        const dateCommande = document.getElementById('date-commande').value;
+        const statut = document.getElementById('statut').value;
+
+        if (produits.length !== quantites.length) {
+          alert('Le nombre de produits doit correspondre au nombre de quantités.');
+          return;
+        }
+
+        // Générer un ID de commande unique
+        const commandeId = 'CMD' + String(ordersTableBody.children.length + 1).padStart(3, '0');
+
+        // Créer la liste des produits avec quantités
+        const produitsList = produits.map((prod, index) => `${prod} (${quantites[index]})`).join(', ');
+
+        // Ajouter la nouvelle commande au tableau
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${commandeId}</td>
+          <td>${fournisseur}</td>
+          <td>${produitsList}</td>
+          <td>${dateCommande}</td>
+          <td>${statut}</td>
+          <td>
+            <button class="action-btn edit-btn">Modifier</button>
+            <button class="action-btn delete-btn">Supprimer</button>
+          </td>
+        `;
+        ordersTableBody.appendChild(newRow);
+
+        // Réinitialiser le formulaire et fermer le modal
+        orderForm.reset();
+        orderModal.style.display = 'none';
+      });
+
+      // Fonction pour modifier ou supprimer une commande
+      ordersTableBody.addEventListener('click', function(e) {
+        if (e.target.classList.contains('edit-btn')) {
+          const row = e.target.parentElement.parentElement;
+          const commandeId = row.children[0].textContent;
+          const fournisseur = prompt('Modifier le fournisseur:', row.children[1].textContent);
+          if (!fournisseur) return;
+          const produitsQuantites = prompt('Modifier les produits et quantités (ex: Tomate (10), Farine (5)):', row.children[2].textContent);
+          if (!produitsQuantites) return;
+          const dateCommande = prompt('Modifier la date de commande:', row.children[3].textContent);
+          if (!dateCommande) return;
+          const statut = prompt('Modifier le statut (En cours, Livrée, Annulée):', row.children[4].textContent);
+          if (!statut) return;
+
+          // Mettre à jour les données de la ligne
+          row.children[1].textContent = fournisseur;
+          row.children[2].textContent = produitsQuantites;
+          row.children[3].textContent = dateCommande;
+          row.children[4].textContent = statut;
+        }
+
+        if (e.target.classList.contains('delete-btn')) {
+          if (confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
+            const row = e.target.parentElement.parentElement;
+            ordersTableBody.removeChild(row);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

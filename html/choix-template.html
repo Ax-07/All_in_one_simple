@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choisir le Modèle de la Fiche | Dashboard</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Le Gourmet</div>
+    <nav class="side-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reservations.html">Réservations</a>
+      <a href="profil.html">Mon Profil</a>
+      <a href="parametres.html">Paramètres</a>
+      <a href="choix-template.html" class="active">Personnaliser ma Fiche</a>
+      <a href="config_plats_menus.html">Plats & Menus</a>
+      <a href="caisse.html">Logiciel de Caisse</a>
+      <a href="suivi_ventes.html">Suivi des Ventes</a>
+      <a href="gestion_produits.html">Gestion des Produits</a>
+      <a href="gestion_stocks.html">Gestion des Stocks</a>
+      <a href="gestion_commandes.html">Commandes Fournisseurs</a>
+      <a href="gestion_employes.html">Gestion des Employés</a>
+      <a href="reporting.html">Reporting et Analyses</a>
+      <a href="gestion_clients.html">Gestion des Clients</a>
+      <a href="gestion_promotions.html">Gestion des Promotions</a>
+      <a href="support_assistance.html">Support et Assistance</a>
+      <a href="gestion_fournisseurs.html">Gestion des Fournisseurs</a>
+      <a href="gestion_salaires.html">Gestion des Salaires</a>
+      <a href="gestion_feedbacks.html">Gestion des Feedbacks</a>
+      <a href="index.html">Déconnexion</a>
+    </nav>
+  </aside>
+
+  <main class="dashboard-content">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1>Personnaliser ma Fiche Restaurant</h1>
+        <p>Choisissez le modèle de page qui représente le mieux votre établissement.</p>
+      </div>
+    </header>
+        <!-- Section Propositions -->
+        <section class="suggestions-section" id="suggestionsSection">
+          <h2>Propositions pour votre Restaurant</h2>
+          <div class="suggestions-content" id="suggestionsContent">
+            <!-- Le contenu sera mis à jour via JS -->
+          </div>
+        </section>
+
+    <section class="template-choices">
+      <!-- Modèle Classique -->
+      <article class="template-card" data-template="classique">
+        <img src="images/template-classique.jpg" alt="Aperçu du template classique">
+        <h2>Modèle Classique</h2>
+        <p>Un design sobre et traditionnel.</p>
+        <button class="btn-sm" onclick="previewTemplate('classique')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('classique', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Moderne -->
+      <article class="template-card" data-template="moderne">
+        <img src="images/template-moderne.jpg" alt="Aperçu du template moderne">
+        <h2>Modèle Moderne</h2>
+        <p>Un design épuré et contemporain.</p>
+        <button class="btn-sm" onclick="previewTemplate('moderne')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('moderne', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Chic -->
+      <article class="template-card" data-template="chic">
+        <img src="images/template-chic.jpg" alt="Aperçu du template chic">
+        <h2>Modèle Chic</h2>
+        <p>Élégant, raffiné, parfait pour une cuisine gastronomique.</p>
+        <button class="btn-sm" onclick="previewTemplate('chic')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('chic', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Snack -->
+      <article class="template-card" data-template="snack">
+        <img src="images/template-snack.jpg" alt="Aperçu du template snack/fast-food">
+        <h2>Modèle Snack</h2>
+        <p>Coloré, dynamique, idéal pour un fast-food ou street-food.</p>
+        <button class="btn-sm" onclick="previewTemplate('snack')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('snack', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Brasserie -->
+      <article class="template-card" data-template="brasserie">
+        <img src="images/template-brasserie.jpg" alt="Aperçu du template brasserie">
+        <h2>Modèle Brasserie</h2>
+        <p>Convivial, chaleureux, esprit bistrot parisien.</p>
+        <button class="btn-sm" onclick="previewTemplate('brasserie')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('brasserie', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Bio -->
+      <article class="template-card" data-template="bio">
+        <img src="images/template-bio.jpg" alt="Aperçu du template bio/naturel">
+        <h2>Modèle Bio</h2>
+        <p>Naturel, frais, pour une cuisine respectueuse de l’environnement.</p>
+        <button class="btn-sm" onclick="previewTemplate('bio')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('bio', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Fusion -->
+      <article class="template-card" data-template="fusion">
+        <img src="images/template-fusion.jpg" alt="Aperçu du template fusion">
+        <h2>Modèle Fusion</h2>
+        <p>International, créatif, mêlant saveurs du monde.</p>
+        <button class="btn-sm" onclick="previewTemplate('fusion')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('fusion', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Scandinave -->
+      <article class="template-card" data-template="scandinave">
+        <img src="images/template-scandinave.jpg" alt="Aperçu du template scandinave">
+        <h2>Modèle Scandinave</h2>
+        <p>Minimaliste, épuré, ambiance nordique.</p>
+        <button class="btn-sm" onclick="previewTemplate('scandinave')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('scandinave', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Industriel -->
+      <article class="template-card" data-template="industriel">
+        <img src="images/template-industriel.jpg" alt="Aperçu du template industriel">
+        <h2>Modèle Industriel</h2>
+        <p>Esprit loft urbain, street food gourmet.</p>
+        <button class="btn-sm" onclick="previewTemplate('industriel')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('industriel', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Vegan -->
+      <article class="template-card" data-template="vegan">
+        <img src="images/template-vegan.jpg" alt="Aperçu du template vegan">
+        <h2>Modèle Vegan</h2>
+        <p>Végétal, sain, respectueux de la nature.</p>
+        <button class="btn-sm" onclick="previewTemplate('vegan')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('vegan', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Zen -->
+      <article class="template-card" data-template="zen">
+        <img src="images/template-zen.jpg" alt="Aperçu du template zen/asiatique">
+        <h2>Modèle Zen</h2>
+        <p>Minimaliste, inspiré d’Asie, ambiance sereine.</p>
+        <button class="btn-sm" onclick="previewTemplate('zen')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('zen', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Futuriste -->
+      <article class="template-card" data-template="futuriste">
+        <img src="images/template-futuriste.jpg" alt="Aperçu du template futuriste">
+        <h2>Modèle Futuriste</h2>
+        <p>High-tech, moléculaire, avant-gardiste.</p>
+        <button class="btn-sm" onclick="previewTemplate('futuriste')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('futuriste', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Médiéval -->
+      <article class="template-card" data-template="medieval">
+        <img src="images/template-medieval.jpg" alt="Aperçu du template médiéval">
+        <h2>Modèle Médiéval</h2>
+        <p>Rustique, taverne à l'ancienne, chaleureux.</p>
+        <button class="btn-sm" onclick="previewTemplate('medieval')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('medieval', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Littéraire -->
+      <article class="template-card" data-template="litteraire">
+        <img src="images/template-litteraire.jpg" alt="Aperçu du template littéraire/café lecture">
+        <h2>Modèle Littéraire</h2>
+        <p>Café lecture, ambiance cosy et culturelle.</p>
+        <button class="btn-sm" onclick="previewTemplate('litteraire')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('litteraire', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Rooftop -->
+      <article class="template-card" data-template="rooftop">
+        <img src="images/template-rooftop.jpg" alt="Aperçu du template rooftop/lounge">
+        <h2>Modèle Rooftop</h2>
+        <p>Vue panoramique, cocktails, ambiance chic.</p>
+        <button class="btn-sm" onclick="previewTemplate('rooftop')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('rooftop', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Art Déco -->
+      <article class="template-card" data-template="artdeco">
+        <img src="images/template-artdeco.jpg" alt="Aperçu du template art déco">
+        <h2>Modèle Art Déco</h2>
+        <p>Années 20, élégance rétro, cocktails raffinés.</p>
+        <button class="btn-sm" onclick="previewTemplate('artdeco')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('artdeco', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Bohemian -->
+      <article class="template-card" data-template="bohemian">
+        <img src="images/template-bohemian.jpg" alt="Aperçu du template bohème">
+        <h2>Modèle Bohemian</h2>
+        <p>Bohème, coloré, cuisine du monde végétarienne.</p>
+        <button class="btn-sm" onclick="previewTemplate('bohemian')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('bohemian', this)">Sélectionner</button>
+      </article>
+
+      <!-- Modèle Cave à Vin -->
+      <article class="template-card" data-template="caveavin">
+        <img src="images/template-caveavin.jpg" alt="Aperçu du template cave à vin/bar à vin">
+        <h2>Modèle Cave à Vin</h2>
+        <p>Vins, fromages, ambiance cave authentique.</p>
+        <button class="btn-sm" onclick="previewTemplate('caveavin')">Voir la Démo</button>
+        <button class="btn-sm btn-primary" onclick="selectTemplate('caveavin', this)">Sélectionner</button>
+      </article>
+    </section>
+
+    <!-- Modale de prévisualisation -->
+    <div class="modal" id="previewModal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <iframe id="previewFrame" src="" style="width:100%;height:80vh;border:none;"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+        let selectedTemplate = null; // Variable globale pour le template sélectionné
+
+    function previewTemplate(templateName) {
+      document.getElementById('previewModal').style.display = 'flex';
+      let src = '';
+      switch(templateName) {
+        case 'classique':
+          src = 'fiche-restaurant/fiche-restaurant-classique.html';
+          break;
+        case 'moderne':
+          src = 'fiche-restaurant/fiche-restaurant-moderne.html';
+          break;
+        case 'chic':
+          src = 'fiche-restaurant/fiche-restaurant-chic.html';
+          break;
+        case 'snack':
+          src = 'fiche-restaurant/fiche-restaurant-snack.html';
+          break;
+        case 'brasserie':
+          src = 'fiche-restaurant/fiche-restaurant-brasserie.html';
+          break;
+        case 'bio':
+          src = 'fiche-restaurant/fiche-restaurant-bio.html';
+          break;
+        case 'fusion':
+          src = 'fiche-restaurant/fiche-restaurant-fusion.html';
+          break;
+        case 'scandinave':
+          src = 'fiche-restaurant/fiche-restaurant-scandinave.html';
+          break;
+        case 'industriel':
+          src = 'fiche-restaurant/fiche-restaurant-industriel.html';
+          break;
+        case 'vegan':
+          src = 'fiche-restaurant/fiche-restaurant-vegan.html';
+          break;
+        case 'zen':
+          src = 'fiche-restaurant/fiche-restaurant-zen.html';
+          break;
+        case 'futuriste':
+          src = 'fiche-restaurant/fiche-restaurant-futuriste.html';
+          break;
+        case 'medieval':
+          src = 'fiche-restaurant/fiche-restaurant-medieval.html';
+          break;
+        case 'litteraire':
+          src = 'fiche-restaurant/fiche-restaurant-litteraire.html';
+          break;
+        case 'rooftop':
+          src = 'fiche-restaurant/fiche-restaurant-rooftop.html';
+          break;
+        case 'artdeco':
+          src = 'fiche-restaurant/fiche-restaurant-artdeco.html';
+          break;
+        case 'bohemian':
+          src = 'fiche-restaurant/fiche-restaurant-bohemian.html';
+          break;
+        case 'caveavin':
+          src = 'fiche-restaurant/fiche-restaurant-caveavin.html';
+          break;
+        default:
+          src = 'fiche-restaurant/fiche-restaurant-classique.html';
+      }
+      document.getElementById('previewFrame').src = src;
+    }
+
+    function closeModal() {
+      document.getElementById('previewModal').style.display = 'none';
+    }
+
+function selectTemplate(templateName, button) {
+  // Simuler une réponse positive du serveur sans fetch
+  const data = { success: true };
+
+  if (data.success) {
+    // alert("Le modèle a été sélectionné avec succès !");
+
+    // Retirer l'état "selected" du template précédemment sélectionné s'il y en a un
+    if (selectedTemplate) {
+      const oldCard = document.querySelector(`.template-card[data-template="${selectedTemplate}"]`);
+      if (oldCard) {
+        oldCard.classList.remove('selected');
+        const oldButton = oldCard.querySelector('.btn-sm.btn-primary');
+        if (oldButton) {
+          oldButton.disabled = false;
+          oldButton.textContent = "Sélectionner";
+        }
+      }
+    }
+
+    // Appliquer l'état "selected" au nouveau template
+    const card = button.closest('.template-card');
+    card.classList.add('selected');
+    button.disabled = true;
+    button.textContent = "Sélectionné";
+
+    selectedTemplate = templateName;
+  } else {
+    alert("Une erreur est survenue, veuillez réessayer.");
+  }
+}
+
+
+    function updateSuggestions(templateName) {
+      const suggestionsSection = document.getElementById('suggestionsSection');
+      const suggestionsContent = document.getElementById('suggestionsContent');
+
+      let suggestionsHTML = '';
+
+      switch(templateName) {
+        case 'classique':
+          suggestionsHTML = `
+            <p>Pour un restaurant classique, mettez en avant une palette de couleurs sobres (beige, blanc, marron clair) et des photos de plats traditionnels (coq au vin, entrecôte, gratin dauphinois). Présentez vos menus du jour, et insistez sur le savoir-faire culinaire et la tradition.</p>
+          `;
+          break;
+        case 'moderne':
+          suggestionsHTML = `
+            <p>Pour un style moderne, optez pour des couleurs contrastées (noir, blanc, touches vives), des polices épurées, et des photos minimalistes. Mettez en avant la créativité des plats, les ingrédients frais, et des cocktails design.</p>
+          `;
+          break;
+        case 'chic':
+          suggestionsHTML = `
+            <p>Pour un cadre chic, privilégiez des tons élégants (noir, blanc, or), une typographie raffinée (serif), et de belles photos de dressages gastronomiques. Mettez en avant le chef, les menus dégustation, et le service haut de gamme.</p>
+          `;
+          break;
+        case 'snack':
+          suggestionsHTML = `
+            <p>Pour un snack, des couleurs vives, des polices arrondies, des photos de burgers, hot-dogs, frites. Insistez sur la rapidité du service, la convivialité, et proposez un menu "Street Food" avec des offres combo.</p>
+          `;
+          break;
+        case 'brasserie':
+          suggestionsHTML = `
+            <p>Pour une brasserie, couleurs chaudes (rouge brique, beige), photos de plats traditionnels (steak-frites, moules), ambiance de café parisien. Mettez en avant les menus du jour, les vins, et l’ambiance conviviale.</p>
+          `;
+          break;
+        case 'bio':
+          suggestionsHTML = `
+            <p>Pour un restaurant bio, tons verts, beige, images de légumes frais, mentionnez les fournisseurs locaux, produits de saison, options végétariennes et véganes. Mettez en avant la démarche éco-responsable.</p>
+          `;
+          break;
+        case 'fusion':
+          suggestionsHTML = `
+            <p>Pour un restaurant fusion, couleurs variées, présentation cosmopolite, photos de plats d’inspirations diverses (sushis, tacos, curry), insistez sur l’originalité, les saveurs du monde, et les voyages culinaires.</p>
+          `;
+          break;
+        case 'scandinave':
+          suggestionsHTML = `
+            <p>Pour un style scandinave, couleurs pastel, blanc, gris clair, minimalisme, images de plats simples et sains (poissons, baies), mettez en avant le confort, la douceur et le calme nordique.</p>
+          `;
+          break;
+        case 'industriel':
+          suggestionsHTML = `
+            <p>Pour un style industriel, briques apparentes, métal, noir, gris, photos de plats street-food gourmet, cocktails, ambiance urbaine. Mettez en avant l’atmosphère loft, la musique, et la carte de craft beers.</p>
+          `;
+          break;
+        case 'vegan':
+          suggestionsHTML = `
+            <p>Pour un restaurant vegan, couleurs vertes, blanc, images de fruits et légumes colorés, mentionnez l’absence de produits animaux, la fraîcheur, la santé, les smoothie bowls, etc.</p>
+          `;
+          break;
+        case 'zen':
+          suggestionsHTML = `
+            <p>Pour un style zen, tons neutres, inspirations asiatiques, photos de sushis, thés, ramen. Mettez en avant la sérénité, le minimalisme, la qualité des ingrédients, et les plats légers.</p>
+          `;
+          break;
+        case 'futuriste':
+          suggestionsHTML = `
+            <p>Pour un style futuriste, couleurs sombres, néons, plats moléculaires, mise en scène high-tech. Mettez en avant l’innovation, le concept unique, et une expérience culinaire avant-gardiste.</p>
+          `;
+          break;
+        case 'medieval':
+          suggestionsHTML = `
+            <p>Pour une ambiance médiévale, bois, pierre, bruns, photos de plats rustiques (viandes rôties), chopes de bière, musique d’époque. Mettez en avant le caractère historique, les recettes traditionnelles.</p>
+          `;
+          break;
+        case 'litteraire':
+          suggestionsHTML = `
+            <p>Pour un café littéraire, couleurs douces, bibliothèques, fauteuils, photos de cafés, pâtisseries, livres. Insistez sur la lecture, la culture, les événements littéraires, les brunchs cosy.</p>
+          `;
+          break;
+        case 'rooftop':
+          suggestionsHTML = `
+            <p>Pour un rooftop, vues panoramiques, couleurs nocturnes, lumières tamisées, cocktails sophistiqués. Mettez en avant la vue sur la ville, les soirées lounge, la musique en direct.</p>
+          `;
+          break;
+        case 'artdeco':
+          suggestionsHTML = `
+            <p>Pour un style Art Déco, noir, or, vert émeraude, motifs géométriques, photos de plats élégants, coupes de champagne. Mettez en avant le raffinement, le luxe discret, les cocktails rétro.</p>
+          `;
+          break;
+        case 'bohemian':
+          suggestionsHTML = `
+            <p>Pour un style bohème, couleurs terre, motifs ethniques, plats végétariens du monde, ambiance décontractée, coussins. Mettez en avant la diversité culinaire, les épices, l’atmosphère chaleureuse.</p>
+          `;
+          break;
+        case 'caveavin':
+          suggestionsHTML = `
+            <p>Pour un bar à vin, pierre, bois, tons bruns, bouteilles alignées, plateaux de fromages, charcuteries. Mettez en avant la sélection de vins, les accords mets-vins, la dégustation.</p>
+          `;
+          break;
+        default:
+          suggestionsHTML = `
+            <p>Choisissez un modèle pour obtenir des propositions adaptées.</p>
+          `;
+      }
+
+      suggestionsContent.innerHTML = suggestionsHTML;
+      suggestionsSection.style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

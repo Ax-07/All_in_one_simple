@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Le Gourmet - Restaurant Français à Paris</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/styles-avis.css">
+
+  <!-- Ajout d’une classe sur le body pour différencier les templates -->
+</head>
+<body class="fiche-restaurant classique">
+  <header class="header">
+    <div class="logo">RéservApp</div>
+    <nav class="main-nav">
+      <a href="../index.html">Accueil</a>
+      <a href="../connexion.html">Mon Compte</a>
+      <a href="../faq.html">Aide</a>
+    </nav>
+  </header>
+
+  <section class="restaurant-hero">
+    <img src="images/restaurant-cover.jpg" alt="Photo du restaurant Le Gourmet" class="cover-image" loading="lazy"/>
+    <div class="restaurant-info">
+      <h1>Le Gourmet</h1>
+      <p class="type-cuisine">Cuisine Française</p>
+      <p class="address">123 Rue de la Paix, Paris</p>
+      <p class="hours">Horaires : Lun - Dim : 12h - 23h</p>
+      <a href="#reservation-form" class="reserve-btn">Réserver une table</a>
+    </div>
+  </section>
+
+  <main>
+    <section class="restaurant-description">
+      <h2>Description</h2>
+      <p>Le Gourmet propose une cuisine raffinée, avec des produits locaux et un service d’exception. Venez découvrir nos spécialités régionales dans une ambiance chaleureuse.</p>
+    </section>
+
+    <section class="restaurant-details">
+      <h2>Notre Menu</h2>
+      <ul class="menu-list">
+        <li><strong>Entrées :</strong> Foie gras, Soupe à l’oignon</li>
+        <li><strong>Plats :</strong> Bœuf bourguignon, Poulet rôti</li>
+        <li><strong>Desserts :</strong> Crème brûlée, Tarte Tatin</li>
+      </ul>
+    </section>
+
+    <section class="gallery">
+      <h2>Galerie Photos</h2>
+      <div class="photo-grid">
+        <img src="images/photo1.jpg" alt="Salle du restaurant" loading="lazy">
+        <img src="images/photo2.jpg" alt="Un plat signature" loading="lazy">
+        <img src="images/photo3.jpg" alt="Terrasse extérieure" loading="lazy">
+      </div>
+    </section>
+
+    <section class="map-section">
+      <h2>Nous Trouver</h2>
+      <!-- Intégration de la carte Google Maps via iframe -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9995754685516!2d2.3300971156737675!3d48.867867979288745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2f9b0ea1b3%3A0xb8caafaa46a3e597!2sRue%20de%20la%20Paix%2C%2075002%20Paris!5e0!3m2!1sfr!2sfr!4v1681234567890"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <section class="reservation" id="reservation-form">
+      <h2>Réserver une Table</h2>
+      <form action="confirmation.html" method="POST">
+        <label for="date">Date :</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Heure :</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="guests">Nombre de personnes :</label>
+        <input type="number" id="guests" name="guests" min="1" required>
+
+        <button type="submit">Valider la réservation</button>
+      </form>
+    </section>
+
+    <section class="restaurant-reviews">
+      <h2>Avis des Clients</h2>
+  
+      <!-- Note globale du restaurant -->
+      <div class="overall-rating">
+        <div class="rating-stars">
+          <!-- 4.5/5 par exemple -->
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star half">★</span>
+        </div>
+        <p class="rating-score">4.5/5 sur 120 avis</p>
+      </div>
+  
+      <!-- Liste des avis -->
+      <div class="reviews-list">
+        <article class="review">
+          <div class="review-header">
+            <h3>Jean Dupont</h3>
+            <div class="review-rating">
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star">★</span>
+            </div>
+            <span class="review-date">15/09/2024</span>
+          </div>
+          <p class="review-text">Super expérience, plats délicieux et service impeccable. Je recommande !</p>
+        </article>
+  
+        <article class="review">
+          <div class="review-header">
+            <h3>Marie Dubois</h3>
+            <div class="review-rating">
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star filled">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+            <span class="review-date">10/09/2024</span>
+          </div>
+          <p class="review-text">Le cadre est très joli, mais j’ai trouvé l’attente un peu longue. Le plat était bon mais pas exceptionnel.</p>
+        </article>
+  
+        <!-- Autres avis ... -->
+      </div>
+  
+      <!-- Formulaire pour laisser un avis -->
+      <div class="review-form">
+        <h3>Laisser un Avis</h3>
+        <form action="#" method="POST">
+          <label for="name">Votre Nom:</label>
+          <input type="text" id="name" name="name" required>
+  
+          <label for="rating">Votre Note :</label>
+          <div class="rating-input">
+            <!-- 5 étoiles cliquables -->
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+          </div>
+  
+          <label for="comment">Votre Commentaire :</label>
+          <textarea id="comment" name="comment" rows="4" required></textarea>
+  
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 - RéservApp</p>
+  </footer>
+</body>
+</html>
