@@ -1,0 +1,93 @@
+
+  
+  /* Sidebar principale */
+  .sidebar {
+    width: 250px;
+    background: $secondary-color;
+    color: $text-color-white;
+    height: 100vh;
+    float: left;
+    padding: 2rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .sidebar .side-nav a {
+    color: $text-color-white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .sidebar .side-nav a i {
+    color: $text-color-white;
+    font-size: 1.2em;
+  }
+  
+  .sidebar .side-nav a:hover,
+  .sidebar .side-nav a.active {
+    background-color: $primary-color;
+  }
+  
+  .sidebar .side-nav a:hover i {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Groupes de navigation */
+  .nav-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nav-group-btn {
+    background: none;
+    border: none;
+    color: $text-color-white;
+    padding: 1rem 2rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-group-btn:hover {
+    background-color: darken($color: $secondary-color, $amount: 10%)
+  }
+  
+  .nav-group .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .nav-group-content {
+    display: none;
+    flex-direction: column;
+    background-color: darken($color: $secondary-color, $amount: 10%);
+  }
+  
+  .nav-group-content a {
+    padding: 0.75rem 3rem;
+    font-weight: 400;
+  }
+  
+  .nav-group-content a:hover {
+    background-color: darken($color: $secondary-color, $amount: 20%);
+  }
+  
+  .nav-group.active .nav-group-content {
+    display: flex;
+  }
+  
+  .nav-group.active .nav-group-btn .arrow {
+    transform: rotate(180deg);
+  }
+  
