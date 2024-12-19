@@ -2,7 +2,7 @@
   
   /* Sidebar principale */
   .sidebar {
-    width: 250px;
+    width: 350px;
     background: $secondary-color;
     color: $text-color-white;
     height: 100vh;
@@ -18,7 +18,8 @@
     padding: 1rem 2rem;
     text-decoration: none;
     font-weight: 500;
-    display: block;
+    display: flex;
+    gap: 1rem;
     transition: background-color 0.3s ease-in-out;
   }
   
