@@ -1,0 +1,91 @@
+
+  
+  /* Réinitialisation basique */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, #root{
+    font-family: $font-family;
+    font-size: $font-size-base;
+    color: $text-color;
+    background: $bg-color;
+    line-height: 1.5;
+  }
+
+  /* Liens et boutons */
+a {
+    color: $primary-color;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: darken($primary-color, 10%);
+  }
+  
+  button {
+    background: $primary-color;
+    color: $light-color;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-family: $font-family;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: darken($primary-color, 10%);
+  }
+
+  /* Conteneur Principal */
+.dashboard-content {
+    margin-left: 250px; /* Largeur de la sidebar */
+    padding: 2rem;
+    width: calc(100% - 250px);
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-bottom: 5rem; /* Pour éviter que le contenu ne soit couvert par le footer */
+  }
+  
+  /* En-tête du Dashboard */
+  .dashboard-header {
+    background-color: #ecf0f1;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-header .header-left h1 {
+    margin: 0;
+    color: #2c3e50;
+  }
+  
+  .dashboard-header .header-left p {
+    margin: 0;
+    color: #7f8c8d;
+  }
+  
+  .dashboard-header .header-right .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Pied de Page */
+  .dashboard-footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: calc(100% - 250px);
+    bottom: 0;
+    left: 250px;
+  }
