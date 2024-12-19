@@ -42,9 +42,9 @@ button:hover {
 
 /* Conteneur Principal */
 .dashboard-content {
-  margin-left: 250px; /* Largeur de la sidebar */
+  margin-left: 350px; /* Largeur de la sidebar */
   padding: 2rem;
-  width: calc(100% - 250px);
+  width: calc(100% - 350px);
   box-sizing: border-box;
   min-height: 100vh;
   padding-bottom: 5rem; /* Pour éviter que le contenu ne soit couvert par le footer */
@@ -94,7 +94,7 @@ button:hover {
 
 /* Sidebar principale */
 .sidebar {
-  width: 250px;
+  width: 350px;
   background: #2c3e50;
   color: #fff;
   height: 100vh;
@@ -110,7 +110,8 @@ button:hover {
   padding: 1rem 2rem;
   text-decoration: none;
   font-weight: 500;
-  display: block;
+  display: flex;
+  gap: 1rem;
   transition: background-color 0.3s ease-in-out;
 }
 
