@@ -1,0 +1,76 @@
+/* src/pages/Home.css */
+@import './components/contact/contact.scss';
+@import './components/features/features.scss';
+@import './components/hero/hero.scss';
+@import './components/pricing/pricing.scss';
+@import './components/testimonials/testimonials.scss';
+@import './components/navbar/navbar.scss';
+@import './components/footer/footer.scss';
+/* Styles Généraux */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    color: #34495e;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .features, .testimonials, .pricing, .contact {
+    padding: 10rem 0;
+  }
+  
+  /* Responsivité */
+  @media (max-width: 768px) {
+    .features .feature-categories,
+    .pricing .pricing-cards,
+    .testimonials .testimonial-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar .nav-links {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .navbar .auth-buttons {
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 0.5rem;
+    }
+  
+    .hero {
+      padding: 0 1rem;
+    }
+  
+    .contact form {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-content h1 {
+      font-size: 1.8rem;
+    }
+  
+    .hero-content p {
+      font-size: 1rem;
+    }
+  
+    .features .feature-category,
+    .pricing .pricing-card,
+    .testimonials .testimonial-item {
+      width: 100%;
+    }
+  }
+  
