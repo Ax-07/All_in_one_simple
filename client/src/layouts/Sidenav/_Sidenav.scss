@@ -66,7 +66,11 @@
   
   .nav-group .arrow {
     font-size: 0.8rem;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.075s ease-in-out;
+  }
+
+  .nav-group .arrow svg {
+    height: 16px;
   }
   
   .nav-group-content {
@@ -88,6 +92,10 @@
     display: flex;
   }
   
+  .nav-group.active .nav-group-btn {
+    background-color: lighten($color: $primary-color, $amount: 10%);
+  }
+
   .nav-group.active .nav-group-btn .arrow {
     transform: rotate(180deg);
   }
