@@ -1,0 +1,54 @@
+  /* Section Avis */
+  .testimonials {
+    padding: 4rem 2rem;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+  }
+  
+  .testimonials .testimonial-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .testimonials .testimonial-item {
+    background-color: #f4f6f8;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 300px;
+    position: relative;
+  }
+  
+  .testimonials .testimonial-item::before {
+    content: "\f10d"; /* Citation mark from Font Awesome */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 2rem;
+    color: #1abc9c;
+  }
+  
+  .testimonials .testimonial-item p {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonials .testimonial-item h4 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+  }
+  
+  .testimonials .testimonial-item span {
+    font-size: 0.9rem;
+    color: #95a5a6;
+  }
