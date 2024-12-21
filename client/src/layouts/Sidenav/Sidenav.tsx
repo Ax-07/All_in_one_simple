@@ -20,9 +20,11 @@ import {
   faUser, 
   faCogs, 
   faPaintBrush, 
-  faSignOutAlt 
+  faSignOutAlt,
+  faAngleUp 
 } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { Link } from 'react-router-dom';
 
 /** Type représentant un lien de navigation */
 interface NavLink {
@@ -54,14 +56,16 @@ const NavGroup: React.FC<NavGroupProps> = ({ title, links, isActive, onToggle })
         aria-expanded={isActive}
       >
         {title}
-        <span className="arrow">{'▲'}</span>
+        <span className="arrow">
+          <FontAwesomeIcon icon={faAngleUp}/>
+        </span>
       </button>
       <div className={`nav-group-content ${isActive ? 'expanded' : ''}`}>
         {links.map(link => (
-          <a href={link.href} key={link.href} className="nav-link">
+          <Link to={link.href} key={link.href} className="nav-link">
             <FontAwesomeIcon icon={link.icon} aria-hidden="true" />
             <span>{link.label}</span>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
@@ -78,63 +82,63 @@ const SideNav: React.FC = () => {
     {
       title: 'Gestion Opérationnelle',
       links: [
-        { label: 'Réservations', icon: faCalendarAlt, href: 'reservations.html' },
-        { label: 'Plats & Menus', icon: faUtensils, href: 'config_plats_menus.html' },
-        { label: 'Logiciel de Caisse', icon: faCashRegister, href: 'caisse.html' },
-        { label: 'Suivi des Ventes', icon: faChartLine, href: 'suivi_ventes.html' }
+        { label: 'Réservations', icon: faCalendarAlt, href: '/reservations' },
+        { label: 'Plats & Menus', icon: faUtensils, href: '/config-plats-menus' },
+        { label: 'Logiciel de Caisse', icon: faCashRegister, href: '/caisse' },
+        { label: 'Suivi des Ventes', icon: faChartLine, href: '/suivi-ventes' }
       ]
     },
     {
       title: 'Gestion des Stocks',
       links: [
-        { label: 'Gestion des Produits', icon: faBoxOpen, href: 'gestion_produits.html' },
-        { label: 'Gestion des Stocks', icon: faWarehouse, href: 'gestion_stocks.html' },
-        { label: 'Commandes Fournisseurs', icon: faTruck, href: 'gestion_commandes.html' },
-        { label: 'Gestion des Fournisseurs', icon: faUserTie, href: 'gestion_fournisseurs.html' }
+        { label: 'Gestion des Produits', icon: faBoxOpen, href: '/gestion-produits' },
+        { label: 'Gestion des Stocks', icon: faWarehouse, href: '/gestion-stocks' },
+        { label: 'Commandes Fournisseurs', icon: faTruck, href: '/gestion-commandes' },
+        { label: 'Gestion des Fournisseurs', icon: faUserTie, href: '/gestion-fournisseurs' }
       ]
     },
     {
       title: 'Ressources Humaines',
       links: [
-        { label: 'Gestion des Employés', icon: faUsers, href: 'gestion_employes.html' },
-        { label: 'Gestion des Salaires', icon: faDollarSign, href: 'gestion_salaires.html' }
+        { label: 'Gestion des Employés', icon: faUsers, href: '/gestion-employes' },
+        { label: 'Gestion des Salaires', icon: faDollarSign, href: '/gestion_salaires' }
       ]
     },
     {
       title: 'Marketing',
       links: [
-        { label: 'Gestion des Clients', icon: faUserFriends, href: 'gestion_clients.html' },
-        { label: 'Gestion des Promotions', icon: faPercent, href: 'gestion_promotions.html' }
+        { label: 'Gestion des Clients', icon: faUserFriends, href: '/gestion-clients' },
+        { label: 'Gestion des Promotions', icon: faPercent, href: '/gestion-promotions' }
       ]
     },
     {
       title: 'Support',
       links: [
-        { label: 'Support et Assistance', icon: faHeadset, href: 'support_assistance.html' },
-        { label: 'Gestion des Feedbacks', icon: faComments, href: 'gestion_feedbacks.html' }
+        { label: 'Support et Assistance', icon: faHeadset, href: '/support-assistance' },
+        { label: 'Gestion des Feedbacks', icon: faComments, href: '/gestion-feedbacks' }
       ]
     },
     {
       title: 'Reporting',
       links: [
-        { label: 'Reporting et Analyses', icon: faChartPie, href: 'reporting.html' }
+        { label: 'Reporting et Analyses', icon: faChartPie, href: '/reporting' }
       ]
     }
   ];
 
   const singleLinks: NavLink[] = [
-    { label: 'Mon Profil', icon: faUser, href: 'profil.html' },
-    { label: 'Paramètres', icon: faCogs, href: 'parametres.html' },
-    { label: 'Personnaliser ma Fiche', icon: faPaintBrush, href: 'choix-template.html' },
-    { label: 'Déconnexion', icon: faSignOutAlt, href: 'index.html' }
+    { label: 'Mon Profil', icon: faUser, href: '/profil' },
+    { label: 'Paramètres', icon: faCogs, href: '/parametres' },
+    { label: 'Personnaliser ma Fiche', icon: faPaintBrush, href: '/choix-template' },
+    { label: 'Déconnexion', icon: faSignOutAlt, href: '/' }
   ];
 
   return (
     <nav className="side-nav">
-      <a href="dashboard.html" className="nav-link active">
+      <Link to="/dashboard" className="nav-link active">
         <FontAwesomeIcon icon={faTachometerAlt} />
         <span>Dashboard</span>
-      </a>
+      </Link>
 
       {navGroups.map(group => (
         <NavGroup 
