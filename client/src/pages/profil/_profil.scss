@@ -1,0 +1,26 @@
+.profile-section {
+    background: #fff;
+    border-radius: 6px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .profile-form label {
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+  
+  .profile-form input,
+  .profile-form textarea {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
