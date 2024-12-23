@@ -128,7 +128,7 @@ const SideNav: React.FC = () => {
 
   const singleLinks: NavLink[] = [
     { label: 'Mon Profil', icon: faUser, href: '/profil' },
-    { label: 'Paramètres', icon: faCogs, href: '/parametres' },
+    { label: 'Paramètres', icon: faCogs, href: '/setting' },
     { label: 'Personnaliser ma Fiche', icon: faPaintBrush, href: '/choix-template' },
     { label: 'Déconnexion', icon: faSignOutAlt, href: '/' }
   ];
