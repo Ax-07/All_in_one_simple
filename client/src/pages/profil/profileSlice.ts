@@ -41,6 +41,7 @@ const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
+    // Action pour mettre à jour un champ du profil
     updateField: (state, action) => {
       const { field, value } = action.payload;
       (state.data as UserProfile)[field as keyof UserProfile] = value;
