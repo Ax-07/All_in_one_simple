@@ -1,0 +1,27 @@
+.generic-select {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+  
+    &__label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+  
+    &__input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      outline: none;
+      cursor: pointer;
+  
+      &:focus {
+        border-color: #3273dc; // Couleur d’accent
+        box-shadow: 0 0 0 1px #3273dc;
+      }
+    }
+  }
+  
