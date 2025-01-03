@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TabsNav from "./TabsNav";
-import ReservationTab from "./ReservationTab";
+import ReservationTab from "./horaires_&_policies/ReservationTab";
 import MenuTab from "./MenuTab";
 import NotificationsTab from "./NotificationsTab";
 import PaiementTab from "./PaiementTab";
