@@ -2,6 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { persistStore, persistReducer } from "redux-persist";
 import localStorage from "redux-persist/lib/storage";
+import profileSlice from "../pages/profil/profileSlice";
+import horaires from "../pages/setting/horaires_&_policies/horaires/horairesSlices";
+import policies from "../pages/setting/horaires_&_policies/policies/policiesSlice";
 
 const persistConfig = {
     key: "root",
@@ -10,7 +13,11 @@ const persistConfig = {
 };
 
 const store = configureStore({
-    reducer: {},
+    reducer: {
+        profile: profileSlice,
+        horaires: horaires,
+        policies: policies,
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
