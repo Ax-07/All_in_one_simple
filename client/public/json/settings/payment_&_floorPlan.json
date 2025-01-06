@@ -1,0 +1,13 @@
+{
+    "paymentSettings" : {
+        "onlinePaymentEnabled": true,
+        "paymentProvider": "stripe",
+        "paymentApiKey": "sk_test_4eC39HqLyjWDarjtT1zdp7dc",
+        "fullPrepayment": false  
+    },
+    "floorPlanSettings" : {
+        "showFloorPlan": true,
+        "floorPlanURL": "https://example.com/floorplan.jpg",
+        "tablesInfo": "Table 1: 4 pers, Table 2: 2 pers"
+    }
+}
