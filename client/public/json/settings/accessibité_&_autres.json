@@ -1,0 +1,20 @@
+{
+  "accessibilitySettings": {
+    "childFriendly": true,
+    "petsAllowed": false,
+    "wheelchairAccessible": true
+  },
+  "generalSettings": {
+    "timeZone": "europe-paris",
+    "reservationMode": "en-ligne"
+  },
+  "reviewSettings": {
+    "enableReviews": true,
+    "moderateReviews": true
+  },
+  "privacySettings": {
+    "showPrivacyPolicy": true,
+    "privacyPolicyURL": "https://example.com/privacy",
+    "requireConsent": true
+  }
+}
