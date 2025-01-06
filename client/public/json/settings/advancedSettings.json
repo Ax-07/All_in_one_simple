@@ -1,0 +1,10 @@
+{
+  "advancedSettings": {
+    "depositRequired": false,
+    "depositAmount": 0,
+    "minBookingAdvance": 0,
+    "maxBookingAdvance": 30,
+    "noShowFees": 0,
+    "blockAfterNoShow": false
+  }
+}
