@@ -1,0 +1,9 @@
+{
+    "marketingSetting": {
+        "enablePromotions": true,
+        "promotionText": "Happy hour tous les jeudis de 18h à 20h !",
+        "sendNewsletters": false,
+        "confirmationEmailText": "Bonjour, votre réservation est confirmée !",
+        "reminderEmailText": "N'oubliez pas votre réservation de demain :)"
+      }
+}
