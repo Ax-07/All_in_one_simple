@@ -48,6 +48,24 @@ interface GenericSelectProps<T> {
   disabled?: boolean;
 }
 
+/**
+ * Composant générique pour un champ de type "select" (liste déroulante)
+ * @param props Les propriétés du composant
+ * @returns JSX.Element
+ * @template T
+ * @example
+ * ```tsx
+ * <Select
+ *  options={[{ id: 1, name: "A" }, { id: 2, name: "B" }]}
+ *  getOptionValue={option => option.id}
+ *  getOptionLabel={option => option.name}
+ *  value={selectedOption}
+ *  onChange={setSelectedOption}
+ *  label="Choisissez une option"
+ *  placeholder="Sélectionnez une option"
+ *  disabled={false}
+ * />
+ */
 function Select<T>(props: GenericSelectProps<T>) {
   const {
     options,
