@@ -12,7 +12,7 @@
   
   .settings-form h2 {
     margin-top: 2rem;
-    color: var(--color-secondary);
+    color: $secondary-color;
     margin-bottom: 1rem;
   }
   
@@ -45,7 +45,7 @@
   .settings-form h2 {
     font-size: 1.3rem;
     margin: 2rem 0 1rem;
-    color: var(--color-secondary);
+    color: $secondary-color;
   }
   
   .settings-block {
@@ -115,7 +115,7 @@
   }
   
   .btn-primary {
-    background: var(--color-primary);
+    background: $primary-color;
     color: #fff;
     border: none;
     padding: 0.7rem 1.5rem;
@@ -151,7 +151,7 @@
   
   .policy-group h3 {
     font-size: 1.1rem;
-    color: var(--color-secondary);
+    color: $secondary-color;
     margin-bottom: 0.5rem;
   }
   
@@ -166,7 +166,7 @@
     font-size: 1rem;
     font-weight: 500;
     margin: 1rem 0 0.5rem;
-    color: var(--color-secondary);
+    color: $secondary-color;
   }
   
   .radio-label {
@@ -207,7 +207,7 @@
   .menu-options h3,
   .menu-documents-section h3 {
     font-size: 1.1rem;
-    color: var(--color-secondary);
+    color: $secondary-color;
     margin-bottom: 0.5rem;
   }
   
@@ -299,7 +299,7 @@
 .notifications-group h3,
 .delay-group h3 {
   font-size: 1.1rem;
-  color: var(--color-secondary);
+  color: $secondary-color;
   margin-bottom: 0.5rem;
 }
 
@@ -340,7 +340,7 @@
 .access-group h3,
 .general-settings-group h3 {
   font-size: 1.1rem;
-  color: var(--color-secondary);
+  color: $secondary-color;
   margin-bottom: 0.5rem;
 }
 
