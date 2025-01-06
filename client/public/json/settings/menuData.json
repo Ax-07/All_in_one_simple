@@ -1,0 +1,16 @@
+{
+  "menuSettings": {
+    "showMenuOnline": true,
+    "showWineList": false,
+    "documents": [
+      {
+        "type": "menu",
+        "fileName": "",
+        "url": ""
+      }
+    ],
+    "showAllergens": false,
+    "showVegetarian": false,
+    "showGlutenFree": false
+  }
+}
