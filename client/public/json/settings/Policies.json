@@ -1,0 +1,9 @@
+{
+    "policies": {
+        "cancellation": "Annulation possible jusqu'à 2h avant la réservation.",
+        "serviceFeesPolicy": "inclus",
+        "serviceFees": 10,
+        "maxPartySize": 6,
+        "dressCode": "chic-décontracté"
+      }
+}
