@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { store } from "../../../../stores/store";
 import { updateAdvancedSettings } from "./advancedSettingsSlice";
+import Checkbox from "../../../../components/checkBox/Checkbox";
 
 interface AdvancedSettings {
   noShowFees: number;
@@ -40,17 +41,12 @@ const NoShowPolicy: FC<Props> = ({ advancedSettings }) => {
           handleAdvancedSettingsChange("noShowFees", Number(e.target.value))
         }
       />
-      <label className="check-label">
-        <input
-          type="checkbox"
-          name="block-after-no-show"
-          checked={advancedSettings.blockAfterNoShow}
-          onChange={(e) =>
-            handleAdvancedSettingsChange("blockAfterNoShow", e.target.checked)
-          }
-        />
+      <Checkbox name="block-after-no-show"
+        checked={advancedSettings.blockAfterNoShow}
+        onChange={(e) => handleAdvancedSettingsChange("blockAfterNoShow", e.target.checked)}
+      >
         Bloquer les clients après un no-show (jusqu’à intervention manuelle)
-      </label>
+      </Checkbox>
     </div>
   );
 };
