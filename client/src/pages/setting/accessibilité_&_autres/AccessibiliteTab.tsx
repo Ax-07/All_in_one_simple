@@ -95,13 +95,10 @@ const AccessibiliteTab: React.FC = () => {
           </p>
 
           <label htmlFor="time-zone">Fuseau horaire :</label>
-          <select
+          <select name="time-zone"
             id="time-zone"
-            name="time-zone"
             value={generalSettings.timeZone}
-            onChange={(e) =>
-              handleGeneralSettingsChange("timeZone", e.target.value)
-            }
+            onChange={(e) => handleGeneralSettingsChange("timeZone", e.target.value)}
           >
             <option value="Europe/Paris">Europe/Paris</option>
             <option value="Europe/London">Europe/London</option>
@@ -110,9 +107,8 @@ const AccessibiliteTab: React.FC = () => {
           </select>
 
           <label htmlFor="reservation-mode">Mode de Réservation :</label>
-          <select
+          <select name="reservation-mode"
             id="reservation-mode"
-            name="reservation-mode"
             value={generalSettings.reservationMode}
             onChange={(e) =>
               handleGeneralSettingsChange("reservationMode", e.target.value)
