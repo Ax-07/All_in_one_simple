@@ -57,13 +57,7 @@ const Horaires: FunctionComponent = () => {
                     type="checkbox"
                     className="closed-check"
                     checked={day.middayClosed}
-                    onChange={(e) =>
-                      handleScheduleChange(
-                        index,
-                        "middayClosed",
-                        e.target.checked
-                      )
-                    }
+                    onChange={(e) => handleScheduleChange(index, "middayClosed", e.target.checked)}
                   />
                 </td>
                 <td>
@@ -71,22 +65,14 @@ const Horaires: FunctionComponent = () => {
                     type="checkbox"
                     className="closed-check"
                     checked={day.eveningClosed}
-                    onChange={(e) =>
-                      handleScheduleChange(
-                        index,
-                        "eveningClosed",
-                        e.target.checked
-                      )
-                    }
+                    onChange={(e) => handleScheduleChange(index, "eveningClosed", e.target.checked)}
                   />
                 </td>
                 <td>
                   <input
                     type="time"
                     value={day.middayOpen}
-                    onChange={(e) =>
-                      handleScheduleChange(index, "middayOpen", e.target.value)
-                    }
+                    onChange={(e) => handleScheduleChange(index, "middayOpen", e.target.value)}
                     disabled={day.middayClosed}
                   />
                 </td>
@@ -94,9 +80,7 @@ const Horaires: FunctionComponent = () => {
                   <input
                     type="time"
                     value={day.middayClose}
-                    onChange={(e) =>
-                      handleScheduleChange(index, "middayClose", e.target.value)
-                    }
+                    onChange={(e) => handleScheduleChange(index, "middayClose", e.target.value)}
                     disabled={day.middayClosed}
                   />
                 </td>
@@ -104,9 +88,7 @@ const Horaires: FunctionComponent = () => {
                   <input
                     type="time"
                     value={day.eveningOpen}
-                    onChange={(e) =>
-                      handleScheduleChange(index, "eveningOpen", e.target.value)
-                    }
+                    onChange={(e) => handleScheduleChange(index, "eveningOpen", e.target.value)}
                     disabled={day.eveningClosed}
                   />
                 </td>
@@ -114,13 +96,7 @@ const Horaires: FunctionComponent = () => {
                   <input
                     type="time"
                     value={day.eveningClose}
-                    onChange={(e) =>
-                      handleScheduleChange(
-                        index,
-                        "eveningClose",
-                        e.target.value
-                      )
-                    }
+                    onChange={(e) => handleScheduleChange(index, "eveningClose", e.target.value)}
                     disabled={day.eveningClosed}
                   />
                 </td>
