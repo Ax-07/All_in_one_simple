@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, store } from "../../../stores/store";
 import { updateMarketingSetting } from "./marketingSettingSlice";
+import Checkbox from "../../../components/checkBox/Checkbox";
 
 const MarketingSetting: FC = () => {
   const dispatch = useDispatch<typeof store.dispatch>();
@@ -58,15 +59,12 @@ const MarketingSetting: FC = () => {
           Mettez en avant des offres spéciales ou des événements (happy hour,
           menus festifs).{" "}
         </p>
-        <label className="check-label">
-          <input
-            type="checkbox"
-            name="enable-promotions"
-            checked={enablePromotions}
-            onChange={(e) => handleEnablePromotions(e.target.checked)}
-          />
+        <Checkbox name="enable-promotions"
+          checked={enablePromotions}
+          onChange={(e) => handleEnablePromotions(e.target.checked)}
+        >
           Activer les promotions
-        </label>
+        </Checkbox>
         <label htmlFor="promotion-text">Texte de la promotion :</label>
         <textarea
           id="promotion-text"
@@ -84,15 +82,12 @@ const MarketingSetting: FC = () => {
           Envoyez régulièrement des newsletters ou des promotions par email aux
           clients inscrits.
         </p>
-        <label className="check-label">
-          <input
-            type="checkbox"
-            name="send-newsletters"
-            checked={sendNewsletters}
-            onChange={(e) => handleSendNewsletters(e.target.checked)}
-          />
+        <Checkbox name="send-newsletters"
+          checked={sendNewsletters}
+          onChange={(e) => handleSendNewsletters(e.target.checked)}
+        >
           Envoyer des newsletters
-        </label>
+        </Checkbox>
       </div>
 
       {/* Personnalisation des Emails */}
